@@ -6,41 +6,76 @@
              mc:Ignorable="d" 
              Height="500" Width="Auto">
     <Grid>
-        
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
             <DockPanel Height="30" Margin="10">
-                <Label Content="Firstname :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="140"></TextBox>
+                <Label Content="Name :" Margin="25,0,0,0"></Label>
+                <TextBox  Width="140" Text="{Binding Path=Name, Mode=TwoWay}"></TextBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Lastname :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="140"></TextBox>
+                <TextBox  Width="140" Text="{Binding Path=LastName, Mode=TwoWay}"></TextBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
-                <Label Content="Name :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="140" Margin="20,0,0,0"></TextBox>
+                <Label Content="Username :" Margin="10,0,0,0"></Label>
+                <TextBox  Width="140" Margin="0,0,0,0" Text="{Binding Path=UserName, Mode=TwoWay}"></TextBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Age :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="70"  Margin="0,0,40,0"></TextBox>
+                <TextBox  Width="70"  Margin="0,0,40,0" Text="{Binding Path=Age, Mode=TwoWay}"></TextBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Gender :" Margin="10,0,0,0"></Label>
-                <ComboBox  Width="140"  Margin="10,0,0,0"></ComboBox>
+                <ComboBox  Width="140"  Margin="10,0,0,0" Text="{Binding Path=Gender, Mode=TwoWay}">
+                    <ComboBoxItem IsSelected="True">Female</ComboBoxItem>
+                    <ComboBoxItem>Male</ComboBoxItem>
+                </ComboBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Weight :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="70"  Margin="50,0,0,0"></TextBox>
-                <RadioButton Content="Kg" Margin="10,5,0,0"></RadioButton>
-                <RadioButton Content="Lbs." Margin="10,5,0,0"></RadioButton>
+                <TextBox  Width="70"  Margin="50,0,0,0" Text="{Binding Path=Weight, Mode=TwoWay}"></TextBox>
+                <RadioButton Content="Kg" Margin="10,5,0,0" IsChecked="{Binding Path=IsKilo, Mode=TwoWay}"></RadioButton>
+                <RadioButton Content="Lbs." Margin="10,5,0,0" IsChecked="{Binding Path=IsPound, Mode=TwoWay}"></RadioButton>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Height :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="75"  Margin="50,0,0,0"></TextBox>
+                <TextBox  Width="75"  Margin="50,0,0,0" Text="{Binding Path=Height, Mode=TwoWay}"></TextBox>
                 <Label Content="cm"  Margin="20,0,0,0"></Label>
             </DockPanel>
         </StackPanel>
-
-
+        <StackPanel Grid.Column="1">
+            <DockPanel Height="30" Margin="10">
+                <Label Content="Goal :" Margin="10,0,0,0"></Label>
+                <ComboBox  Width="140"  Margin="10,0,0,0" Text="{Binding Path=Goal, Mode=TwoWay}">
+                    <ComboBoxItem IsSelected="{Binding Path=IsLose, Mode=TwoWay}">Lose Weight</ComboBoxItem>
+                    <ComboBoxItem IsSelected="{Binding Path=IsGain, Mode=TwoWay}">Gain Weight</ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel Height="30" Margin="10">
+                <Label Content="Diet Duration :" Margin="10,0,0,0"></Label>
+                <TextBox  Width="40"  Margin="10,0,0,0" Text="{Binding Path=DietDuration, Mode=TwoWay}"></TextBox>
+                <Label Content="Week(s)" Margin="10,0,0,0"></Label>
+            </DockPanel>
+            <DockPanel Height="30" Margin="10">
+                <Label Content="Weight Goal :" Margin="10,0,0,0"></Label>
+                <TextBox  Width="70"  Margin="10,0,0,0" Text="{Binding Path=WeightGoal, Mode=TwoWay}"></TextBox>
+                <RadioButton Content="Kg" Margin="10,5,0,0" IsChecked="True"></RadioButton>
+                <RadioButton Content="Lbs." Margin="10,5,0,0"></RadioButton>
+            </DockPanel>
+            <StackPanel Height="140" Margin="10">
+                <Label Content="Activity Level :" Margin="10"></Label>
+                <Slider Minimum="14" Maximum="17" TickPlacement="BottomRight" TickFrequency="1" Margin="10" IsSnapToTickEnabled="True" Value="{Binding Path=ActivityLevel, Mode=TwoWay}"></Slider>
+                <Label Content="Level - Activity level description" Margin="10,0,0,0"></Label>
+            </StackPanel>
+            <DockPanel>
+                <Button Content="Cancel" Width="100" HorizontalAlignment="Left" Margin="30,0,0,0" Command="{Binding CancelCreationCommand}"></Button>
+                <Button Content="Finish" Width="100" HorizontalAlignment="right" Margin="0,0,30,0" Command="{Binding FinishCreationCommand}"></Button>
+            </DockPanel>
+            
+        </StackPanel>
     </Grid>
 </UserControl>

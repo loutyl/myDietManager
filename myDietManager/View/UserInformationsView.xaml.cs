@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
-
+using myDietManager.Model;
+using myDietManager.ViewModel;
 namespace myDietManager.View
 {
     /// <summary>
@@ -10,6 +11,8 @@ namespace myDietManager.View
         public UserInformationsView()
         {
             InitializeComponent();
+            this.DataContext = new UserInformationViewModel();
+
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using myDietManager.Model;
 using myDietManager.View;
+using myDietManager.ViewModel;
 
 
 namespace myDietManager
@@ -12,8 +14,6 @@ namespace myDietManager
         public UserCreationWindow()
         {
             InitializeComponent();
-
-            var userCreationView = new UserInformationsView();
         }
     }
 }

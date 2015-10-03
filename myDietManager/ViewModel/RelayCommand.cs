@@ -13,6 +13,8 @@ namespace myDietManager.ViewModel
    
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;
+        private readonly Action<object> _executeWithParameter;
+        private readonly Predicate<object> _canExecutePredicate;
      
 
         public event EventHandler CanExecuteChanged
@@ -52,6 +54,20 @@ namespace myDietManager.ViewModel
             this._canExecute = canExecute;
         }
 
+        public RelayCommand(Action<object> executeParam, Predicate<object> canExecutePredicate)
+        {
+            if (this._executeWithParameter == null)
+                throw new ArgumentNullException("executeParam");
+
+            this._executeWithParameter = executeParam;
+            this._canExecutePredicate = canExecutePredicate;
+        }
+
+        public void ExecuteWithParameter(object parameter)
+        {
+            this._executeWithParameter(parameter);
+        }
+
         public void Execute(object parameter)
         {
             this._execute();
@@ -59,7 +75,12 @@ namespace myDietManager.ViewModel
 
         public bool CanExecute(object parameter)
         {
-            return this._canExecute == null || this._canExecute();
+            return this._canExecute == null || _canExecute();
+        }
+
+        public bool CanExecutePredicate(object parameter)
+        {
+            return this._canExecutePredicate == null || this._canExecutePredicate(parameter);
         }
     }
 }

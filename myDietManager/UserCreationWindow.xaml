@@ -2,14 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:myDietManager.View"
-        Title="UserCreationWindow" Height="400" Width="500">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="310"></ColumnDefinition>
-            <ColumnDefinition Width="1.5*"/>
-        </Grid.ColumnDefinitions>
+        Title="UserCreationWindow" Height="396" Width="603" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
-        <view:UserInformationsView x:Name="UserCreationView" RenderTransformOrigin="0.519,0.34" Margin="0,0,0,-130" Grid.Column="0"></view:UserInformationsView>
-        <view:UserGoalView x:Name="UserGoalView" Grid.Column="1"></view:UserGoalView>
+    <Grid>
+        <view:UserInformationsView x:Name="UserCreationView" RenderTransformOrigin="0.519,0.34" Margin="0,0,0,-132"></view:UserInformationsView>
     </Grid>
 </Window>

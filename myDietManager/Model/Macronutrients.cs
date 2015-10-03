@@ -29,9 +29,14 @@
             Calorie = 4;
             Weight = 1;
         }
+        public Protein(int calorie)
+        {
+            this.Calorie = calorie;
+            this.Weight = (this.Calorie / 4);
+        }
 
-        public float Weight { get; private set; }
-        public int Calorie { get; private set; }
+        public float Weight { get; set; }
+        public int Calorie { get; set; }
     }
 
     public class Carbohydrate : INutrients
@@ -42,8 +47,14 @@
             Weight = 1;
         }
 
-        public float Weight { get; private set; }
-        public int Calorie { get; private set; }
+        public Carbohydrate(int calorie)
+        {
+            this.Calorie = calorie;
+            this.Weight = (this.Calorie / 4);
+        }
+
+        public float Weight { get; set; }
+        public int Calorie { get; set; }
     }
 
     public class Fat : INutrients
@@ -54,7 +65,13 @@
             Weight = 1;
         }
 
-        public float Weight { get; private set; }
-        public int Calorie { get; private set; }
+        public Fat(int calorie)
+        {
+            this.Calorie = calorie;
+            this.Weight = (this.Calorie / 4);
+        }
+
+        public float Weight { get; set; }
+        public int Calorie { get; set; }
     }
 }
