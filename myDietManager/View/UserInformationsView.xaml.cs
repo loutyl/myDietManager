@@ -11,8 +11,6 @@ namespace myDietManager.View
         public UserInformationsView()
         {
             InitializeComponent();
-            this.DataContext = new UserInformationViewModel();
-
         }
     }
 }

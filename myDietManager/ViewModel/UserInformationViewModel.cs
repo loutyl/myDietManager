@@ -11,7 +11,7 @@ namespace myDietManager.ViewModel
         private ICommand _finishCreationCommand;
 
         public UserInformationViewModel()
-        {
+        {   
             this._newUser = new User();
             this._newUserDietProfile = new DietProfile();
         }
@@ -159,7 +159,7 @@ namespace myDietManager.ViewModel
         {
             get
             {
-                if (this._finishCreationCommand != null) 
+                if (this._finishCreationCommand != null)
                     return this._finishCreationCommand;
 
                 this._finishCreationCommand = new RelayCommand(() => this.FinishUserCreation(), () => this.CanFinishUserCreation());

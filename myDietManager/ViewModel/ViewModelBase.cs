@@ -13,7 +13,6 @@ namespace myDietManager.ViewModel
         /// Raised when a property on this object has a new value.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-
         /// <summary>
         /// Warns the developer if this object does not have a public property with
         /// the specified name. This method does not exist in a Release build.

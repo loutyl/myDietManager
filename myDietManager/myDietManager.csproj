@@ -88,9 +88,18 @@
     <Compile Include="UserCreationWindow.xaml.cs">
       <DependentUpon>UserCreationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\UserCreationWindowViewModel.cs" />
+    <Compile Include="ViewModel\UserInformationRecapViewModel.cs" />
     <Compile Include="ViewModel\UserInformationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\LoginWindowView.xaml.cs">
+      <DependentUpon>LoginWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserInformationRecapView.xaml.cs">
+      <DependentUpon>UserInformationRecapView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserInformationsView.xaml.cs">
       <DependentUpon>UserInformationsView.xaml</DependentUpon>
     </Compile>
@@ -129,6 +138,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserCreationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserInformationRecapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

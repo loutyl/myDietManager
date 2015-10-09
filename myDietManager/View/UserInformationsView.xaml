@@ -2,9 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:myDietManager.ViewModel"
+             xmlns:view="clr-namespace:myDietManager.View"
              mc:Ignorable="d" 
              Height="500" Width="Auto">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -71,11 +74,12 @@
                 <Slider Minimum="14" Maximum="17" TickPlacement="BottomRight" TickFrequency="1" Margin="10" IsSnapToTickEnabled="True" Value="{Binding Path=ActivityLevel, Mode=TwoWay}"></Slider>
                 <Label Content="Level - Activity level description" Margin="10,0,0,0"></Label>
             </StackPanel>
-            <DockPanel>
-                <Button Content="Cancel" Width="100" HorizontalAlignment="Left" Margin="30,0,0,0" Command="{Binding CancelCreationCommand}"></Button>
-                <Button Content="Finish" Width="100" HorizontalAlignment="right" Margin="0,0,30,0" Command="{Binding FinishCreationCommand}"></Button>
-            </DockPanel>
-            
+            <Grid>
+                <DockPanel>
+                    <Button Content="Cancel" Width="100" HorizontalAlignment="Left" Margin="30,0,0,0" Command="{Binding CancelCreationCommand}"></Button>
+                    <Button Content="Finish" Width="100" HorizontalAlignment="right" Margin="0,0,30,0" Command="{Binding FinishCreationCommand}"></Button>
+                </DockPanel>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

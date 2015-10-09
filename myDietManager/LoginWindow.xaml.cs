@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using myDietManager.View;
-
+using myDietManager.ViewModel;
 namespace myDietManager
 {
     /// <summary>
@@ -12,12 +12,6 @@ namespace myDietManager
         {
             InitializeComponent();
             
-        }
-
-        private void BtnAddNewUser_Click(object sender, RoutedEventArgs e)
-        {
-            var userCreationWindow = new UserCreationWindow();
-            userCreationWindow.Show();
         }
     }
 }

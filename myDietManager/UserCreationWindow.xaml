@@ -2,9 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:myDietManager.View"
+        xmlns:viewModel="clr-namespace:myDietManager.ViewModel"
+        xmlns:myDietManager="clr-namespace:myDietManager"
         Title="UserCreationWindow" Height="396" Width="603" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:UserInformationViewModel}">
+            <view:UserInformationsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:UserInformationRecapViewModel}">
+            <view:UserInformationRecapView />
+        </DataTemplate>
+    </Window.Resources>
+    
+    <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
 
-    <Grid>
-        <view:UserInformationsView x:Name="UserCreationView" RenderTransformOrigin="0.519,0.34" Margin="0,0,0,-132"></view:UserInformationsView>
-    </Grid>
 </Window>
