@@ -1,5 +1,12 @@
 ﻿namespace myDietManager.Model
 {
+    public interface INutrients
+    {
+        float Weight { get; }
+        int Calorie { get; }
+
+    }
+
     public class Macronutrients
     {
         public Protein Protein { get; set; }
@@ -15,13 +22,6 @@
         }
     }
 
-    public interface INutrients
-    {
-        float Weight { get; }
-        int Calorie { get; }
-
-    }
-
     public class Protein : INutrients
     {
         public Protein()
@@ -32,7 +32,7 @@
         public Protein(int calorie)
         {
             this.Calorie = calorie;
-            this.Weight = (this.Calorie / 4);
+            this.Weight = ( this.Calorie / 4 );
         }
 
         public float Weight { get; set; }
@@ -50,7 +50,7 @@
         public Carbohydrate(int calorie)
         {
             this.Calorie = calorie;
-            this.Weight = (this.Calorie / 4);
+            this.Weight = ( this.Calorie / 4 );
         }
 
         public float Weight { get; set; }
@@ -68,7 +68,7 @@
         public Fat(int calorie)
         {
             this.Calorie = calorie;
-            this.Weight = (this.Calorie / 4);
+            this.Weight = ( this.Calorie / 4 );
         }
 
         public float Weight { get; set; }

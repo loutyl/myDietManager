@@ -1,8 +1,5 @@
 ﻿using System.Windows;
-using myDietManager.Model;
-using myDietManager.View;
 using myDietManager.ViewModel;
-
 
 namespace myDietManager
 {

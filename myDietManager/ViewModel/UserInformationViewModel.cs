@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using myDietManager.Model;
 
 namespace myDietManager.ViewModel
@@ -9,16 +8,20 @@ namespace myDietManager.ViewModel
         private readonly User _newUser;
         private readonly DietProfile _newUserDietProfile;
         private ICommand _finishCreationCommand;
+        private readonly UserCreationWindowViewModel _userCreationWindowViewModel;
 
-        public UserInformationViewModel()
+        public UserInformationViewModel(UserCreationWindowViewModel windowViewModel)
         {   
             this._newUser = new User();
             this._newUserDietProfile = new DietProfile();
+            this._userCreationWindowViewModel = windowViewModel;
         }
+
+        #region Attributes
 
         public string LastName
         {
-            get { return this._newUser.LastName; }
+            get { return _newUser.LastName; }
             set
             {
                 this._newUser.LastName = value;
@@ -155,6 +158,11 @@ namespace myDietManager.ViewModel
                 OnPropertyChanged("ActivityLevel");
             }
         }
+
+        #endregion
+
+        #region Commands
+
         public ICommand FinishCreationCommand
         {
             get
@@ -174,13 +182,15 @@ namespace myDietManager.ViewModel
 
             this._newUser.CreateUserCalorieNeeds();
             this._newUser.CreateUserMacroRatio();
-
-            MessageBox.Show("ok");
+            
+            this._userCreationWindowViewModel.CurrentViewModel = new UserInformationRecapViewModel(this._newUser);
         }
 
         public bool CanFinishUserCreation() 
         {
             return true;
         }
+
+        #endregion
     }
 }

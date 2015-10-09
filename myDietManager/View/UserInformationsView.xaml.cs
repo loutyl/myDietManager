@@ -1,6 +1,5 @@
 ﻿using System.Windows.Controls;
-using myDietManager.Model;
-using myDietManager.ViewModel;
+
 namespace myDietManager.View
 {
     /// <summary>

@@ -1,6 +1,5 @@
 ﻿using System.Windows;
-using myDietManager.View;
-using myDietManager.ViewModel;
+
 namespace myDietManager
 {
     /// <summary>
@@ -11,7 +10,6 @@ namespace myDietManager
         public LoginWindow()
         {
             InitializeComponent();
-            
         }
     }
 }

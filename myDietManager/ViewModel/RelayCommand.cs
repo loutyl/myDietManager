@@ -48,7 +48,7 @@ namespace myDietManager.ViewModel
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
             if (execute == null)
-                throw new ArgumentNullException("execute");
+                throw new ArgumentNullException(nameof(execute));
 
             this._execute = execute;
             this._canExecute = canExecute;
@@ -57,30 +57,18 @@ namespace myDietManager.ViewModel
         public RelayCommand(Action<object> executeParam, Predicate<object> canExecutePredicate)
         {
             if (this._executeWithParameter == null)
-                throw new ArgumentNullException("executeParam");
+                throw new ArgumentNullException(nameof(executeParam));
 
             this._executeWithParameter = executeParam;
             this._canExecutePredicate = canExecutePredicate;
         }
 
-        public void ExecuteWithParameter(object parameter)
-        {
-            this._executeWithParameter(parameter);
-        }
+        public void ExecuteWithParameter(object parameter) => this._executeWithParameter(parameter);
 
-        public void Execute(object parameter)
-        {
-            this._execute();
-        }
+        public void Execute(object parameter) => this._execute();
 
-        public bool CanExecute(object parameter)
-        {
-            return this._canExecute == null || _canExecute();
-        }
+        public bool CanExecute(object parameter) => this._canExecute == null || _canExecute();
 
-        public bool CanExecutePredicate(object parameter)
-        {
-            return this._canExecutePredicate == null || this._canExecutePredicate(parameter);
-        }
+        public bool CanExecutePredicate(object parameter) => this._canExecutePredicate == null || this._canExecutePredicate(parameter);
     }
 }

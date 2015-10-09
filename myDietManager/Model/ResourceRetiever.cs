@@ -11,16 +11,15 @@ namespace myDietManager.Model
         {
             this.XmlFile = new XmlDocument();
             this.XmlFile.Load("Resources.xml");
-
         }
 
         public string RetrieveActivityLevel(string activityLevelNumber)
         {
             this.LoadXmlDocument();
 
-            XmlNodeList nodeList = this.XmlFile.SelectNodes("ActivityLevel/level");
+            var nodeList = this.XmlFile.SelectNodes("ActivityLevel/level");
 
-            return nodeList != null ? nodeList.OfType<XmlNode>().Where(node => node.Attributes != null && node.Attributes["name"].Value == activityLevelNumber).Select(node => node.InnerText).First().Trim() : null;
+            return nodeList?.OfType<XmlNode>().Where(node => node.Attributes != null && node.Attributes["name"].Value == activityLevelNumber).Select(node => node.InnerText).First().Trim();
         }
     }
 }

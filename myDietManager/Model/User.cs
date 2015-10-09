@@ -9,14 +9,9 @@
         public string Gender { get; set; }
         public float Weight { get; set; }
         public bool IsPound { get; set; }
-        public bool IsKilo { get; set; }
+        public bool IsKilo { get; set; } = true;
         public float Height { get; set; }
         internal DietProfile DietProfile { get; set; }
-
-        public User()
-        {
-            this.IsKilo = true;
-        }
 
         public void CreateUserCalorieNeeds()
         {
@@ -32,14 +27,11 @@
                 : (this.DietProfile.CalorieNeeds.MaintencanceCalories - 500);
         }
 
-        public void CreateUserMacroRatio()
+        public void CreateUserMacroRatio() => this.DietProfile.Macros = new Macronutrients
         {
-            this.DietProfile.Macros = new Macronutrients
-            {
-                Carbohydrate = new Carbohydrate((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.4)),
-                Protein = new Protein((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.4)),
-                Fat = new Fat((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.2))
-            };
-        }
+            Carbohydrate = new Carbohydrate((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.4)),
+            Protein = new Protein((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.4)),
+            Fat = new Fat((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.2))
+        };
     }
 }
