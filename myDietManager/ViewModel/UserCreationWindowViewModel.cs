@@ -1,4 +1,7 @@
-﻿namespace myDietManager.ViewModel
+﻿using System.Windows;
+using myDietManager.Model;
+
+namespace myDietManager.ViewModel
 {
     public class UserCreationWindowViewModel : ViewModelBase
     {
@@ -18,8 +21,9 @@
 
         public UserCreationWindowViewModel() 
         {
-            this.CurrentViewModel = new UserInformationViewModel(this);
+            this.CurrentViewModel = new UserInformationViewModel(this, new User());
         }
 
     }
+
 }

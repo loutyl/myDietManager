@@ -14,22 +14,36 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                        <Setter Property="TextBox.Background" Value="#6DFF000C"/>
+                    </Trigger>
+                    <Trigger Property="Validation.HasError" Value="false">
+                        <Setter Property="TextBox.Background" Value="#6D00FF3D"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+
         <StackPanel Grid.Column="0">
             <DockPanel Height="30" Margin="10">
                 <Label Content="Name :" Margin="25,0,0,0"></Label>
-                <TextBox  Width="140" Text="{Binding Path=Name, Mode=TwoWay}"></TextBox>
+                <TextBox  Width="140" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}" ></TextBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Lastname :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="140" Text="{Binding Path=LastName, Mode=TwoWay}"></TextBox>
+                <TextBox  Width="140" Text="{Binding Path=LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"  Validation.ErrorTemplate="{x:Null}"></TextBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Username :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="140" Margin="0,0,0,0" Text="{Binding Path=UserName, Mode=TwoWay}"></TextBox>
+                    <TextBox  Width="140" Margin="0,0,0,0" Text="{Binding Path=UserName, Mode=TwoWay, ValidatesOnDataErrors=True}"  Validation.ErrorTemplate="{x:Null}" ></TextBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Age :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="70"  Margin="0,0,40,0" Text="{Binding Path=Age, Mode=TwoWay}"></TextBox>
+                <TextBox  Width="70"  Margin="0,0,40,0" Text="{Binding Path=Age, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}"></TextBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Gender :" Margin="10,0,0,0"></Label>
@@ -40,7 +54,7 @@
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Weight :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="70"  Margin="50,0,0,0" Text="{Binding Path=Weight, Mode=TwoWay}"></TextBox>
+                <TextBox  Width="70"  Margin="50,0,0,0" Text="{Binding Path=Weight, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}"></TextBox>
                 <RadioButton Content="Kg" Margin="10,5,0,0" IsChecked="{Binding Path=IsKilo, Mode=TwoWay}"></RadioButton>
                 <RadioButton Content="Lbs." Margin="10,5,0,0" IsChecked="{Binding Path=IsPound, Mode=TwoWay}"></RadioButton>
             </DockPanel>

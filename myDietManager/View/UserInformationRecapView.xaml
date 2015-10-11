@@ -4,8 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             Height="236" Width="370">
     <Grid>
-        <Label Content="test"></Label>
+        <StackPanel>
+            <Label Content="Recap" HorizontalAlignment="Center"></Label>
+            <DockPanel VerticalAlignment="Center">
+                <TextBlock Text="Your Maintenance calories are : " Margin="10" ></TextBlock>
+                <TextBlock Text="{Binding MaintenanceCalories}" Margin="10"></TextBlock>
+            </DockPanel>
+            <DockPanel VerticalAlignment="Center">
+                <TextBlock Text="Your Daily calories are : " Margin="10" ></TextBlock>
+                <TextBlock Text="{Binding DailyCalories}" Margin="10"></TextBlock>
+            </DockPanel>
+            <TextBlock Text="Your Goal macros are : " Margin="10" ></TextBlock>
+            <DockPanel HorizontalAlignment="Center">
+
+                <TextBlock Text="Protein : " Margin="15,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding Protein}" Margin="5,0,0,0"></TextBlock>
+                <TextBlock Text="Carbohydrates : " Margin="15,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding Carbohydrates}" Margin="10,0,0,0"></TextBlock>
+                <TextBlock Text="Fat : " Margin="15,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding Fat}" Margin="10,0,0,0"></TextBlock>
+            </DockPanel>
+            <UniformGrid>
+                <Button Content="Cancel" Margin="20" Width="70" HorizontalAlignment="Right" Command="{Binding CancelRecapCommand}"></Button>
+                <Button Content="Comfirm" Margin="20" Width="70" HorizontalAlignment="Left" Command="{Binding ComfirmCreationCommand}"></Button>
+            </UniformGrid>
+            
+
+
+            
+        </StackPanel>
     </Grid>
 </UserControl>

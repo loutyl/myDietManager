@@ -12,6 +12,7 @@ namespace myDietManager
         {
             InitializeComponent();
             this.DataContext = new UserCreationWindowViewModel();
+            Application.Current.MainWindow = this;
         }
     }
 }

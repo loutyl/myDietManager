@@ -1,21 +1,39 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 using myDietManager.Model;
 
 namespace myDietManager.ViewModel
 {
-    public class UserInformationViewModel : ViewModelBase
+    public class UserInformationViewModel : ViewModelBase, IDataErrorInfo
     {
         private readonly User _newUser;
         private readonly DietProfile _newUserDietProfile;
         private ICommand _finishCreationCommand;
         private readonly UserCreationWindowViewModel _userCreationWindowViewModel;
 
-        public UserInformationViewModel(UserCreationWindowViewModel windowViewModel)
+        public UserInformationViewModel(UserCreationWindowViewModel windowViewModel, User newUser)
         {   
-            this._newUser = new User();
+            this._newUser = newUser;
             this._newUserDietProfile = new DietProfile();
             this._userCreationWindowViewModel = windowViewModel;
         }
+
+        #region Interface Implementation
+
+        public string Error => ( this._newUser as IDataErrorInfo ).Error;
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                var error = ( this._newUser as IDataErrorInfo )[propertyName];
+                CommandManager.InvalidateRequerySuggested();
+                return error;
+            }
+        }
+        #endregion
 
         #region Attributes
 
@@ -176,14 +194,13 @@ namespace myDietManager.ViewModel
             }
         }
 
+
         public void FinishUserCreation()
         {
             this._newUser.DietProfile = this._newUserDietProfile;
+            this._newUser.FinalizeUserCreation();
 
-            this._newUser.CreateUserCalorieNeeds();
-            this._newUser.CreateUserMacroRatio();
-            
-            this._userCreationWindowViewModel.CurrentViewModel = new UserInformationRecapViewModel(this._newUser);
+            this._userCreationWindowViewModel.CurrentViewModel = new UserInformationRecapViewModel(this._newUser, this._userCreationWindowViewModel, this);
         }
 
         public bool CanFinishUserCreation() 

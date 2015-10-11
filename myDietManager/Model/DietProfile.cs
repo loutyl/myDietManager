@@ -9,6 +9,5 @@
         public int ActivityLevel { get; set; }
         internal CalorieNeeds CalorieNeeds { get; set; }
         internal Macronutrients Macros { get; set; }
-
     }
 }
