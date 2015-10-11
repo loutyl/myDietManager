@@ -47,9 +47,7 @@
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Gender :" Margin="10,0,0,0"></Label>
-                <ComboBox  Width="140"  Margin="10,0,0,0" Text="{Binding Path=Gender, Mode=TwoWay}">
-                    <ComboBoxItem IsSelected="True">Female</ComboBoxItem>
-                    <ComboBoxItem>Male</ComboBoxItem>
+                <ComboBox  Width="140"  Margin="10,0,0,0" ItemsSource="{Binding GenderList}" SelectedValue="{Binding SelectedGender}" SelectedValuePath="SelectedGender" Text="{Binding Gender}">
                 </ComboBox>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
@@ -60,26 +58,24 @@
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Height :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="75"  Margin="50,0,0,0" Text="{Binding Path=Height, Mode=TwoWay}"></TextBox>
+                <TextBox  Width="75"  Margin="50,0,0,0" Text="{Binding Path=Height, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}"></TextBox>
                 <Label Content="cm"  Margin="20,0,0,0"></Label>
             </DockPanel>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <DockPanel Height="30" Margin="10">
-                <Label Content="Goal :" Margin="10,0,0,0"></Label>
-                <ComboBox  Width="140"  Margin="10,0,0,0" Text="{Binding Path=Goal, Mode=TwoWay}">
-                    <ComboBoxItem IsSelected="{Binding Path=IsLose, Mode=TwoWay}">Lose Weight</ComboBoxItem>
-                    <ComboBoxItem IsSelected="{Binding Path=IsGain, Mode=TwoWay}">Gain Weight</ComboBoxItem>
-                </ComboBox>
+                <Label Content="Goal :" Margin="10,0,0,0"></Label>S
+                <RadioButton Content="Lose" Margin="20,5,10,0" IsChecked="{Binding Path=IsLose, Mode=TwoWay}"></RadioButton>
+                <RadioButton Content="Gain" Margin="20,5,0,0" IsChecked="{Binding Path=IsGain, Mode=TwoWay}"></RadioButton>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Diet Duration :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="40"  Margin="10,0,0,0" Text="{Binding Path=DietDuration, Mode=TwoWay}"></TextBox>
+                <TextBox  Width="40"  Margin="10,0,0,0" Text="{Binding Path=DietDuration, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}"></TextBox>
                 <Label Content="Week(s)" Margin="10,0,0,0"></Label>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Weight Goal :" Margin="10,0,0,0"></Label>
-                <TextBox  Width="70"  Margin="10,0,0,0" Text="{Binding Path=WeightGoal, Mode=TwoWay}"></TextBox>
+                <TextBox  Width="70"  Margin="10,0,0,0" Text="{Binding Path=WeightGoal, Mode=TwoWay, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}"></TextBox>
                 <RadioButton Content="Kg" Margin="10,5,0,0" IsChecked="True"></RadioButton>
                 <RadioButton Content="Lbs." Margin="10,5,0,0"></RadioButton>
             </DockPanel>

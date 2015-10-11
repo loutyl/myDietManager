@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
 using myDietManager.Model;
 
@@ -9,16 +9,37 @@ namespace myDietManager.ViewModel
     public class UserInformationViewModel : ViewModelBase, IDataErrorInfo
     {
         private readonly User _newUser;
-        private readonly DietProfile _newUserDietProfile;
         private ICommand _finishCreationCommand;
         private readonly UserCreationWindowViewModel _userCreationWindowViewModel;
+        private readonly Dictionary<string, bool> _validProperties;
 
         public UserInformationViewModel(UserCreationWindowViewModel windowViewModel, User newUser)
-        {   
+        {
             this._newUser = newUser;
-            this._newUserDietProfile = new DietProfile();
+            this._newUser.DietProfile = new DietProfile();
+
             this._userCreationWindowViewModel = windowViewModel;
+            
+            this.GenderList = PopulateGenderList();
+            this.SelectedGender = "Female";
+
+            this._validProperties = PopulatePropertiesDictionary();
+
         }
+
+        private static Dictionary<string, bool> PopulatePropertiesDictionary() => new  Dictionary<string, bool>
+        {
+            {"LastName", false},
+            {"Name", false},
+            {"UserName", false},
+            {"Age", false},
+            {"Weight", false},
+            {"Height", false},
+            {"DietDuration", false},
+            {"WeightGoal", false}
+        };
+
+        private static ObservableCollection<string> PopulateGenderList() => new ObservableCollection<string> {"Female", "Male"};
 
         #region Interface Implementation
 
@@ -29,6 +50,7 @@ namespace myDietManager.ViewModel
             get
             {
                 var error = ( this._newUser as IDataErrorInfo )[propertyName];
+                this._validProperties[propertyName] = string.IsNullOrEmpty(error);
                 CommandManager.InvalidateRequerySuggested();
                 return error;
             }
@@ -36,6 +58,8 @@ namespace myDietManager.ViewModel
         #endregion
 
         #region Attributes
+
+        public ObservableCollection<string> GenderList { get; set; }
 
         public string LastName
         {
@@ -87,6 +111,16 @@ namespace myDietManager.ViewModel
             }
         }
 
+        public string SelectedGender
+        {
+            get { return this._newUser.Gender; }
+            set
+            {
+                this._newUser.Gender = value;
+                OnPropertyChanged("SelectedGender");
+            }
+        }
+
         public float Weight
         {
             get { return this._newUser.Weight; }
@@ -129,50 +163,50 @@ namespace myDietManager.ViewModel
 
         public bool IsLose
         {
-            get { return this._newUserDietProfile.IsLose; }
+            get { return this._newUser.DietProfile.IsLose; }
             set
             {
-                this._newUserDietProfile.IsLose = value;
+                this._newUser.DietProfile.IsLose = value;
                 OnPropertyChanged("IsLose");
             }
         }
 
         public bool IsGain
         {
-            get { return this._newUserDietProfile.IsGain; }
+            get { return this._newUser.DietProfile.IsGain; }
             set
             {
-                this._newUserDietProfile.IsGain = value;
+                this._newUser.DietProfile.IsGain = value;
                 OnPropertyChanged("IsGain");
             }
         }
 
         public int DietDuration
         {
-            get { return this._newUserDietProfile.DietDuration; }
+            get { return this._newUser.DietProfile.DietDuration; }
             set
             {
-                this._newUserDietProfile.DietDuration = value;
+                this._newUser.DietProfile.DietDuration = value;
                 OnPropertyChanged("DietDuration");
             }
         }
 
         public float WeightGoal
         {
-            get { return this._newUserDietProfile.WeightGoal; }
+            get { return this._newUser.DietProfile.WeightGoal; }
             set
             {
-                this._newUserDietProfile.WeightGoal = value;
+                this._newUser.DietProfile.WeightGoal = value;
                 OnPropertyChanged("WeightGoal");
             }
         }
 
         public int ActivityLevel
         {
-            get { return this._newUserDietProfile.ActivityLevel; }
+            get { return this._newUser.DietProfile.ActivityLevel; }
             set
             {
-                this._newUserDietProfile.ActivityLevel = value;
+                this._newUser.DietProfile.ActivityLevel = value;
                 OnPropertyChanged("ActivityLevel");
             }
         }
@@ -197,15 +231,14 @@ namespace myDietManager.ViewModel
 
         public void FinishUserCreation()
         {
-            this._newUser.DietProfile = this._newUserDietProfile;
             this._newUser.FinalizeUserCreation();
 
             this._userCreationWindowViewModel.CurrentViewModel = new UserInformationRecapViewModel(this._newUser, this._userCreationWindowViewModel, this);
         }
 
-        public bool CanFinishUserCreation() 
+        public bool CanFinishUserCreation()
         {
-            return true;
+            return !this._validProperties.ContainsValue(false);
         }
 
         #endregion

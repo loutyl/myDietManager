@@ -2,7 +2,7 @@
 {
     public class DietProfile
     {
-        public bool IsLose { get; set; }
+        public bool IsLose { get; set; } = true;
         public bool IsGain { get; set;}
         public int DietDuration { get; set; }
         public float WeightGoal { get; set; }

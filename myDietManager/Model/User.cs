@@ -51,8 +51,17 @@ namespace myDietManager.Model
                     case "Weight":
                         validationResult = this.ValidateWeight();
                         break;
+                    case "Height":
+                        validationResult = this.ValidateHeight();
+                        break;
+                    case "DietDuration":
+                        validationResult = this.ValidateDietDuration();
+                        break;
+                    case "WeightGoal":
+                        validationResult = this.ValidateWeightGoal();
+                        break;
                     default:
-                        throw new ApplicationException("Unknown Property being validated on Product.");
+                        throw new ApplicationException("Unknown Property being validated.");
                 }
                 return validationResult;
             }
@@ -88,22 +97,47 @@ namespace myDietManager.Model
             {
                 return "Weight can only contain numbers.";
             }
-            if ((Math.Abs(this.Weight)) <= 0)
-            {
-                return "Weight must be entered.";
-            }
-
-            return this.CheckWeightRange() ? "The weight entered is incorrect." : string.Empty;
+            return this.CheckWeightRange(this.Weight) ? "The weight entered is incorrect." : string.Empty;
         }
 
-        private bool CheckWeightRange()
+        private bool CheckWeightRange(float weight)
         {
             if (IsKilo)
             {
-                return (Math.Abs(this.Weight)) < 35 || (Math.Abs(this.Weight) > 250);
+                return (Math.Abs(weight) ) < 35 || (Math.Abs(weight) > 250);
             }
 
-            return ( Math.Abs(this.Weight) ) < (35 * 2.2f) || ( Math.Abs(this.Weight) > (250 * 2.2f) );
+            return ( Math.Abs(weight) ) < (35 * 2.2f) || ( Math.Abs(weight) > (250 * 2.2f) );
+        }
+
+        private string ValidateHeight()
+        {
+            if (!Regex.IsMatch(this.Height.ToString(CultureInfo.InvariantCulture), @"\d"))
+            {
+                return "Height can only contain numbers.";
+            }
+            return (Math.Abs(this.Height) < 100 || Math.Abs(this.Height) > 300)
+                ? "The Height enteredis incorrect"
+                : string.Empty;
+
+        }
+
+        private string ValidateDietDuration()
+        {
+            if ( !Regex.IsMatch(this.DietProfile.DietDuration.ToString(), @"\d") )
+            {
+                return "Only numbers can be entered.";
+            }
+            return this.DietProfile.DietDuration < 6 ? "The value entered is too low." : string.Empty;
+        }
+
+        private string ValidateWeightGoal()
+        {
+            if ( !Regex.IsMatch(this.DietProfile.WeightGoal.ToString(CultureInfo.InvariantCulture), @"\d") )
+            {
+                return "Weight can only contain numbers.";
+            }
+            return this.CheckWeightRange(this.DietProfile.WeightGoal) ? "The weight entered is incorrect." : string.Empty;
         }
 
         #endregion
