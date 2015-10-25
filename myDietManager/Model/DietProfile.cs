@@ -1,4 +1,7 @@
-﻿namespace myDietManager.Model
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace myDietManager.Model
 {
     public class DietProfile
     {
@@ -9,5 +12,10 @@
         public int ActivityLevel { get; set; }
         internal CalorieNeeds CalorieNeeds { get; set; }
         internal Macronutrients Macros { get; set; }
+
+        public DietProfile()
+        {
+            this.ActivityLevel = 14;
+        }
     }
 }

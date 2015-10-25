@@ -4,6 +4,5 @@
     {
         public int MaintencanceCalories { get; set; }
         public int DailyCalories { get; set; }
-
     }
 }

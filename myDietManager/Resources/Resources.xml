@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ActivityLevel>
+  <level Name="14">
+    test activity level 14 OK
+  </level>
+  <level Name="15">
+    test activity level 15
+  </level>
+  <level Name="16">
+    test activity level 16 OK
+  </level>
+  <level Name="17">
+    test activity level 17
+  </level>
+</ActivityLevel>

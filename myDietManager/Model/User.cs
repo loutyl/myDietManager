@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -17,6 +18,11 @@ namespace myDietManager.Model
         public bool IsKilo { get; set; } = true;
         public float Height { get; set; }
         internal DietProfile DietProfile { get; set; }
+
+        public User()
+        {
+            this.DietProfile = new DietProfile();
+        }
 
         #region Interface Implementation
 

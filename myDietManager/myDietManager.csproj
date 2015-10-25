@@ -85,9 +85,12 @@
     <Compile Include="Model\Macronutrients.cs" />
     <Compile Include="Model\ResourceRetiever.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserCreationModel.cs" />
     <Compile Include="UserCreationWindow.xaml.cs">
       <DependentUpon>UserCreationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
+    <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\UserCreationWindowViewModel.cs" />
@@ -153,6 +156,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Resources.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

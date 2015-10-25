@@ -3,54 +3,32 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using myDietManager.Model;
+using System.Linq;
 
 namespace myDietManager.ViewModel
 {
     public class UserInformationViewModel : ViewModelBase, IDataErrorInfo
     {
-        private readonly User _newUser;
-        private ICommand _finishCreationCommand;
+        private readonly UserCreationModel _userCreationModel;
         private readonly UserCreationWindowViewModel _userCreationWindowViewModel;
-        private readonly Dictionary<string, bool> _validProperties;
+        private ICommand _finishCreationCommand;
 
-        public UserInformationViewModel(UserCreationWindowViewModel windowViewModel, User newUser)
+        public UserInformationViewModel(UserCreationWindowViewModel windowViewModel)
         {
-            this._newUser = newUser;
-            this._newUser.DietProfile = new DietProfile();
-
+            this._userCreationModel = new UserCreationModel();
             this._userCreationWindowViewModel = windowViewModel;
-            
-            this.GenderList = PopulateGenderList();
-            this.SelectedGender = "Female";
-
-            this._validProperties = PopulatePropertiesDictionary();
-
         }
-
-        private static Dictionary<string, bool> PopulatePropertiesDictionary() => new  Dictionary<string, bool>
-        {
-            {"LastName", false},
-            {"Name", false},
-            {"UserName", false},
-            {"Age", false},
-            {"Weight", false},
-            {"Height", false},
-            {"DietDuration", false},
-            {"WeightGoal", false}
-        };
-
-        private static ObservableCollection<string> PopulateGenderList() => new ObservableCollection<string> {"Female", "Male"};
 
         #region Interface Implementation
 
-        public string Error => ( this._newUser as IDataErrorInfo ).Error;
+        public string Error => ( this._userCreationWindowViewModel.NewUser as IDataErrorInfo ).Error;
 
         public string this[string propertyName]
         {
             get
             {
-                var error = ( this._newUser as IDataErrorInfo )[propertyName];
-                this._validProperties[propertyName] = string.IsNullOrEmpty(error);
+                var error = ( this._userCreationWindowViewModel.NewUser as IDataErrorInfo )[propertyName];
+                this.ValidProperties[propertyName] = string.IsNullOrEmpty(error);
                 CommandManager.InvalidateRequerySuggested();
                 return error;
             }
@@ -59,154 +37,155 @@ namespace myDietManager.ViewModel
 
         #region Attributes
 
-        public ObservableCollection<string> GenderList { get; set; }
+        public ObservableCollection<string> GenderList => this._userCreationModel.GenderList;
+        public Dictionary<string, bool> ValidProperties => this._userCreationModel.ValidProperties;
 
         public string LastName
         {
-            get { return _newUser.LastName; }
+            get { return this._userCreationWindowViewModel.NewUser.LastName; }
             set
             {
-                this._newUser.LastName = value;
+                this._userCreationWindowViewModel.NewUser.LastName = value;
                 OnPropertyChanged("LastName");
             }
         }
 
         public string Name
         {
-            get { return this._newUser.Name; }
+            get { return this._userCreationWindowViewModel.NewUser.Name; }
             set
             {
-                this._newUser.Name = value;
+                this._userCreationWindowViewModel.NewUser.Name = value;
                 OnPropertyChanged("Name");
             }
         }
 
         public string UserName
         {
-            get { return this._newUser.UserName; }
+            get { return this._userCreationWindowViewModel.NewUser.UserName; }
             set
             {
-                this._newUser.UserName = value;
+                this._userCreationWindowViewModel.NewUser.UserName = value;
                 OnPropertyChanged("UserName");
             }
         }
 
         public int Age
         {
-            get { return this._newUser.Age; }
+            get { return this._userCreationWindowViewModel.NewUser.Age; }
             set
             {
-                this._newUser.Age = value;
+                this._userCreationWindowViewModel.NewUser.Age = value;
                 OnPropertyChanged("Age");
             }
         }
 
         public string Gender
         {
-            get { return this._newUser.Gender; }
+            get { return this._userCreationWindowViewModel.NewUser.Gender; }
             set
             {
-                this._newUser.Gender = value;
+                this._userCreationWindowViewModel.NewUser.Gender = value;
                 OnPropertyChanged("Gender");
             }
         }
 
         public string SelectedGender
         {
-            get { return this._newUser.Gender; }
+            get { return this._userCreationWindowViewModel.NewUser.Gender; }
             set
             {
-                this._newUser.Gender = value;
+                this._userCreationWindowViewModel.NewUser.Gender = value;
                 OnPropertyChanged("SelectedGender");
             }
         }
 
         public float Weight
         {
-            get { return this._newUser.Weight; }
+            get { return this._userCreationWindowViewModel.NewUser.Weight; }
             set
             {
-                this._newUser.Weight = value;
+                this._userCreationWindowViewModel.NewUser.Weight = value;
                 OnPropertyChanged("Weight");
             }
         }
 
         public bool IsPound
         {
-            get { return this._newUser.IsPound; }
+            get { return this._userCreationWindowViewModel.NewUser.IsPound; }
             set
             {
-                this._newUser.IsPound = value;
+                this._userCreationWindowViewModel.NewUser.IsPound = value;
                 OnPropertyChanged("IsPound");
             }
         }
 
         public bool IsKilo
         {
-            get { return this._newUser.IsKilo; }
+            get { return this._userCreationWindowViewModel.NewUser.IsKilo; }
             set
             {
-                this._newUser.IsKilo = value;
+                this._userCreationWindowViewModel.NewUser.IsKilo = value;
                 OnPropertyChanged("IsKilo");
             }
         }
 
         public float Height
         {
-            get { return this._newUser.Height; }
+            get { return this._userCreationWindowViewModel.NewUser.Height; }
             set
             {
-                this._newUser.Height = value;
+                this._userCreationWindowViewModel.NewUser.Height = value;
                 OnPropertyChanged("Height");
             }
         }
 
         public bool IsLose
         {
-            get { return this._newUser.DietProfile.IsLose; }
+            get { return this._userCreationWindowViewModel.NewUser.DietProfile.IsLose; }
             set
             {
-                this._newUser.DietProfile.IsLose = value;
+                this._userCreationWindowViewModel.NewUser.DietProfile.IsLose = value;
                 OnPropertyChanged("IsLose");
             }
         }
 
         public bool IsGain
         {
-            get { return this._newUser.DietProfile.IsGain; }
+            get { return this._userCreationWindowViewModel.NewUser.DietProfile.IsGain; }
             set
             {
-                this._newUser.DietProfile.IsGain = value;
+                this._userCreationWindowViewModel.NewUser.DietProfile.IsGain = value;
                 OnPropertyChanged("IsGain");
             }
         }
 
         public int DietDuration
         {
-            get { return this._newUser.DietProfile.DietDuration; }
+            get { return this._userCreationWindowViewModel.NewUser.DietProfile.DietDuration; }
             set
             {
-                this._newUser.DietProfile.DietDuration = value;
+                this._userCreationWindowViewModel.NewUser.DietProfile.DietDuration = value;
                 OnPropertyChanged("DietDuration");
             }
         }
 
         public float WeightGoal
         {
-            get { return this._newUser.DietProfile.WeightGoal; }
+            get { return this._userCreationWindowViewModel.NewUser.DietProfile.WeightGoal; }
             set
             {
-                this._newUser.DietProfile.WeightGoal = value;
+                this._userCreationWindowViewModel.NewUser.DietProfile.WeightGoal = value;
                 OnPropertyChanged("WeightGoal");
             }
         }
 
         public int ActivityLevel
         {
-            get { return this._newUser.DietProfile.ActivityLevel; }
+            get { return this._userCreationWindowViewModel.NewUser.DietProfile.ActivityLevel; }
             set
             {
-                this._newUser.DietProfile.ActivityLevel = value;
+                this._userCreationWindowViewModel.NewUser.DietProfile.ActivityLevel = value;
                 OnPropertyChanged("ActivityLevel");
             }
         }
@@ -228,17 +207,16 @@ namespace myDietManager.ViewModel
             }
         }
 
-
         public void FinishUserCreation()
         {
-            this._newUser.FinalizeUserCreation();
+            this._userCreationWindowViewModel.NewUser.FinalizeUserCreation();
 
-            this._userCreationWindowViewModel.CurrentViewModel = new UserInformationRecapViewModel(this._newUser, this._userCreationWindowViewModel, this);
+            this._userCreationWindowViewModel.CurrentViewModel = new UserInformationRecapViewModel(this._userCreationWindowViewModel, this);
         }
 
         public bool CanFinishUserCreation()
         {
-            return !this._validProperties.ContainsValue(false);
+            return !this.ValidProperties.ContainsValue(false);
         }
 
         #endregion

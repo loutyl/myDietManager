@@ -6,15 +6,13 @@ namespace myDietManager.ViewModel
 {
     public class UserInformationRecapViewModel : ViewModelBase
     {
-        private readonly User _newUser;
         private readonly UserCreationWindowViewModel _windowViewModel;
         private readonly UserInformationViewModel _userInfoViewModel;
         private ICommand _cancelCreationCommand;
         private ICommand _comfirmCreationCommand;
 
-        public UserInformationRecapViewModel(User newUser, UserCreationWindowViewModel windowViewModel, UserInformationViewModel userInfoViewModel)
+        public UserInformationRecapViewModel(UserCreationWindowViewModel windowViewModel, UserInformationViewModel userInfoViewModel)
         {
-            this._newUser = newUser;
             this._windowViewModel = windowViewModel;
             this._userInfoViewModel = userInfoViewModel;
 
@@ -22,11 +20,11 @@ namespace myDietManager.ViewModel
             Application.Current.MainWindow.Height = 245;
         }
 
-        public int MaintenanceCalories => this._newUser.DietProfile.CalorieNeeds.MaintencanceCalories;
-        public int DailyCalories => this._newUser.DietProfile.CalorieNeeds.DailyCalories;
-        public int Protein => this._newUser.DietProfile.Macros.Protein.Weight;
-        public int Carbohydrates => this._newUser.DietProfile.Macros.Carbohydrate.Weight;
-        public int Fat => this._newUser.DietProfile.Macros.Fat.Weight;
+        public int MaintenanceCalories => this._windowViewModel.NewUser.DietProfile.CalorieNeeds.MaintencanceCalories;
+        public int DailyCalories => this._windowViewModel.NewUser.DietProfile.CalorieNeeds.DailyCalories;
+        public int Protein => this._windowViewModel.NewUser.DietProfile.Macros.Protein.Weight;
+        public int Carbohydrates => this._windowViewModel.NewUser.DietProfile.Macros.Carbohydrate.Weight;
+        public int Fat => this._windowViewModel.NewUser.DietProfile.Macros.Fat.Weight;
 
         public ICommand CancelCreationCommand
         {
@@ -56,7 +54,7 @@ namespace myDietManager.ViewModel
 
         public void GoBackToUserInformations()
         {
-            this._windowViewModel.CurrentViewModel = new UserInformationViewModel(this._windowViewModel, this._newUser);
+            this._windowViewModel.CurrentViewModel = new UserInformationViewModel(this._windowViewModel);
         }
 
         public void FinishUserCreation()

@@ -6,6 +6,7 @@ namespace myDietManager.ViewModel
     public class UserCreationWindowViewModel : ViewModelBase
     {
         private ViewModelBase _currentViewModel;
+        public User NewUser { get; set; }
 
         public ViewModelBase CurrentViewModel
         {
@@ -19,9 +20,10 @@ namespace myDietManager.ViewModel
             }
         }
 
-        public UserCreationWindowViewModel() 
+        public UserCreationWindowViewModel()
         {
-            this.CurrentViewModel = new UserInformationViewModel(this, new User());
+            this.NewUser = new User();
+            this.CurrentViewModel = new UserInformationViewModel(this);
         }
 
     }

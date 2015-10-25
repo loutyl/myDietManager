@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 namespace myDietManager.Model
@@ -13,13 +16,14 @@ namespace myDietManager.Model
             this.XmlFile.Load("Resources.xml");
         }
 
-        public string RetrieveActivityLevel(string activityLevelNumber)
+        public Dictionary<int, string> RetrieveActivityLevelDescription()
         {
             this.LoadXmlDocument();
 
             var nodeList = this.XmlFile.SelectNodes("ActivityLevel/level");
 
-            return nodeList?.OfType<XmlNode>().Where(node => node.Attributes != null && node.Attributes["name"].Value == activityLevelNumber).Select(node => node.InnerText).First().Trim();
+            return nodeList?.OfType<XmlNode>()
+                .ToDictionary(node => Convert.ToInt32(node.Attributes?["Name"].Value), node => node.InnerText);
         }
     }
 }
