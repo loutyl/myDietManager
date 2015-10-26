@@ -54,7 +54,7 @@ namespace myDietManager.ViewModel
 
         public void GoBackToUserInformations()
         {
-            this._windowViewModel.CurrentViewModel = new UserInformationViewModel(this._windowViewModel);
+            this._windowViewModel.CurrentViewModel = this._userInfoViewModel;
         }
 
         public void FinishUserCreation()

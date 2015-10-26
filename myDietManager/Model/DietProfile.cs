@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace myDietManager.Model
 {
@@ -9,13 +8,15 @@ namespace myDietManager.Model
         public bool IsGain { get; set;}
         public int DietDuration { get; set; }
         public float WeightGoal { get; set; }
-        public int ActivityLevel { get; set; }
+        public int ActivityLevel { get; set; } = 14;
         internal CalorieNeeds CalorieNeeds { get; set; }
         internal Macronutrients Macros { get; set; }
 
-        public DietProfile()
+        public List<float> GetMacroRatios()
         {
-            this.ActivityLevel = 14;
+            //Carbs - Protein - Fat
+            return this.IsLose ? new List<float>() {0.4f, 0.4f, 0.2f} : new List<float>() {0.5f, 0.3f, 0.2f};
         }
+
     }
 }

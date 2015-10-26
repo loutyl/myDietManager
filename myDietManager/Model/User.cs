@@ -162,12 +162,26 @@ namespace myDietManager.Model
                 : (this.DietProfile.CalorieNeeds.MaintencanceCalories - 500);
         }
 
-        private void CreateUserMacroRatio() => this.DietProfile.Macros = new Macronutrients
+        private void CreateUserMacroRatio()
         {
-            Carbohydrate = new Carbohydrate((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.4)),
-            Protein = new Protein((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.4)),
-            Fat = new Fat((int)(this.DietProfile.CalorieNeeds.DailyCalories * 0.2))
-        };
+            var macrosRatios = this.DietProfile.GetMacroRatios();
+            var nutrients = new List<Nutrient>();
+
+            macrosRatios.ForEach((ratio) =>
+            {
+                var calorie = (int) Math.Abs(this.DietProfile.CalorieNeeds.DailyCalories * ratio);
+                var divider = ratio.Equals(0.2f) ? 9 : 4;  // Fat = 9 Calories for 1g - Carbs and Protein = 4 Calories for 1g
+                var weight = Math.Abs((calorie / divider));
+                nutrients.Add(new Nutrient(calorie, weight));
+            });
+
+            this.DietProfile.Macros = new Macronutrients
+            {
+                Carbohydrate = new Nutrient(nutrients[0].Calorie, nutrients[0].Weight),
+                Protein = new Nutrient(nutrients[1].Calorie, nutrients[1].Weight),
+                Fat = new Nutrient(nutrients[2].Calorie, nutrients[2].Weight)
+            };
+        }
 
         public void FinalizeUserCreation()
         {

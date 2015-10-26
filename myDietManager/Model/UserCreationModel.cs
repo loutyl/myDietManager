@@ -31,7 +31,6 @@ namespace myDietManager.Model
         {
             this.GenderList = PopulateGenderList();
             this.SelectedGender = "Female";
-
             this.ValidProperties = PopulatePropertiesDictionary();
         }
     }
