@@ -54,6 +54,8 @@ namespace myDietManager.ViewModel
 
         public void GoBackToUserInformations()
         {
+            Application.Current.MainWindow.Width = this._userInfoViewModel.UserCreationMod.ViewWidth;
+            Application.Current.MainWindow.Height = this._userInfoViewModel.UserCreationMod.ViewHeight;
             this._windowViewModel.CurrentViewModel = this._userInfoViewModel;
         }
 

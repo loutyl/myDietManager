@@ -85,7 +85,7 @@
     <Compile Include="Model\Macronutrients.cs" />
     <Compile Include="Model\ResourceRetiever.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Model\UserCreationModel.cs" />
+    <Compile Include="Model\UserInformationModel.cs" />
     <Compile Include="UserCreationWindow.xaml.cs">
       <DependentUpon>UserCreationWindow.xaml</DependentUpon>
     </Compile>

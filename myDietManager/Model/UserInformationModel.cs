@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
+
 
 namespace myDietManager.Model
 {
-    public class UserCreationModel
+    public class UserInformationModel
     {
         public ObservableCollection<string> GenderList { get; set; }
         public string SelectedGender { get; set; }
         public Dictionary<string, bool> ValidProperties { get; set; }
+        public double ViewWidth { get; set; } = 600;
+        public double ViewHeight { get; set; } = 400;
 
         private static ObservableCollection<string> PopulateGenderList() => new ObservableCollection<string> { "Female", "Male" };
 
@@ -27,7 +27,7 @@ namespace myDietManager.Model
             {"WeightGoal", false}
         };
 
-        public UserCreationModel()
+        public UserInformationModel()
         {
             this.GenderList = PopulateGenderList();
             this.SelectedGender = "Female";

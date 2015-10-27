@@ -26,8 +26,12 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="87*"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.Column="0" Grid.RowSpan="2">
             <DockPanel Height="30" Margin="10">
                 <Label Content="Name :" Margin="25,0,0,0" />
                 <TextBox Width="140" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True}"
@@ -72,7 +76,7 @@
                 <Label Content="cm" Margin="20,0,0,0" />
             </DockPanel>
         </StackPanel>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Grid.RowSpan="2">
             <DockPanel Height="30" Margin="10">
                 <Label Content="Goal :" Margin="10,0,0,0" />
                 <RadioButton Content="Lose weight" Margin="20,5,10,0" IsChecked="{Binding Path=IsLose, Mode=TwoWay}" />

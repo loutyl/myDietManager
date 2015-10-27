@@ -9,13 +9,13 @@ namespace myDietManager.ViewModel
 {
     public class UserInformationViewModel : ViewModelBase, IDataErrorInfo
     {
-        private readonly UserCreationModel _userCreationModel;
+        public readonly UserInformationModel UserCreationMod;
         private readonly UserCreationWindowViewModel _userCreationWindowViewModel;
         private ICommand _finishCreationCommand;
 
         public UserInformationViewModel(UserCreationWindowViewModel windowViewModel)
         {
-            this._userCreationModel = new UserCreationModel();
+            this.UserCreationMod = new UserInformationModel();
             this._userCreationWindowViewModel = windowViewModel;
         }
 
@@ -37,8 +37,8 @@ namespace myDietManager.ViewModel
 
         #region Attributes
 
-        public ObservableCollection<string> GenderList => this._userCreationModel.GenderList;
-        public Dictionary<string, bool> ValidProperties => this._userCreationModel.ValidProperties;
+        public Dictionary<string, bool> ValidProperties => this.UserCreationMod.ValidProperties;
+        public ObservableCollection<string> GenderList => this.UserCreationMod.GenderList;
 
         public string LastName
         {
@@ -216,7 +216,8 @@ namespace myDietManager.ViewModel
 
         public bool CanFinishUserCreation()
         {
-            return !this.ValidProperties.ContainsValue(false);
+            return true;
+            //return !this.ValidProperties.ContainsValue(false);
         }
 
         #endregion

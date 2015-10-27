@@ -27,7 +27,7 @@
                 <TextBlock Text="{Binding Fat}" Margin="10,0,0,0"></TextBlock>
             </DockPanel>
             <UniformGrid>
-                <Button Content="Cancel" Margin="20" Width="70" HorizontalAlignment="Right" Command="{Binding CancelRecapCommand}"></Button>
+                <Button Content="Cancel" Margin="20" Width="70" HorizontalAlignment="Right" Command="{Binding CancelCreationCommand}"></Button>
                 <Button Content="Comfirm" Margin="20" Width="70" HorizontalAlignment="Left" Command="{Binding ComfirmCreationCommand}"></Button>
             </UniformGrid>
             
