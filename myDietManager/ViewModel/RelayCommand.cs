@@ -8,14 +8,11 @@ namespace myDietManager.ViewModel
     /// objects by invoking delegates. The default return value for the CanExecute
     /// method is 'true'.
     /// </summary>
-    public class RelayCommand : ICommand
+    public class RelayCommand<T> : ICommand
     {
-   
         private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
         private readonly Action<object> _executeWithParameter;
-        private readonly Predicate<object> _canExecutePredicate;
-     
+        private readonly Func<bool> _canExecute;
 
         public event EventHandler CanExecuteChanged
         {
@@ -54,21 +51,17 @@ namespace myDietManager.ViewModel
             this._canExecute = canExecute;
         }
 
-        public RelayCommand(Action<object> executeParam, Predicate<object> canExecutePredicate)
+        public RelayCommand(Action<object> executeParam, Func<bool> canExecute)
         {
-            if (this._executeWithParameter == null)
+            if (executeParam == null)
                 throw new ArgumentNullException(nameof(executeParam));
 
             this._executeWithParameter = executeParam;
-            this._canExecutePredicate = canExecutePredicate;
+            this._canExecute = canExecute;
         }
 
-        public void ExecuteWithParameter(object parameter) => this._executeWithParameter(parameter);
-
-        public void Execute(object parameter) => this._execute();
-
-        public bool CanExecute(object parameter) => this._canExecute == null || _canExecute();
-
-        public bool CanExecutePredicate(object parameter) => this._canExecutePredicate == null || this._canExecutePredicate(parameter);
+        public void Execute() => this._execute();
+        public void Execute(object parameter) => this._executeWithParameter(parameter);
+        public bool CanExecute(object parameter) => this._canExecute == null || this._canExecute();
     }
 }

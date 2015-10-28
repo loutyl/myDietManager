@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using myDietManager.Model;
 using System.Linq;
+using GalaSoft.MvvmLight.Command;
 
 namespace myDietManager.ViewModel
 {

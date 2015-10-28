@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using myDietManager.Model;
 
 namespace myDietManager.ViewModel

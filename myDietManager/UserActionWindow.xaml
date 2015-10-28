@@ -1,10 +1,12 @@
-﻿<UserControl x:Class="myDietManager.View.LoginWindowView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+﻿<Window x:Class="myDietManager.UserActionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:myDietManager"
+        mc:Ignorable="d"
+        Title="UserActionWindow" Height="142.857" Width="300">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,4 +23,4 @@
             <Button x:Name="BtnLoadUser" Content="Load User" HorizontalAlignment="Left" Margin="20,20,0,0"></Button>
         </UniformGrid>
     </Grid>
-</UserControl>
+</Window>

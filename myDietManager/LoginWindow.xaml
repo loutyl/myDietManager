@@ -1,8 +1,25 @@
 ﻿<Window x:Class="myDietManager.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:view="clr-namespace:myDietManager.View"
-        Title="LoginWindow" Height="141" Width="234" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="LoginWindow" Height="193.833" Width="319" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
-    <view:LoginWindowView x:Name="LoginWindowView" RenderTransformOrigin="0.519,0.34" Margin="0,0,0,-132"></view:LoginWindowView>
+    <Grid>
+        <StackPanel>
+            <Label Content="Username :" HorizontalAlignment="Center"></Label>
+            <TextBox HorizontalAlignment="Center" Width="150"></TextBox>
+            <Label Content="Password :" HorizontalAlignment="Center"></Label>
+            <PasswordBox Name="pwdBox" HorizontalAlignment="Center" Width="150"></PasswordBox>
+            <DockPanel HorizontalAlignment="Center">
+                <Button Content="Confirm" Margin="10" Width="100" Command="{Binding Path=ConnectCommand}"  CommandParameter="{Binding ElementName=pwdBox}"></Button>
+                <Button Content="Cancel" Margin="10"  Width="100" Command="{Binding Path=CancelCommand}"></Button>
+            </DockPanel>
+            <Label Content="_Register" HorizontalAlignment="Right" Margin="0,0,10,0"></Label>
+        </StackPanel>
+        
+        
+
+
+
+
+    </Grid>
 </Window>

@@ -82,10 +82,14 @@
     </Compile>
     <Compile Include="Model\CalorieNeeds.cs" />
     <Compile Include="Model\DietProfile.cs" />
+    <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\Macronutrients.cs" />
     <Compile Include="Model\ResourceRetiever.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserInformationModel.cs" />
+    <Compile Include="UserActionWindow.xaml.cs">
+      <DependentUpon>UserActionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserCreationWindow.xaml.cs">
       <DependentUpon>UserCreationWindow.xaml</DependentUpon>
     </Compile>
@@ -93,13 +97,11 @@
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\UserActionWindowViewModel.cs" />
     <Compile Include="ViewModel\UserCreationWindowViewModel.cs" />
     <Compile Include="ViewModel\UserInformationRecapViewModel.cs" />
     <Compile Include="ViewModel\UserInformationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\LoginWindowView.xaml.cs">
-      <DependentUpon>LoginWindowView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\UserInformationRecapView.xaml.cs">
       <DependentUpon>UserInformationRecapView.xaml</DependentUpon>
     </Compile>
@@ -140,11 +142,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserCreationWindow.xaml">
+    <Page Include="UserActionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\LoginWindowView.xaml">
+    <Page Include="UserCreationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
