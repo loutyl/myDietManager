@@ -1,12 +1,11 @@
-﻿using System.Windows;
-using myDietManager.Model;
+﻿using myDietManager.Model;
 
-namespace myDietManager.ViewModel
+namespace myDietManager.ViewModel.ProfileCreation
 {
-    public class UserCreationWindowViewModel : ViewModelBase
+    public class ProfileCreationWindowViewModel : ViewModelBase
     {
         private ViewModelBase _currentViewModel;
-        public User NewUser { get; set; }
+        public DietProfile DietProfile { get; set; }
 
         public ViewModelBase CurrentViewModel
         {
@@ -20,10 +19,10 @@ namespace myDietManager.ViewModel
             }
         }
 
-        public UserCreationWindowViewModel()
+        public ProfileCreationWindowViewModel()
         {
-            this.NewUser = new User();
-            this.CurrentViewModel = new UserInformationViewModel(this);
+            this.DietProfile = new DietProfile();
+            this.CurrentViewModel = new ProfileCreationChoiceViewModel(this);
         }
 
     }

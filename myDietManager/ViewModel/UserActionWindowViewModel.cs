@@ -1,11 +1,18 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using myDietManager.Model;
 
 namespace myDietManager.ViewModel
 {
     class UserActionWindowViewModel : ViewModelBase
     {
+        private User _user;
         private ICommand _addUserCommand;
+
+        public UserActionWindowViewModel(User user)
+        {
+            this._user = user;
+        }
 
         public ICommand AddUserCommand
         {
@@ -22,8 +29,8 @@ namespace myDietManager.ViewModel
 
         public static void OpenAddUserWindow()
         {
-            var userCreationWindow = new UserCreationWindow();
-            userCreationWindow.Show();
+            var profileCreationWindow = new ProfileCreationWindow();
+            profileCreationWindow.Show();
         }
     }
 }

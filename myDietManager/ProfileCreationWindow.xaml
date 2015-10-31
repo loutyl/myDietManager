@@ -1,0 +1,22 @@
+﻿<Window x:Class="myDietManager.ProfileCreationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:myDietManager.View"
+        xmlns:profileCreation="clr-namespace:myDietManager.ViewModel.ProfileCreation"
+        Title="User Creation" Height="396" Width="603" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type profileCreation:ProfileCreationChoiceViewModel}">
+            <view:ProfileCreationChoiceView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type profileCreation:ProfileCreationViewModel}">
+            <view:ProfileCreationView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type profileCreation:ProfileCreationRecapViewModel}">
+            <view:ProfileCreationRecapView />
+        </DataTemplate>
+    </Window.Resources>
+    
+    <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
+
+</Window>

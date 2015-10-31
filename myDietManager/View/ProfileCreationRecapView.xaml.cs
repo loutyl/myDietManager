@@ -3,11 +3,11 @@
 namespace myDietManager.View
 {
     /// <summary>
-    /// Logique d'interaction pour UserCreationView.xaml
+    /// Logique d'interaction pour UserInformationRecapView.xaml
     /// </summary>
-    public partial class UserInformationsView : UserControl
+    public partial class ProfileCreationRecapView : UserControl
     {
-        public UserInformationsView()
+        public ProfileCreationRecapView()
         {
             InitializeComponent();
         }

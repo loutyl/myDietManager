@@ -12,7 +12,6 @@ namespace myDietManager
         public UserActionWindow()
         {
             InitializeComponent();
-            this.DataContext = new UserActionWindowViewModel();
         }
     }
 }

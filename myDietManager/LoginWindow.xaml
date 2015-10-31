@@ -6,11 +6,11 @@
     <Grid>
         <StackPanel>
             <Label Content="Username :" HorizontalAlignment="Center"></Label>
-            <TextBox HorizontalAlignment="Center" Width="150"></TextBox>
+            <TextBox Text="{Binding Path=Username, Mode=TwoWay}" HorizontalAlignment="Center" Width="150"></TextBox>
             <Label Content="Password :" HorizontalAlignment="Center"></Label>
-            <PasswordBox Name="pwdBox" HorizontalAlignment="Center" Width="150"></PasswordBox>
+            <PasswordBox Name="PwdBox" HorizontalAlignment="Center" Width="150"></PasswordBox>
             <DockPanel HorizontalAlignment="Center">
-                <Button Content="Confirm" Margin="10" Width="100" Command="{Binding Path=ConnectCommand}"  CommandParameter="{Binding ElementName=pwdBox}"></Button>
+                <Button Content="Confirm" Margin="10" Width="100" Command="{Binding Path=ConnectCommand}"  CommandParameter="{Binding ElementName=PwdBox}"></Button>
                 <Button Content="Cancel" Margin="10"  Width="100" Command="{Binding Path=CancelCommand}"></Button>
             </DockPanel>
             <Label Content="_Register" HorizontalAlignment="Right" Margin="0,0,10,0"></Label>

@@ -1,4 +1,4 @@
-﻿namespace myDietManager.Model
+﻿namespace myDietManager.Class
 {
     public class CalorieNeeds
     {

@@ -51,6 +51,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -77,36 +78,39 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Class\Security\AuthentificationHandler.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CalorieNeeds.cs" />
+    <Compile Include="Class\CalorieNeeds.cs" />
     <Compile Include="Model\DietProfile.cs" />
-    <Compile Include="Model\LoginModel.cs" />
-    <Compile Include="Model\Macronutrients.cs" />
-    <Compile Include="Model\ResourceRetiever.cs" />
+    <Compile Include="Class\Macronutrients.cs" />
+    <Compile Include="Class\ResourceRetiever.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Model\UserInformationModel.cs" />
     <Compile Include="UserActionWindow.xaml.cs">
       <DependentUpon>UserActionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserCreationWindow.xaml.cs">
-      <DependentUpon>UserCreationWindow.xaml</DependentUpon>
+    <Compile Include="ProfileCreationWindow.xaml.cs">
+      <DependentUpon>ProfileCreationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\ProfileCreationChoiceViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\UserActionWindowViewModel.cs" />
-    <Compile Include="ViewModel\UserCreationWindowViewModel.cs" />
-    <Compile Include="ViewModel\UserInformationRecapViewModel.cs" />
-    <Compile Include="ViewModel\UserInformationViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\ProfileCreationWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\ProfileCreationRecapViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\ProfileCreationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\UserInformationRecapView.xaml.cs">
-      <DependentUpon>UserInformationRecapView.xaml</DependentUpon>
+    <Compile Include="View\ProfileCreationChoiceView.xaml.cs">
+      <DependentUpon>ProfileCreationChoiceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserInformationsView.xaml.cs">
-      <DependentUpon>UserInformationsView.xaml</DependentUpon>
+    <Compile Include="View\ProfileCreationRecapView.xaml.cs">
+      <DependentUpon>ProfileCreationRecapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileCreationView.xaml.cs">
+      <DependentUpon>ProfileCreationView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -146,15 +150,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserCreationWindow.xaml">
+    <Page Include="ProfileCreationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserInformationRecapView.xaml">
+    <Page Include="View\ProfileCreationChoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserInformationsView.xaml">
+    <Page Include="View\ProfileCreationRecapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProfileCreationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
-namespace myDietManager.Model
+namespace myDietManager.Class
 {
     public class ResourceRetiever
     {

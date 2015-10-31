@@ -1,31 +1,30 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.Model;
 
-namespace myDietManager.ViewModel
+namespace myDietManager.ViewModel.ProfileCreation
 {
-    public class UserInformationRecapViewModel : ViewModelBase
+    public class ProfileCreationRecapViewModel : ViewModelBase
     {
-        private readonly UserCreationWindowViewModel _windowViewModel;
-        private readonly UserInformationViewModel _userInfoViewModel;
+        private readonly ProfileCreationWindowViewModel _windowViewModel;
+        private readonly ProfileCreationViewModel _profileCreationViewModel;
         private ICommand _cancelCreationCommand;
         private ICommand _comfirmCreationCommand;
 
-        public UserInformationRecapViewModel(UserCreationWindowViewModel windowViewModel, UserInformationViewModel userInfoViewModel)
+        public ProfileCreationRecapViewModel(ProfileCreationWindowViewModel windowViewModel, ProfileCreationViewModel profileCreationviewModel)
         {
             this._windowViewModel = windowViewModel;
-            this._userInfoViewModel = userInfoViewModel;
+            this._profileCreationViewModel = profileCreationviewModel;
 
             Application.Current.MainWindow.Width = 380;
             Application.Current.MainWindow.Height = 245;
         }
 
-        public int MaintenanceCalories => this._windowViewModel.NewUser.DietProfile.CalorieNeeds.MaintencanceCalories;
-        public int DailyCalories => this._windowViewModel.NewUser.DietProfile.CalorieNeeds.DailyCalories;
-        public int Protein => this._windowViewModel.NewUser.DietProfile.Macros.Protein.Weight;
-        public int Carbohydrates => this._windowViewModel.NewUser.DietProfile.Macros.Carbohydrate.Weight;
-        public int Fat => this._windowViewModel.NewUser.DietProfile.Macros.Fat.Weight;
+        public int MaintenanceCalories => this._windowViewModel.DietProfile.CalorieNeeds.MaintencanceCalories;
+        public int DailyCalories => this._windowViewModel.DietProfile.CalorieNeeds.DailyCalories;
+        public int Protein => this._windowViewModel.DietProfile.Macros.Protein.Weight;
+        public int Carbohydrates => this._windowViewModel.DietProfile.Macros.Carbohydrate.Weight;
+        public int Fat => this._windowViewModel.DietProfile.Macros.Fat.Weight;
 
         public ICommand CancelCreationCommand
         {
@@ -55,9 +54,9 @@ namespace myDietManager.ViewModel
 
         public void GoBackToUserInformations()
         {
-            Application.Current.MainWindow.Width = this._userInfoViewModel.UserCreationMod.ViewWidth;
-            Application.Current.MainWindow.Height = this._userInfoViewModel.UserCreationMod.ViewHeight;
-            this._windowViewModel.CurrentViewModel = this._userInfoViewModel;
+            Application.Current.MainWindow.Width = this._profileCreationViewModel.ViewWidth;
+            Application.Current.MainWindow.Height = this._profileCreationViewModel.ViewHeight;
+            this._windowViewModel.CurrentViewModel = this._profileCreationViewModel;
         }
 
         public void FinishUserCreation()

@@ -3,24 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:myDietManager"
         mc:Ignorable="d"
-        Title="UserActionWindow" Height="142.857" Width="300">
+        Title="UserActionWindow" Height="271.857" Width="610" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <Label Content="Select User" HorizontalAlignment="Center" Margin="0"/>
-            <ComboBox Margin="10,0,10,0"></ComboBox>
-        </StackPanel>
-
-        <UniformGrid Grid.Row="1" Columns="2">
-            <Button x:Name="BtnAddNewUser" Content="Add User" HorizontalAlignment="Right" Margin="0,20,20,0" Command="{Binding AddUserCommand}"></Button>
-            <Button x:Name="BtnLoadUser" Content="Load User" HorizontalAlignment="Left" Margin="20,20,0,0"></Button>
+        <UniformGrid Grid.Row="0" Grid.Column="2">
+            <Label Content="Profile :" HorizontalAlignment="Left" Margin="15,5,0,5" Width="57"/>
+            <ComboBox Margin="-35,5,5,5"/>
         </UniformGrid>
+        <Button Grid.Row="1" Grid.Column="0" x:Name="BtnLoadUser" Content="Load profile" HorizontalAlignment="Center"  Height="80" Width="100" Margin="10"/>
+        <Button Grid.Row="1" Grid.Column="1" x:Name="BtnAddNewUser" Content="New profile" HorizontalAlignment="Center" Command="{Binding AddUserCommand}" Height="80" Width="100" Margin="10"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="Settings" HorizontalAlignment="Center" Margin="10" Height="80" Width="100"/>
+     
+
+
     </Grid>
 </Window>
