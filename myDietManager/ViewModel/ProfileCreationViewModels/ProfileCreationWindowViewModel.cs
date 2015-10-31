@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using myDietManager.Model;
 
-namespace myDietManager.ViewModel.ProfileCreation
+namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
     public class ProfileCreationWindowViewModel : ViewModelBase
     {

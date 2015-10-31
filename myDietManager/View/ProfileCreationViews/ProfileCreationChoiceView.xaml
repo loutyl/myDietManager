@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="myDietManager.View.ProfileCreationChoiceView"
+﻿<UserControl x:Class="myDietManager.View.ProfileCreationViews.ProfileCreationChoiceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Width="Auto" Height="Auto">

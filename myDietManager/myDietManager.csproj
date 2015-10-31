@@ -95,20 +95,20 @@
     <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreation\ProfileCreationChoiceViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationChoiceViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\UserActionWindowViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreation\ProfileCreationWindowViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreation\ProfileCreationRecapViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreation\ProfileCreationViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationRecapViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\ProfileCreationChoiceView.xaml.cs">
+    <Compile Include="View\ProfileCreationViews\ProfileCreationChoiceView.xaml.cs">
       <DependentUpon>ProfileCreationChoiceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProfileCreationRecapView.xaml.cs">
+    <Compile Include="View\ProfileCreationViews\ProfileCreationRecapView.xaml.cs">
       <DependentUpon>ProfileCreationRecapView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProfileCreationView.xaml.cs">
+    <Compile Include="View\ProfileCreationViews\ProfileCreationView.xaml.cs">
       <DependentUpon>ProfileCreationView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -153,15 +153,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProfileCreationChoiceView.xaml">
+    <Page Include="View\ProfileCreationViews\ProfileCreationChoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProfileCreationRecapView.xaml">
+    <Page Include="View\ProfileCreationViews\ProfileCreationRecapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProfileCreationView.xaml">
+    <Page Include="View\ProfileCreationViews\ProfileCreationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

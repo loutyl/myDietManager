@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace myDietManager.View
+namespace myDietManager.View.ProfileCreationViews
 {
     /// <summary>
     /// Logique d'interaction pour UserCreationView.xaml

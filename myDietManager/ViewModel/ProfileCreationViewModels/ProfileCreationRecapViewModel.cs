@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 
-namespace myDietManager.ViewModel.ProfileCreation
+namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
     public class ProfileCreationRecapViewModel : ViewModelBase
     {

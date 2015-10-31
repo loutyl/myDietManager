@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 
-namespace myDietManager.ViewModel.ProfileCreation
+namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
     public class ProfileCreationChoiceViewModel : ViewModelBase
     {
