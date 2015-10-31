@@ -18,6 +18,8 @@ namespace myDietManager.ViewModel.ProfileCreation
         public ProfileCreationChoiceViewModel(ProfileCreationWindowViewModel profileCreationWindow)
         {
             this.ProfileCreationWindow = profileCreationWindow;
+            this.ProfileCreationWindow.Window.Width = 300;
+            this.ProfileCreationWindow.Window.Height = 225;
         }
 
         public bool IsManual

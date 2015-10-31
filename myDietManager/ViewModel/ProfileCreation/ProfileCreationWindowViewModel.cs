@@ -24,8 +24,8 @@ namespace myDietManager.ViewModel.ProfileCreation
         public ProfileCreationWindowViewModel(Window profileCreationWindow)
         {
             this.DietProfile = new DietProfile();
-            this.CurrentViewModel = new ProfileCreationChoiceViewModel(this);
             this.Window = profileCreationWindow;
+            this.CurrentViewModel = new ProfileCreationChoiceViewModel(this);
         }
 
     }

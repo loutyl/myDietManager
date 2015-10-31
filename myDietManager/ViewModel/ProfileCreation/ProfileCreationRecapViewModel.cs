@@ -14,7 +14,7 @@ namespace myDietManager.ViewModel.ProfileCreation
         {
             this._profileCreationViewModel = profileCreationviewModel;
             this._profileCreationWindow = windowViewModel;
-            this._profileCreationWindow.Window.Width = 300;
+            this._profileCreationWindow.Window.Width = 385;
             this._profileCreationWindow.Window.Height = 245;
         }
 
