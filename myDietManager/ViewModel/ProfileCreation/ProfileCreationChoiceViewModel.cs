@@ -11,6 +11,8 @@ namespace myDietManager.ViewModel.ProfileCreation
     public class ProfileCreationChoiceViewModel : ViewModelBase
     {
         public ProfileCreationWindowViewModel ProfileCreationWindow { get; set; }
+        private bool _isAuto;
+        private bool _isManual;
         private ICommand _confirmProfileCreationChoice;
 
         public ProfileCreationChoiceViewModel(ProfileCreationWindowViewModel profileCreationWindow)
@@ -18,8 +20,25 @@ namespace myDietManager.ViewModel.ProfileCreation
             this.ProfileCreationWindow = profileCreationWindow;
         }
 
-        public bool IsManual { get; set; }
-        public bool IsAuto { get; set; }
+        public bool IsManual
+        {
+            get { return this._isManual; }
+            set
+            {
+                this._isManual = value;
+                OnPropertyChanged("IsManual");
+            }
+        }
+
+        public bool IsAuto 
+        {
+            get { return this._isAuto; }
+            set
+            {
+                this._isAuto = value;
+                OnPropertyChanged("IsAuto");
+            }
+        }
 
         public ICommand ConfirmProfileCreationChoice
         {
@@ -43,7 +62,8 @@ namespace myDietManager.ViewModel.ProfileCreation
 
         public bool CanNaviguateToProfileCreation()
         {
-            return this.IsAuto || this.IsManual;
+            //return this.IsAuto || this.IsManual;
+            return true;
         }
     }
 }

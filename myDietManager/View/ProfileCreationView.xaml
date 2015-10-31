@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:conv="clr-namespace:myDietManager.ViewModel.Converters"
              mc:Ignorable="d"
-             Height="Auto" Width="Auto">
+             Height="Auto" Width="560">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -68,11 +68,11 @@
             <StackPanel Height="140" Margin="0,0,10,0">
                 <Label Content="Activity Level :" Margin="10" />
                 <Slider x:Name="ActivityLevelSlider" Minimum="14" Maximum="17" TickPlacement="BottomRight"
-                        TickFrequency="1" Margin="10,10,0,10" IsSnapToTickEnabled="True"
+                        TickFrequency="1" Margin="10,10,-46,10" IsSnapToTickEnabled="True"
                         Value="{Binding Path=ActivityLevel, Mode=TwoWay}" />
                 <TextBlock
                     Text="{Binding ElementName=ActivityLevelSlider, Path=Value, Converter={x:Static conv:ConverterHolder.ActivityDescriptionConverter}}"
-                    Margin="10,0,0,0" />
+                    Margin="10,0,-46,0" />
             </StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -80,9 +80,8 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="Cancel" Width="100" Height="30" HorizontalAlignment="Center" Margin="10,35,10,0"
-                            Command="{Binding CancelProfileCreationCommand}" />
-                <Button Grid.Column="1" Content="Finish" Width="100" Height="30" HorizontalAlignment="center" Margin="10,35,10,0" Command="{Binding FinishProfileCreationCommand}" />
+                <Button Grid.Column="0" Content="Cancel" Width="100" Height="30" HorizontalAlignment="Center" Margin="21,35,0,0" Command="{Binding CancelProfileCreationCommand}" />
+                <Button Grid.Column="1" Content="Finish" Width="100" Height="30" HorizontalAlignment="center" Margin="37,35,-17,0" Command="{Binding FinishProfileCreationCommand}" />
             </Grid>
         </StackPanel>
     </Grid>

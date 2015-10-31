@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:myDietManager.View"
         xmlns:profileCreation="clr-namespace:myDietManager.ViewModel.ProfileCreation"
-        Title="User Creation" Height="396" Width="603" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="User Creation" Height="300" Width="603" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type profileCreation:ProfileCreationChoiceViewModel}">

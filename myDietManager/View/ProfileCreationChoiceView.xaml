@@ -17,8 +17,8 @@
         </StackPanel>
 
         <DockPanel Grid.Row="1" HorizontalAlignment="Center">
-            <RadioButton Margin="10" Content="Manually" IsChecked="{Binding Path=isManual, Mode=TwoWay}"></RadioButton>
-            <RadioButton Margin="10" Content="Automatic" IsChecked="{Binding Path=isAuto, Mode=TwoWay}"></RadioButton>
+            <RadioButton Margin="10" Content="Manually" IsChecked="{Binding Path=IsManual, Mode=TwoWay}"></RadioButton>
+            <RadioButton Margin="10" Content="Automatic" IsChecked="{Binding Path=IsAuto, Mode=TwoWay}"></RadioButton>
         </DockPanel>
         <Button Grid.Row="2" Content="Comfirm" HorizontalAlignment="Center" Margin="10" Width="125" Command="{Binding ConfirmProfileCreationChoice}"></Button>
     </Grid>
