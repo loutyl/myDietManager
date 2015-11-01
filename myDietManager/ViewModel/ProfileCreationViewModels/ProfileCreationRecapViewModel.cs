@@ -50,16 +50,23 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
             }
         }
 
-        public void GoBackToUserInformations()
+        private void FinishUserCreation()
+        {
+
+            
+
+
+
+            this._profileCreationWindow.Window.Close();
+        }
+
+        private void GoBackToUserInformations()
         {
             this._profileCreationWindow.Window.Width = this._profileCreationViewModel.ViewWidth;
             this._profileCreationWindow.Window.Height = this._profileCreationViewModel.ViewHeight;
             this._profileCreationWindow.CurrentViewModel = this._profileCreationViewModel;
         }
 
-        public void FinishUserCreation()
-        {
-            this._profileCreationWindow.Window.Close();
-        }
+        
     }
 }

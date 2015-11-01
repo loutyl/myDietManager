@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using myDietManager.Model;
 
 namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
@@ -68,20 +69,24 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
 
         public bool IsLose
         {
-            get { return this._profileCreationWindow.DietProfile.IsLose; }
+            get { return this._profileCreationWindow.DietProfile.Goal == Goal.Lose; }
             set
             {
-                this._profileCreationWindow.DietProfile.IsLose = value;
+                this._profileCreationWindow.DietProfile.Goal = value ? Goal.Lose : Goal.Gain;
+                
                 OnPropertyChanged("IsLose");
+                OnPropertyChanged("IsGain");
             }
         }
 
         public bool IsGain
         {
-            get { return this._profileCreationWindow.DietProfile.IsGain; }
+            get { return this._profileCreationWindow.DietProfile.Goal == Goal.Gain; }
             set
             {
-                this._profileCreationWindow.DietProfile.IsGain = value;
+                this._profileCreationWindow.DietProfile.Goal = value ? Goal.Gain : Goal.Lose;
+
+                OnPropertyChanged("IsLose");
                 OnPropertyChanged("IsGain");
             }
         }

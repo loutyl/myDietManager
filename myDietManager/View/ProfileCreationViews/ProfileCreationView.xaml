@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:conv="clr-namespace:myDietManager.ViewModel.Converters"
+             xmlns:model="clr-namespace:myDietManager.Model"
+             xmlns:profileCreationViewModels="clr-namespace:myDietManager.ViewModel.ProfileCreationViewModels"
              mc:Ignorable="d"
              Height="Auto" Width="560">
     <Grid>
@@ -45,6 +47,7 @@
                 <Label Content="cm" Margin="20,0,0,0" />
             </DockPanel>
             <DockPanel Height="30" Margin="10">
+                
                 <Label Content="Goal :" Margin="10,0,0,0" />
                 <RadioButton Content="Lose weight" Margin="20,5,10,0" IsChecked="{Binding Path=IsLose, Mode=TwoWay}" />
                 <RadioButton Content="Gain weight" Margin="20,5,0,0" IsChecked="{Binding Path=IsGain, Mode=TwoWay}" />

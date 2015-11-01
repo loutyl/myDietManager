@@ -3,11 +3,16 @@ using GalaSoft.MvvmLight.Command;
 
 namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
+    public enum CreationChoice
+    {
+        Auto,
+        Manual
+    };
+    
     public class ProfileCreationChoiceViewModel : ViewModelBase
     {
         public ProfileCreationWindowViewModel ProfileCreationWindow { get; set; }
-        private bool _isAuto;
-        private bool _isManual;
+        private CreationChoice _choice;
         private ICommand _confirmProfileCreationChoice;
 
         public ProfileCreationChoiceViewModel(ProfileCreationWindowViewModel profileCreationWindow)
@@ -19,20 +24,22 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
 
         public bool IsManual
         {
-            get { return this._isManual; }
+            get { return this._choice == CreationChoice.Manual; }
             set
             {
-                this._isManual = value;
+                this._choice = value ? CreationChoice.Manual : CreationChoice.Auto;
                 OnPropertyChanged("IsManual");
+                OnPropertyChanged("IsAuto");
             }
         }
 
         public bool IsAuto 
         {
-            get { return this._isAuto; }
+            get { return this._choice == CreationChoice.Auto; }
             set
             {
-                this._isAuto = value;
+                this._choice = value ? CreationChoice.Auto : CreationChoice.Manual;
+                OnPropertyChanged("IsManual");
                 OnPropertyChanged("IsAuto");
             }
         }
@@ -52,7 +59,7 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
 
         public void NaviguateToProfileCreation()
         {
-            this.ProfileCreationWindow.CurrentViewModel = IsManual 
+            this.ProfileCreationWindow.CurrentViewModel = this._choice == CreationChoice.Auto 
                 ? new ProfileCreationViewModel(this.ProfileCreationWindow) 
                 : null;
         }

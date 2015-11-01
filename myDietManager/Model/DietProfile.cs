@@ -5,12 +5,17 @@ using myDietManager.Class;
 
 namespace myDietManager.Model
 {
+    public enum Goal
+    {
+        Lose,
+        Gain
+    };
+
     public class DietProfile : IDataErrorInfo
     {
         public float Weight { get; set; }
         public float Height { get; set; }
-        public bool IsLose { get; set; } = true;
-        public bool IsGain { get; set; }
+        public Goal Goal { get; set; }
         public int DietDuration { get; set; }
         public float WeightGoal { get; set; }
         public int ActivityLevel { get; set; } = 14;
@@ -24,7 +29,7 @@ namespace myDietManager.Model
                 switch (attributeName)
                 {
                     case "Weight":
-                        return (Math.Abs(this.Weight) < (35*2.2f) || Math.Abs(this.Weight) > (250*2.2f))
+                        return (Math.Abs(this.Weight) < (35 * 2.2f) || Math.Abs(this.Weight) > (250 * 2.2f))
                             ? "The weight entered is incorrect."
                             : string.Empty;
                     case "Height":
@@ -36,7 +41,7 @@ namespace myDietManager.Model
                             ? "The value entered is too low."
                             : string.Empty;
                     case "WeightGoal":
-                        return (Math.Abs(this.Weight) < (35*2.2f) || Math.Abs(this.Weight) > (250*2.2f))
+                        return (Math.Abs(this.Weight) < (35 * 2.2f) || Math.Abs(this.Weight) > (250 * 2.2f))
                             ? "The weight entered is incorrect."
                             : string.Empty;
                     default:
@@ -57,7 +62,7 @@ namespace myDietManager.Model
                 MaintencanceCalories = (int)this.Weight * this.ActivityLevel
             };
 
-            this.CalorieNeeds.DailyCalories = this.IsGain
+            this.CalorieNeeds.DailyCalories = this.Goal == Goal.Gain
                 ? ( this.CalorieNeeds.MaintencanceCalories + 250 )
                 : ( this.CalorieNeeds.MaintencanceCalories - 500 );
         }
@@ -65,7 +70,7 @@ namespace myDietManager.Model
         private void CreateProfileMacroRatio()
         {   
             //Carbs - Protein // Fat
-            var macrosRatios = this.IsLose ? new List<float>() {0.4f, 0.4f, 0.2f} : new List<float>() {0.5f, 0.3f, 0.2f};
+            var macrosRatios = this.Goal == Goal.Lose ? new List<float>() {0.4f, 0.4f, 0.2f} : new List<float>() {0.5f, 0.3f, 0.2f};
             var nutrients = new List<Nutrient>();
 
             macrosRatios.ForEach(ratio =>
