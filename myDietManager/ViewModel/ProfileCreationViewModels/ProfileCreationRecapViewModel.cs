@@ -1,5 +1,8 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using myDietManager.Class;
+using myDietManager.Class.Database;
+using myDietManager.Model;
 
 namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
@@ -52,10 +55,8 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
 
         private void FinishUserCreation()
         {
-
-            
-
-
+            var dbObject = new DatabaseObject();
+            dbObject.AddDietProfile(this._profileCreationWindow.DietProfile);
 
             this._profileCreationWindow.Window.Close();
         }

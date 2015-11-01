@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using myDietManager.Model;
 
@@ -18,23 +19,47 @@ namespace myDietManager.Class.Database
         {
             this.DatabaseQuery = @"SELECT * FROM [User] WHERE UserName = @Username AND Password = @Password;";
 
-            using ( var command = new SqlCommand(this.DatabaseQuery, this._dbConnection) )
+            using (this._dbConnection)
             {
-                this._dbConnection.Open();
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", password);
-
-                using ( var reader = command.ExecuteReader() )
+                using (var command = new SqlCommand(this.DatabaseQuery, this._dbConnection))
                 {
-                    return reader.Read() ? new User
+                    this._dbConnection.Open();
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+
+                    using (var reader = command.ExecuteReader())
                     {
-                        LastName = reader["lastname"].ToString().Trim(),
-                        Name = reader["name"].ToString().Trim(),
-                        Age = (int)reader["age"],
-                        Gender = reader["gender"].ToString().Trim()
-                    } : null;
+                        return reader.Read() ? new User
+                        {
+                            LastName = reader["lastname"].ToString().Trim(),
+                            Name = reader["name"].ToString().Trim(),
+                            Age = (int)reader["age"],
+                            Gender = reader["gender"].ToString().Trim()
+                        } : null;
+                    }
                 }
             }
+        }
+
+        public void AddDietProfile(DietProfile dietProfile)
+        {
+            var serializer = new Serializer<DietProfile>();
+
+            var test = serializer.SerializeObject(dietProfile);
+            var test2 = serializer.DeserializeObject(test);
+
+            //using (this._dbConnection)
+            //{
+            //    using (var command = new SqlCommand("AddDietProfile", this._dbConnection))
+            //    {
+            //        command.CommandType = CommandType.StoredProcedure;
+            //        command.Parameters.Add("@DietProfile", SqlDbType.Xml).Value = serializer.SerializeObject(dietProfile);
+
+            //        this._dbConnection.Open();
+
+            //        command.ExecuteNonQuery();
+            //    }
+            //}
         }
     }
 }

@@ -11,6 +11,7 @@ namespace myDietManager.Model
         Gain
     };
 
+    [Serializable]
     public class DietProfile : IDataErrorInfo
     {
         public float Weight { get; set; }
@@ -19,8 +20,8 @@ namespace myDietManager.Model
         public int DietDuration { get; set; }
         public float WeightGoal { get; set; }
         public int ActivityLevel { get; set; } = 14;
-        internal CalorieNeeds CalorieNeeds { get; set; }
-        internal Macronutrients Macros { get; set; }
+        public CalorieNeeds CalorieNeeds { get; set; }
+        public Macronutrients Macros { get; set; }
 
         public string this[string attributeName]
         {
