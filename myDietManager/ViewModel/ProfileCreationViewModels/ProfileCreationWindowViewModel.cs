@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using myDietManager.Class;
 using myDietManager.Model;
 
 namespace myDietManager.ViewModel.ProfileCreationViewModels
@@ -21,13 +22,11 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
             }
         }
 
-        public ProfileCreationWindowViewModel(Window profileCreationWindow)
+        public ProfileCreationWindowViewModel(Window profileCreationWindow, DietProfile dietProfile)
         {
-            this.DietProfile = new DietProfile();
+            this.DietProfile = dietProfile;
             this.Window = profileCreationWindow;
             this.CurrentViewModel = new ProfileCreationChoiceViewModel(this);
         }
-
     }
-
 }

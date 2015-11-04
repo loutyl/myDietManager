@@ -67,7 +67,5 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
             this._profileCreationWindow.Window.Height = this._profileCreationViewModel.ViewHeight;
             this._profileCreationWindow.CurrentViewModel = this._profileCreationViewModel;
         }
-
-        
     }
 }

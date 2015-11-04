@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using myDietManager.Class;
+using myDietManager.Model;
 using myDietManager.ViewModel.ProfileCreationViewModels;
 
 namespace myDietManager
@@ -11,8 +13,8 @@ namespace myDietManager
         public ProfileCreationWindow()
         {
             InitializeComponent();
-            this.DataContext = new ProfileCreationWindowViewModel(this);
-
+            var dietProfile = new DietProfile(new CalorieNeeds(), new Macronutrients());
+            this.DataContext = new ProfileCreationWindowViewModel(this, dietProfile);
         }
     }
 }

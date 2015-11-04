@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Xml.Serialization;
 using myDietManager.Class;
 
 namespace myDietManager.Model
@@ -14,14 +15,24 @@ namespace myDietManager.Model
     [Serializable]
     public class DietProfile : IDataErrorInfo
     {
+        public string ProfileName { get; set; } = "test";
         public float Weight { get; set; }
         public float Height { get; set; }
         public Goal Goal { get; set; }
         public int DietDuration { get; set; }
-        public float WeightGoal { get; set; }
         public int ActivityLevel { get; set; } = 14;
+        public float WeightGoal { get; set; }
+        public int UserId { get; set; }
         public CalorieNeeds CalorieNeeds { get; set; }
         public Macronutrients Macros { get; set; }
+
+        public DietProfile() { }
+
+        public DietProfile(CalorieNeeds calorieNeeds, Macronutrients macros)
+        {
+            this.CalorieNeeds = calorieNeeds;
+            this.Macros = macros;
+        }
 
         public string this[string attributeName]
         {
@@ -56,18 +67,6 @@ namespace myDietManager.Model
             get { throw new NotImplementedException(); }
         }
 
-        private void CreateProfileCalorieNeeds()
-        {
-            this.CalorieNeeds = new CalorieNeeds
-            {
-                MaintencanceCalories = (int)this.Weight * this.ActivityLevel
-            };
-
-            this.CalorieNeeds.DailyCalories = this.Goal == Goal.Gain
-                ? ( this.CalorieNeeds.MaintencanceCalories + 250 )
-                : ( this.CalorieNeeds.MaintencanceCalories - 500 );
-        }
-
         private void CreateProfileMacroRatio()
         {   
             //Carbs - Protein // Fat
@@ -88,6 +87,18 @@ namespace myDietManager.Model
                 Protein = new Nutrient(nutrients[1].Calorie, nutrients[1].Weight),
                 Fat = new Nutrient(nutrients[2].Calorie, nutrients[2].Weight)
             };
+        }
+
+        private void CreateProfileCalorieNeeds()
+        {
+            this.CalorieNeeds = new CalorieNeeds
+            {
+                MaintencanceCalories = (int)this.Weight * this.ActivityLevel
+            };
+
+            this.CalorieNeeds.DailyCalories = this.Goal == Goal.Gain
+                ? ( this.CalorieNeeds.MaintencanceCalories + 250 )
+                : ( this.CalorieNeeds.MaintencanceCalories - 500 );
         }
 
         public void FinalizeProfileCreation()

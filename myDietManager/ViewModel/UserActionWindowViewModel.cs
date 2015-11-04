@@ -21,13 +21,13 @@ namespace myDietManager.ViewModel
                 if ( this._addUserCommand != null )
                     return this._addUserCommand;
 
-                this._addUserCommand = new RelayCommand(() => OpenAddUserWindow());
+                this._addUserCommand = new RelayCommand(() => this.OpenDietProfileCreationWindow());
 
                 return this._addUserCommand;
             }
         }
 
-        public static void OpenAddUserWindow()
+        public void OpenDietProfileCreationWindow()
         {
             var profileCreationWindow = new ProfileCreationWindow();
             profileCreationWindow.Show();

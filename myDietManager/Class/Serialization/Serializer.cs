@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace myDietManager.Class
+namespace myDietManager.Class.Serialization
 {
     public class Serializer<T>
     {

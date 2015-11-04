@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using myDietManager.Class.Serialization;
 using myDietManager.Model;
 
 namespace myDietManager.Class.Database
@@ -29,8 +30,9 @@ namespace myDietManager.Class.Database
 
                     using (var reader = command.ExecuteReader())
                     {
-                        return reader.Read() ? new User
+                        return reader.Read() ? new User()
                         {
+                            UserId = (int)reader["UserId"],
                             LastName = reader["lastname"].ToString().Trim(),
                             Name = reader["name"].ToString().Trim(),
                             Age = (int)reader["age"],
@@ -46,20 +48,20 @@ namespace myDietManager.Class.Database
             var serializer = new Serializer<DietProfile>();
 
             var test = serializer.SerializeObject(dietProfile);
-            var test2 = serializer.DeserializeObject(test);
 
-            //using (this._dbConnection)
-            //{
-            //    using (var command = new SqlCommand("AddDietProfile", this._dbConnection))
-            //    {
-            //        command.CommandType = CommandType.StoredProcedure;
-            //        command.Parameters.Add("@DietProfile", SqlDbType.Xml).Value = serializer.SerializeObject(dietProfile);
+            using ( this._dbConnection )
+            {
+                using ( var command = new SqlCommand("CreateDietProfile", this._dbConnection) )
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@DietProfileInformation", SqlDbType.Xml).Value = serializer.SerializeObject(dietProfile);
+                    command.Parameters.Add("@userID", SqlDbType.Int).Value = 1;
 
-            //        this._dbConnection.Open();
+                    this._dbConnection.Open();
 
-            //        command.ExecuteNonQuery();
-            //    }
-            //}
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
