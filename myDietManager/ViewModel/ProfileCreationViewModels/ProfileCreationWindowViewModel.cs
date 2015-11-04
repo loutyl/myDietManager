@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using myDietManager.Class;
 using myDietManager.Model;
 
 namespace myDietManager.ViewModel.ProfileCreationViewModels

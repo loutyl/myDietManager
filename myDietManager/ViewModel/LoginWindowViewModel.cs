@@ -1,10 +1,8 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using myDietManager.Class.Security;
-using myDietManager.Model;
 
 namespace myDietManager.ViewModel
 {
