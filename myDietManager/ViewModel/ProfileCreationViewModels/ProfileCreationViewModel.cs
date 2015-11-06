@@ -11,7 +11,7 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
         private readonly ProfileCreationWindowViewModel _profileCreationWindow;
         public Dictionary<string, bool> ValidAttributes { get; set; }
         public double ViewWidth { get; set; } = 600;
-        public double ViewHeight { get; set; } = 300;
+        public double ViewHeight { get; set; } = 340;
         private ICommand _finishProfileCreationCommand;
 
         public ProfileCreationViewModel(ProfileCreationWindowViewModel profileCreationWindow)
@@ -47,6 +47,16 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
         #endregion
 
         #region Attributes
+
+        public string ProfileName
+        {
+            get { return this._profileCreationWindow.DietProfile.ProfileName; }
+            set
+            {
+                this._profileCreationWindow.DietProfile.ProfileName = value;
+                OnPropertyChanged("ProfileName");
+            }
+        }
         
         public float Weight
         {

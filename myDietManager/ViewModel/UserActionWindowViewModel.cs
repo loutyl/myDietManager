@@ -29,7 +29,7 @@ namespace myDietManager.ViewModel
 
         public void OpenDietProfileCreationWindow()
         {
-            var profileCreationWindow = new ProfileCreationWindow();
+            var profileCreationWindow = new ProfileCreationWindow(this._user);
             profileCreationWindow.Show();
         }
     }

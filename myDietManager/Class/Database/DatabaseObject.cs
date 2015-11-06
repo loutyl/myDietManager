@@ -47,19 +47,22 @@ namespace myDietManager.Class.Database
         {
             var serializer = new Serializer<DietProfile>();
 
-            var test = serializer.SerializeObject(dietProfile);
-
             using ( this._dbConnection )
             {
                 using ( var command = new SqlCommand("CreateDietProfile", this._dbConnection) )
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@DietProfileInformation", SqlDbType.Xml).Value = serializer.SerializeObject(dietProfile);
-                    command.Parameters.Add("@userID", SqlDbType.Int).Value = 1;
+                    command.Parameters.Add("@userID", SqlDbType.Int).Value = dietProfile.UserId;
+
+                    var returnedValue = command.Parameters.Add("@DietProfileID", SqlDbType.Int);
+                    returnedValue.Direction = ParameterDirection.Output;
 
                     this._dbConnection.Open();
 
                     command.ExecuteNonQuery();
+
+                    dietProfile.DietProfileId = (int)command.Parameters["@DietProfileID"].Value;
                 }
             }
         }

@@ -10,10 +10,10 @@ namespace myDietManager
     /// </summary>
     public partial class ProfileCreationWindow : Window
     {
-        public ProfileCreationWindow()
+        public ProfileCreationWindow(User user)
         {
             InitializeComponent();
-            var dietProfile = new DietProfile(new CalorieNeeds(), new Macronutrients());
+            var dietProfile = new DietProfile { UserId = user.UserId };
             this.DataContext = new ProfileCreationWindowViewModel(this, dietProfile);
         }
     }

@@ -16,10 +16,10 @@ namespace myDietManager.Class.Serialization
 
         }
 
-        public T DeserializeObject(string toDeserialize)
+        public T DeserializeObject(string stringDeserialize)
         {
             var xmlSerializer = new XmlSerializer(typeof(T));
-            return (T)xmlSerializer.Deserialize(new StringReader(toDeserialize));
+            return (T)xmlSerializer.Deserialize(new StringReader(stringDeserialize));
         }
     }
 }

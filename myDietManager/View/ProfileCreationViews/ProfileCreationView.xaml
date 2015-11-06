@@ -33,6 +33,11 @@
 
         <StackPanel Grid.Column="0" Grid.RowSpan="2">
             <DockPanel Height="30" Margin="10">
+                <Label Content="Profile name :" Margin="10,0,0,0" />
+                <TextBox Width="75" Margin="-52,0,0,0" Text="{Binding Path=ProfileName, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                         Validation.ErrorTemplate="{x:Null}" />
+            </DockPanel>
+            <DockPanel Height="30" Margin="10">
                 <Label Content="Weight :" Margin="10,0,0,0" />
                 <TextBox Width="75" Margin="-25,0,0,0" Text="{Binding Path=Weight, Mode=TwoWay, ValidatesOnDataErrors=True}"
                          Validation.ErrorTemplate="{x:Null}" />
@@ -52,14 +57,14 @@
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Diet Duration :" Margin="10,0,0,0" />
-                <TextBox Width="40" Margin="10,0,0,0"
+                <TextBox Width="40" Margin="20,0,0,0"
                          Text="{Binding Path=DietDuration, Mode=TwoWay, ValidatesOnDataErrors=True}"
                          Validation.ErrorTemplate="{x:Null}" />
                 <Label Content="Week(s)" Margin="10,0,0,0" />
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Weight Goal :" Margin="10,0,0,0" />
-                <TextBox Width="70" Margin="10,0,0,0"
+                <TextBox Width="70" Margin="25,0,0,0"
                          Text="{Binding Path=WeightGoal, Mode=TwoWay, ValidatesOnDataErrors=True}"
                          Validation.ErrorTemplate="{x:Null}" />
                 <Label Content="Lbs." Margin="10,0,0,0"></Label>
