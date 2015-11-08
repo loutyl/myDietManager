@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.Model;
+using myDietManager.Class;
 
 namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
@@ -10,6 +14,7 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
     {
         private readonly ProfileCreationWindowViewModel _profileCreationWindow;
         public Dictionary<string, bool> ValidAttributes { get; set; }
+        public ObservableCollection<string> Goals { get; set; }
         public double ViewWidth { get; set; } = 600;
         public double ViewHeight { get; set; } = 340;
         private ICommand _finishProfileCreationCommand;
@@ -17,115 +22,124 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
         public ProfileCreationViewModel(ProfileCreationWindowViewModel profileCreationWindow)
         {
             this._profileCreationWindow = profileCreationWindow;
-            this.ValidAttributes = PopulateAttributesDictionary();
+            this.Goals = PopulateGoalList();
             this._profileCreationWindow.Window.Width = ViewWidth;
             this._profileCreationWindow.Window.Height = ViewHeight;
         }
 
-        private static Dictionary<string, bool> PopulateAttributesDictionary() => new Dictionary<string, bool>
+        private static ObservableCollection<string> PopulateGoalList() => new ObservableCollection<string>
         {
-            {"Weight", false},
-            {"Height", false},
-            {"DietDuration", false},
-            {"WeightGoal", false}
+            "Gain",
+            "Lose"
         };
-
-        #region Interface Implementation
-
-        public string Error => ( this._profileCreationWindow.DietProfile as IDataErrorInfo ).Error;
-
-        public string this[string attributeName]
-        {
-            get
-            {
-                var error = ( this._profileCreationWindow.DietProfile as IDataErrorInfo )[attributeName];
-                this.ValidAttributes[attributeName] = string.IsNullOrEmpty(error);
-                CommandManager.InvalidateRequerySuggested();
-                return error;
-            }
-        }
-        #endregion
 
         #region Attributes
 
+        [Required(ErrorMessage = @"A profile name must be entered")]
         public string ProfileName
         {
             get { return this._profileCreationWindow.DietProfile.ProfileName; }
             set
             {
+                if (this._profileCreationWindow.DietProfile.ProfileName == value)
+                {
+                    return;
+                }
+
                 this._profileCreationWindow.DietProfile.ProfileName = value;
                 OnPropertyChanged("ProfileName");
             }
         }
-        
-        public float Weight
+
+        [Required]
+        [Range(35 * 2.2f, 250 * 2.2f)]
+        public double Weight
         {
             get { return this._profileCreationWindow.DietProfile.Weight; }
             set
             {
+
                 this._profileCreationWindow.DietProfile.Weight = value;
                 OnPropertyChanged("Weight");
             }
         }
-        public float Height
+
+        [Required]
+        [Range(100, 300)]
+        public double Height
         {
             get { return this._profileCreationWindow.DietProfile.Height; }
             set
             {
+                if ( Math.Abs(this._profileCreationWindow.DietProfile.Height - value) <= 0 )
+                {
+                    return;
+                }
                 this._profileCreationWindow.DietProfile.Height = value;
                 OnPropertyChanged("Height");
             }
         }
 
-        public bool IsLose
+        [Required]
+        public string SelectedGoal
         {
-            get { return this._profileCreationWindow.DietProfile.Goal == Goal.Lose; }
+            get { return this._profileCreationWindow.DietProfile.Goal; }
             set
             {
-                this._profileCreationWindow.DietProfile.Goal = value ? Goal.Lose : Goal.Gain;
+                if (this._profileCreationWindow.DietProfile.Goal == value)
+                {
+                    return;
+                }
                 
-                OnPropertyChanged("IsLose");
-                OnPropertyChanged("IsGain");
+                this._profileCreationWindow.DietProfile.Goal = value;
+                OnPropertyChanged("SelectedGoal");
             }
         }
 
-        public bool IsGain
-        {
-            get { return this._profileCreationWindow.DietProfile.Goal == Goal.Gain; }
-            set
-            {
-                this._profileCreationWindow.DietProfile.Goal = value ? Goal.Gain : Goal.Lose;
-
-                OnPropertyChanged("IsLose");
-                OnPropertyChanged("IsGain");
-            }
-        }
-
+        [Required]
+        [Range(6, 35)]
         public int DietDuration
         {
             get { return this._profileCreationWindow.DietProfile.DietDuration; }
             set
             {
+                if ( this._profileCreationWindow.DietProfile.DietDuration == value )
+                {
+                    return;
+                }
                 this._profileCreationWindow.DietProfile.DietDuration = value;
                 OnPropertyChanged("DietDuration");
             }
         }
 
-        public float WeightGoal
+        [Required]
+        [Range(100, 400)]
+        public double WeightGoal
         {
             get { return this._profileCreationWindow.DietProfile.WeightGoal; }
             set
             {
+                if ( Math.Abs(this._profileCreationWindow.DietProfile.WeightGoal - value) <= 0 )
+                {
+                    return;
+                }
+
                 this._profileCreationWindow.DietProfile.WeightGoal = value;
                 OnPropertyChanged("WeightGoal");
             }
         }
 
+        [Required]
         public int ActivityLevel
         {
             get { return this._profileCreationWindow.DietProfile.ActivityLevel; }
             set
             {
+                if ( this._profileCreationWindow.DietProfile.ActivityLevel == value )
+                {
+                    return;
+                }
+
                 this._profileCreationWindow.DietProfile.ActivityLevel = value;
                 OnPropertyChanged("ActivityLevel");
             }
@@ -150,17 +164,38 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
 
         public void FinishProfileCreation()
         {
-            this._profileCreationWindow.DietProfile.FinalizeProfileCreation();
+            DietCalculator.FinalizeDietProfileCreation(this._profileCreationWindow.DietProfile);
 
             this._profileCreationWindow.CurrentViewModel = new ProfileCreationRecapViewModel(this._profileCreationWindow, this);
         }
 
         public bool CanFinishProfileCreation()
         {
-            return true;
+            //return !string.IsNullOrEmpty(this.ProfileName);
             //return !this.ValidProperties.ContainsValue(false);
+            return true;
         }
 
         #endregion
+
+        // check for general model error
+        public string Error => null;
+
+        // check for property errors
+        public string this[string columnName]
+        {
+            get
+            {
+                var validationResults = new List<ValidationResult>();
+
+                return Validator.TryValidateProperty(
+                    GetType().GetProperty(columnName).GetValue(this)
+                    , new ValidationContext(this)
+                    {
+                        MemberName = columnName
+                    }
+                    , validationResults) ? null : validationResults.First().ErrorMessage;
+            }
+        }
     }
 }

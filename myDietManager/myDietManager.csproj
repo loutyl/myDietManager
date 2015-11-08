@@ -34,32 +34,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.2.0.37226, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -80,8 +78,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class\Database\DatabaseObject.cs" />
+    <Compile Include="Class\DietCalculator.cs" />
     <Compile Include="Class\Security\AuthentificationHandler.cs" />
     <Compile Include="Class\Serialization\Serializer.cs" />
+    <Compile Include="Entities\IUnitOfWork.cs" />
+    <Compile Include="Entities\Repositories\BaseRepository.cs" />
+    <Compile Include="Entities\Repositories\IBaseRepository.cs" />
+    <Compile Include="Entities\Repositories\UserCalorieNeedsRepository.cs" />
+    <Compile Include="Entities\Repositories\UserMacronutrientsRepository.cs" />
+    <Compile Include="Entities\Repositories\UserRepository.cs" />
+    <Compile Include="Entities\Repositories\UsersDietProfileRepository.cs" />
+    <Compile Include="Entities\UnitOfWork.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -89,11 +96,44 @@
     <Compile Include="Model\DietProfile.cs" />
     <Compile Include="Class\Macronutrients.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="MyDietManagerDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDietManagerDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyDietManagerDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyDietManagerDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserActionWindow.xaml.cs">
       <DependentUpon>UserActionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProfileCreationWindow.xaml.cs">
       <DependentUpon>ProfileCreationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserCalorieNeeds.cs">
+      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMacronutrients.cs">
+      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersDietProfile.cs">
+      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
@@ -133,15 +173,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.Config" />
+    <EntityDeploy Include="MyDietManagerDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyDietManagerDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MyDietManagerDBModel.edmx.diagram">
+      <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cfg\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="LoginWindow.xaml">
@@ -174,6 +219,22 @@
       <SubType>Designer</SubType>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MyDietManagerDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
+      <LastGenOutput>MyDietManagerDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MyDietManagerDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
+      <LastGenOutput>MyDietManagerDBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

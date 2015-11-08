@@ -13,7 +13,7 @@ namespace myDietManager
         public ProfileCreationWindow(User user)
         {
             InitializeComponent();
-            var dietProfile = new DietProfile { UserId = user.UserId };
+            var dietProfile = new DietProfile { UserID = user.UserID };
             this.DataContext = new ProfileCreationWindowViewModel(this, dietProfile);
         }
     }

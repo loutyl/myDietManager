@@ -6,19 +6,15 @@
              xmlns:conv="clr-namespace:myDietManager.ViewModel.Converters"
              mc:Ignorable="d"
              Height="Auto" Width="560">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
 
+    <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type TextBox}">
                 <Style.Triggers>
                     <Trigger Property="Validation.HasError" Value="true">
                         <Setter Property="ToolTip"
                                 Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-                        <Setter Property="TextBox.Background" Value="#6DFF000C" />
+                        
                     </Trigger>
                     <Trigger Property="Validation.HasError" Value="false">
                         <Setter Property="TextBox.Background" Value="#6D00FF3D" />
@@ -26,47 +22,52 @@
                 </Style.Triggers>
             </Style>
         </Grid.Resources>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="13*"/>
             <RowDefinition Height="87*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Grid.RowSpan="2">
+
+
             <DockPanel Height="30" Margin="10">
                 <Label Content="Profile name :" Margin="10,0,0,0" />
-                <TextBox Width="75" Margin="-52,0,0,0" Text="{Binding Path=ProfileName, Mode=TwoWay, ValidatesOnDataErrors=True}"
-                         Validation.ErrorTemplate="{x:Null}" />
+                <TextBox Width="75" Margin="-52,0,0,0" Text="{Binding Path=ProfileName, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Weight :" Margin="10,0,0,0" />
-                <TextBox Width="75" Margin="-25,0,0,0" Text="{Binding Path=Weight, Mode=TwoWay, ValidatesOnDataErrors=True}"
-                         Validation.ErrorTemplate="{x:Null}" />
+                <TextBox Width="75" Margin="10,0,0,0" Text="{Binding Path=Weight, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+                <Label Content="Lbs." Margin="10,0,0,0"></Label>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Height :" Margin="10,0,0,0" />
-                <TextBox Width="75" Margin="50,0,0,0"
-                         Text="{Binding Path=Height, Mode=TwoWay, ValidatesOnDataErrors=True}"
-                         Validation.ErrorTemplate="{x:Null}" />
-                <Label Content="cm" Margin="20,0,0,0" />
+                <TextBox Width="75" Margin="10,0,0,0"
+                         Text="{Binding Path=Height, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+                <Label Content="cm" Margin="10,0,0,0" />
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 
                 <Label Content="Goal :" Margin="10,0,0,0" />
-                <RadioButton Content="Lose weight" Margin="20,5,10,0" IsChecked="{Binding Path=IsLose, Mode=TwoWay}" />
-                <RadioButton Content="Gain weight" Margin="20,5,0,0" IsChecked="{Binding Path=IsGain, Mode=TwoWay}" />
+                <ComboBox Name="Goal" ItemsSource="{Binding Goals}" SelectedValue="{Binding SelectedGoal}"
+                    IsSynchronizedWithCurrentItem="True" Width="100"/>
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Diet Duration :" Margin="10,0,0,0" />
-                <TextBox Width="40" Margin="20,0,0,0"
-                         Text="{Binding Path=DietDuration, Mode=TwoWay, ValidatesOnDataErrors=True}"
-                         Validation.ErrorTemplate="{x:Null}" />
+                <TextBox Width="40" Margin="10,0,0,0"
+                         Text="{Binding Path=DietDuration, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
                 <Label Content="Week(s)" Margin="10,0,0,0" />
             </DockPanel>
             <DockPanel Height="30" Margin="10">
                 <Label Content="Weight Goal :" Margin="10,0,0,0" />
-                <TextBox Width="70" Margin="25,0,0,0"
-                         Text="{Binding Path=WeightGoal, Mode=TwoWay, ValidatesOnDataErrors=True}"
-                         Validation.ErrorTemplate="{x:Null}" />
+                <TextBox Width="70" Margin="10,0,0,0"
+                         Text="{Binding Path=WeightGoal, Mode=TwoWay,NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
                 <Label Content="Lbs." Margin="10,0,0,0"></Label>
             </DockPanel>
         </StackPanel>

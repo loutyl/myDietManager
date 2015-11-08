@@ -1,43 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using myDietManager.Model;
 
 namespace myDietManager.Class
 {
-    [Serializable]
     public class Macronutrients
     {
-        public Nutrient Protein { get; set; }
-        public Nutrient Carbohydrate { get; set; }
-        public Nutrient Fat { get; set; }
+        public int Protein { get; set; }
+        public int Carbohydrate { get; set; }
+        public int Fat { get; set; }
 
         public static Macronutrients GetMacronutrientsRatios(DietProfile dietProfile)
         {
-            var macrosRatios = dietProfile.Goal == Goal.Lose 
+            var macrosRatios = dietProfile.Goal == "Lose" 
                 ? new List<float>{ 0.4f, 0.4f, 0.2f } 
                 : new List<float>{ 0.5f, 0.3f, 0.2f };
 
-            var nutrients = new List<Nutrient>();
+            var nutrients = new List<int>();
 
             macrosRatios.ForEach(ratio =>
             {
                 var calorie = Math.Abs(dietProfile.CalorieNeeds.DailyCalories * ratio);
                 var divider = ratio.Equals(0.2f) ? 9 : 4;  // Fat = 9 Calories for 1g - Carbs and Protein = 4 Calories for 1g
                 var weight = Math.Abs(( calorie / divider ));
-                nutrients.Add(new Nutrient((int)calorie, (int)weight));
+                nutrients.Add((int)weight);
             });
 
             return new Macronutrients
             {
-                Carbohydrate = new Nutrient(nutrients[0].Calorie, nutrients[0].Weight),
-                Protein = new Nutrient(nutrients[1].Calorie, nutrients[1].Weight),
-                Fat = new Nutrient(nutrients[2].Calorie, nutrients[2].Weight)
+                Carbohydrate = nutrients[0],
+                Protein = nutrients[1],
+                Fat = nutrients[2]
             };
         }
 
     }
 
-    [Serializable]
     public class Nutrient
     {
         public int Weight { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 
 namespace myDietManager.ViewModel
 {
@@ -9,6 +10,7 @@ namespace myDietManager.ViewModel
     /// </summary>
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
+        
         /// <summary>
         /// Raised when a property on this object has a new value.
         /// </summary>

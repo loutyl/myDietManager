@@ -15,9 +15,9 @@ namespace myDietManager.ViewModel
 
         public string Username { get; set; }
 
-        public LoginWindowViewModel()
+        public LoginWindowViewModel(AuthentificationHandler authHandler)
         {
-            this._authentificationHandler = new AuthentificationHandler();
+            this._authentificationHandler = authHandler;
         }
 
         public ICommand ConnectCommand

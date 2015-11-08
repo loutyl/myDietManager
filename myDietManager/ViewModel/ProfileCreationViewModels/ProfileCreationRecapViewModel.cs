@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using myDietManager.Class.Database;
+using System.Linq;
 
 namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
@@ -19,11 +20,11 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
             this._profileCreationWindow.Window.Height = 245;
         }
 
-        public int MaintenanceCalories => this._profileCreationWindow.DietProfile.CalorieNeeds.MaintencanceCalories;
+        public int MaintenanceCalories => this._profileCreationWindow.DietProfile.CalorieNeeds.MaintenanceCalories;
         public int DailyCalories => this._profileCreationWindow.DietProfile.CalorieNeeds.DailyCalories;
-        public int Protein => this._profileCreationWindow.DietProfile.Macros.Protein.Weight;
-        public int Carbohydrates => this._profileCreationWindow.DietProfile.Macros.Carbohydrate.Weight;
-        public int Fat => this._profileCreationWindow.DietProfile.Macros.Fat.Weight;
+        public int Protein => this._profileCreationWindow.DietProfile.Macros.Protein;
+        public int Carbohydrates => this._profileCreationWindow.DietProfile.Macros.Carbohydrate;
+        public int Fat => this._profileCreationWindow.DietProfile.Macros.Fat;
 
         public ICommand CancelCreationCommand
         {
@@ -54,7 +55,7 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
         private void FinishUserCreation()
         {
             var dbObject = new DatabaseObject();
-            dbObject.AddDietProfile(this._profileCreationWindow.DietProfile);
+            dbObject.CompleteDietProfileCreation(this._profileCreationWindow.DietProfile);
 
             this._profileCreationWindow.Window.Close();
         }

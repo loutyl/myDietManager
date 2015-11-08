@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using myDietManager.Class.Security;
 using myDietManager.ViewModel;
 
 namespace myDietManager
@@ -11,7 +12,7 @@ namespace myDietManager
         public LoginWindow()
         {
             InitializeComponent();
-            this.DataContext = new LoginWindowViewModel();
+            this.DataContext = new LoginWindowViewModel(new AuthentificationHandler());
         }
     }
 }

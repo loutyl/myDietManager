@@ -3,68 +3,61 @@ using System.Data;
 using System.Data.SqlClient;
 using myDietManager.Class.Serialization;
 using myDietManager.Model;
+using System.Linq;
+using myDietManager.Entities;
 
 namespace myDietManager.Class.Database
 {
     public class DatabaseObject
     {
-        private readonly SqlConnection _dbConnection;
-        public string DatabaseQuery { get; set; }
+        private readonly UnitOfWork _unitOfWork;
 
         public DatabaseObject()
         {
-            this._dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbConnectionString"].ConnectionString);
+            this._unitOfWork = new UnitOfWork(new MyDietManagerDBEntities());
         }
 
         public User Authenticate(string username, string password)
         {
-            this.DatabaseQuery = @"SELECT * FROM [User] WHERE UserName = @Username AND Password = @Password;";
-
-            using (this._dbConnection)
+            using (var context = new MyDietManagerDBEntities())
             {
-                using (var command = new SqlCommand(this.DatabaseQuery, this._dbConnection))
-                {
-                    this._dbConnection.Open();
-                    command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", password);
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        return reader.Read() ? new User()
-                        {
-                            UserId = (int)reader["UserId"],
-                            LastName = reader["lastname"].ToString().Trim(),
-                            Name = reader["name"].ToString().Trim(),
-                            Age = (int)reader["age"],
-                            Gender = reader["gender"].ToString().Trim()
-                        } : null;
-                    }
-                }
+                return context.User.Single(user => user.UserName == username && user.Password == password);
             }
         }
 
-        public void AddDietProfile(DietProfile dietProfile)
+        public void CompleteDietProfileCreation(DietProfile dietProfile)
         {
-            var serializer = new Serializer<DietProfile>();
-
-            using ( this._dbConnection )
+            var dietProfileEntity = new UsersDietProfile
             {
-                using ( var command = new SqlCommand("CreateDietProfile", this._dbConnection) )
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@DietProfileInformation", SqlDbType.Xml).Value = serializer.SerializeObject(dietProfile);
-                    command.Parameters.Add("@userID", SqlDbType.Int).Value = dietProfile.UserId;
+                ProfileName = dietProfile.ProfileName,
+                Weight = dietProfile.Weight,
+                Height = dietProfile.Height,
+                Goal = dietProfile.Goal,
+                DietDuration = dietProfile.DietDuration,
+                ActivityLevel = dietProfile.ActivityLevel,
+                WeightGoal = dietProfile.WeightGoal,
+                UserID = dietProfile.UserID
+            };
 
-                    var returnedValue = command.Parameters.Add("@DietProfileID", SqlDbType.Int);
-                    returnedValue.Direction = ParameterDirection.Output;
+            dietProfile.UserDietProfileID = this._unitOfWork.DietProfileRepository.Insert(dietProfileEntity);
 
-                    this._dbConnection.Open();
+            var calorieNeedsEntity = new UserCalorieNeeds
+            {
+                DailyCalories = dietProfile.CalorieNeeds.DailyCalories,
+                MaintenanceCalories = dietProfile.CalorieNeeds.MaintenanceCalories,
+                UserDietProfileID = dietProfile.UserDietProfileID
+            };
+            this._unitOfWork.CalorieNeedsRepository.InsertWithoutSaving(calorieNeedsEntity);
 
-                    command.ExecuteNonQuery();
-
-                    dietProfile.DietProfileId = (int)command.Parameters["@DietProfileID"].Value;
-                }
-            }
+            var macronutrientsEntity = new UserMacronutrients
+            {
+                UserDietProfileID = dietProfile.UserDietProfileID,
+                Protein = dietProfile.Macros.Protein,
+                Carbohydrate = dietProfile.Macros.Carbohydrate,
+                Fat = dietProfile.Macros.Fat
+            };
+            this._unitOfWork.MacronutrientsRepository.InsertWithoutSaving(macronutrientsEntity);
+            this._unitOfWork.Save();
         }
     }
 }

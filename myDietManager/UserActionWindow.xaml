@@ -21,8 +21,8 @@
             <Label Content="Profile :" HorizontalAlignment="Left" Margin="15,5,0,5" Width="57"/>
             <ComboBox Margin="-35,5,5,5"/>
         </UniformGrid>
-        <Button Grid.Row="1" Grid.Column="0" x:Name="BtnLoadUser" Content="Load profile" HorizontalAlignment="Center"  Height="80" Width="100" Margin="10"/>
-        <Button Grid.Row="1" Grid.Column="1" x:Name="BtnAddNewUser" Content="New profile" HorizontalAlignment="Center" Command="{Binding AddUserCommand}" Height="80" Width="100" Margin="10"/>
+        <Button Grid.Row="1" Grid.Column="0" x:Name="BtnLoadUser" Content="Load profile" HorizontalAlignment="Center"  Height="80" Width="100" Margin="10" Command="{Binding LoadDietProfileCommand}"/>
+        <Button Grid.Row="1" Grid.Column="1" x:Name="BtnAddNewUser" Content="New profile" HorizontalAlignment="Center" Command="{Binding AddDietProfileCommand}" Height="80" Width="100" Margin="10"/>
         <Button Grid.Row="1" Grid.Column="2" Content="Settings" HorizontalAlignment="Center" Margin="10" Height="80" Width="100"/>
      
 

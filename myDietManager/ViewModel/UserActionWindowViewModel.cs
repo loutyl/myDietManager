@@ -6,31 +6,56 @@ namespace myDietManager.ViewModel
 {
     class UserActionWindowViewModel : ViewModelBase
     {
-        private User _user;
-        private ICommand _addUserCommand;
+        private readonly User _user;
+        private ICommand _addDietProfileCommand;
+        private ICommand _loadDietProfileCommand;
 
         public UserActionWindowViewModel(User user)
         {
             this._user = user;
         }
 
-        public ICommand AddUserCommand
+        public ICommand AddDietProfileCommand
         {
             get
             {
-                if ( this._addUserCommand != null )
-                    return this._addUserCommand;
+                if ( this._addDietProfileCommand != null )
+                    return this._addDietProfileCommand;
 
-                this._addUserCommand = new RelayCommand(() => this.OpenDietProfileCreationWindow());
+                this._addDietProfileCommand = new RelayCommand(() => this.OpenDietProfileCreationWindow());
 
-                return this._addUserCommand;
+                return this._addDietProfileCommand;
             }
         }
 
-        public void OpenDietProfileCreationWindow()
+        private void OpenDietProfileCreationWindow()
         {
             var profileCreationWindow = new ProfileCreationWindow(this._user);
             profileCreationWindow.Show();
         }
+
+        public ICommand LoadDietProfileCommand
+        {
+            get
+            {
+                if ( this._loadDietProfileCommand != null )
+                    return this._loadDietProfileCommand;
+
+                this._loadDietProfileCommand = new RelayCommand(() => this.LoadDietProfile(), () => this.CanLoadDietProfile());
+
+                return this._loadDietProfileCommand;
+            }
+        }
+
+        private void LoadDietProfile()
+        {
+            
+        }
+
+        private bool CanLoadDietProfile()
+        {
+            return true;
+        }
+
     }
 }
