@@ -16,5 +16,8 @@ namespace myDietManager.Model
         public int Age { get; set; }
         public string Gender { get; set; }
         public string Role { get; set; }
+
+        public List<DietProfile> DietProfiles { get; set; }
+
     }
 }

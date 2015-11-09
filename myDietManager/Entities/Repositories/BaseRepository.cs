@@ -18,6 +18,11 @@ namespace myDietManager.Entities.Repositories
             this.DbSet = dbEntities.Set<T>();
         }
 
+        public T Single(object primaryKey)
+        {
+            return this.DbSet.Find(primaryKey);
+        }
+
         public virtual int Insert(T entity)
         {
             dynamic obj = this.DbSet.Add(entity);
@@ -40,9 +45,21 @@ namespace myDietManager.Entities.Repositories
             this._dbEntities.SaveChanges();
         }
 
+        public virtual void Update(T entity)
+        {
+            this.DbSet.Attach(entity);
+            this._dbEntities.Entry(entity).State = EntityState.Modified;
+            this._dbEntities.SaveChanges();
+        }
+
         public virtual bool Exists(object primaryKey)
         {
             return this.DbSet.Find(primaryKey) != null;
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return this.DbSet.AsEnumerable().ToList();
         }
     }
 }

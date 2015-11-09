@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using myDietManager.Class.Database;
 using myDietManager.Class.Security;
 using myDietManager.Model;
 

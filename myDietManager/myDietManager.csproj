@@ -95,7 +95,7 @@
     <Compile Include="Class\CalorieNeeds.cs" />
     <Compile Include="Model\DietProfile.cs" />
     <Compile Include="Class\Macronutrients.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="MyDietManagerDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

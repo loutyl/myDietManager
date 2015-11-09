@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using myDietManager.Class.Serialization;
@@ -58,6 +59,16 @@ namespace myDietManager.Class.Database
             };
             this._unitOfWork.MacronutrientsRepository.InsertWithoutSaving(macronutrientsEntity);
             this._unitOfWork.Save();
+        }
+
+        public bool UserHasDietProfile(User user)
+        {
+            return this._unitOfWork.DietProfileRepository.Exists(user.UserID);
+        }
+
+        public IEnumerable<string> GetUserDietProfileNames(User user)
+        {
+            return this._unitOfWork.DietProfileRepository.GetDietProfileName(user);
         }
     }
 }

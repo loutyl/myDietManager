@@ -11,5 +11,10 @@ namespace myDietManager.Entities.Repositories
         public UsersDietProfileRepository(MyDietManagerDBEntities dbEntities) : base(dbEntities)
         {
         }
+
+        public IEnumerable<string> GetDietProfileName(User user)
+        {
+            return this.DbSet.AsEnumerable().Where(entry => entry.UserID == user.UserID).Select(entry => entry.ProfileName.Trim());
+        }
     }
 }
