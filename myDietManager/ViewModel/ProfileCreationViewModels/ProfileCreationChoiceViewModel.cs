@@ -60,8 +60,8 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
         public void NaviguateToProfileCreation()
         {
             this.ProfileCreationWindow.CurrentViewModel = this._choice == CreationChoice.Auto 
-                ? new ProfileCreationViewModel(this.ProfileCreationWindow) 
-                : null;
+                ? (ViewModelBase) new ProfileCreationViewModel(this.ProfileCreationWindow) 
+                : new ManualProfileCreationViewModel(this.ProfileCreationWindow);
         }
 
         public bool CanNaviguateToProfileCreation()

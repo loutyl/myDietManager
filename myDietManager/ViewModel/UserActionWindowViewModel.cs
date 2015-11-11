@@ -13,7 +13,6 @@ namespace myDietManager.ViewModel
     {
         private readonly User _user;
         private readonly DatabaseObject _dbOjbect;
-        private readonly Window _windowInstance;
         private ObservableCollection<string> _dietProfileNames;
         private string _selectedProfileName;
         private ICommand _addDietProfileCommand;

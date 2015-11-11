@@ -1,0 +1,310 @@
+﻿<UserControl x:Class="myDietManager.View.ProfileCreationViews.ManualProfileCreationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:myDietManager.View.ProfileCreationViews"
+             xmlns:conv="clr-namespace:myDietManager.ViewModel.Converters"
+             mc:Ignorable="d" 
+             Height="Auto" Width="Auto">
+
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type UserControl}">
+                <Setter Property="FontSize" Value="8"></Setter>
+            </Style>
+            <ControlTemplate x:Key="ErrorTemplateSilverlightStyle">
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="1" BorderBrush="#FFdc000c" CornerRadius="0.7"
+                    VerticalAlignment="Top">
+                        <Grid>
+                            <Polygon x:Name="toolTipCorner"
+                             Grid.ZIndex="2"
+                             Margin="-1"
+                             Points="6,6 6,0 0,0" 
+                             Fill="#FFdc000c" 
+                             HorizontalAlignment="Right" 
+                             VerticalAlignment="Top"
+                             IsHitTestVisible="True"/>
+                            <Polyline Grid.ZIndex="3"
+                              Points="7,7 0,0" Margin="-1" HorizontalAlignment="Right" 
+                              StrokeThickness="1.5"
+                              StrokeEndLineCap="Round"
+                              StrokeStartLineCap="Round"
+                              Stroke="White"
+                              VerticalAlignment="Top"
+                              IsHitTestVisible="True"/>
+                            <AdornedElementPlaceholder x:Name="adorner"/>
+                        </Grid>
+                    </Border>
+                    <Border x:Name="errorBorder" Background="#FFdc000c" Margin="1,0,0,0"
+                    Opacity="0" CornerRadius="1.5"
+                    IsHitTestVisible="False"
+                    MinHeight="24" MaxWidth="267">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="2.25" 
+                                      Color="Black" 
+                                      Opacity="0.4"
+                                      Direction="315"
+                                      BlurRadius="4"/>
+                        </Border.Effect>
+                        <TextBlock Text="{Binding ElementName=adorner,
+                                          Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                           Foreground="White" Margin="8,3,8,3" TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+                <ControlTemplate.Triggers>
+                    <DataTrigger Value="True">
+                        <DataTrigger.Binding>
+                            <MultiBinding Converter="{x:Static conv:ConverterHolder.BooleanOrConverter}">
+                                <Binding ElementName="adorner" Path="AdornedElement.IsKeyboardFocused" />
+                                <Binding ElementName="toolTipCorner" Path="IsMouseOver"/>
+                            </MultiBinding>
+                        </DataTrigger.Binding>
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard x:Name="fadeInStoryboard">
+                                <Storyboard>
+                                    <DoubleAnimation Duration="00:00:00.15"
+                                             Storyboard.TargetName="errorBorder"
+                                             Storyboard.TargetProperty="Opacity"
+                                             To="1"/>
+                                    <ThicknessAnimation Duration="00:00:00.15"
+                                                Storyboard.TargetName="errorBorder"
+                                                Storyboard.TargetProperty="Margin"
+                                                FillBehavior="HoldEnd"
+                                                From="1,0,0,0"
+                                                To="5,0,0,0">
+                                        <ThicknessAnimation.EasingFunction>
+                                            <BackEase EasingMode="EaseOut" Amplitude="2"/>
+                                        </ThicknessAnimation.EasingFunction>
+                                    </ThicknessAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <StopStoryboard BeginStoryboardName="fadeInStoryboard"/>
+                            <BeginStoryboard x:Name="fadeOutStoryBoard">
+                                <Storyboard>
+                                    <DoubleAnimation Duration="00:00:00"
+                                             Storyboard.TargetName="errorBorder"
+                                             Storyboard.TargetProperty="Opacity"
+                                             To="0"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+        </ResourceDictionary>
+        
+
+    </UserControl.Resources>
+
+
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Grid.Row="0" Header="Diet profile Information" Margin="20,15,5,5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="3">
+                        <Label Content="Profile name :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,3"></Label>
+                        <Label Content="Weight (Lbs) :" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,3"></Label>
+                        <Label Content="Height (cm) :" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,3"></Label>
+                        <Label Content="Goal :" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,3"></Label>
+                        <Label Content="Diet Duration :" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,3"></Label>
+                        <Label Content="Weight Goal :" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,3"></Label>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="3">
+                        <TextBox Margin="3" VerticalContentAlignment="Center"></TextBox>
+                        <TextBox Margin="3" VerticalContentAlignment="Center"></TextBox>
+                        <TextBox Margin="3" VerticalContentAlignment="Center"></TextBox>
+                        <ComboBox Margin="5" VerticalContentAlignment="Center"></ComboBox>
+                        <TextBox Margin="3" VerticalContentAlignment="Center"></TextBox>
+                        <TextBox Margin="3" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="1" Header="Activity Level" Margin="20,5,5,5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Slider Margin="5" Grid.Row="0" Minimum="14" Maximum="17" TickPlacement="BottomRight"
+                        TickFrequency="1"></Slider>
+                    <TextBlock Margin="5" Text="Activity level description" Grid.Row="1"></TextBlock>
+
+                </Grid>
+            </GroupBox>
+            
+            <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Macronutrients (g)" Margin="5,15,5,5">
+                    <Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0" Margin="3">
+                                    <Label>Protein :</Label>
+                                </DockPanel>
+                                <DockPanel Grid.Column="1" Margin="3">
+                                    <TextBox Width="30" HorizontalAlignment="Center"></TextBox>
+                                </DockPanel>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="3">
+                                    <Label HorizontalAlignment="Center">Carbohydrate :</Label>
+                                </StackPanel>
+                                <DockPanel Grid.Column="1" Margin="3">
+                                    <TextBox Width="30"></TextBox>
+                                </DockPanel>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0" Margin="3">
+                                    <Label HorizontalAlignment="Center">Fat :</Label>
+                                </DockPanel>
+                                <DockPanel Grid.Column="1" Margin="3">
+                                    <TextBox Width="30" HorizontalAlignment="Left"></TextBox>
+                                </DockPanel>
+                            </Grid>
+                        </Grid>
+                </Grid>
+            </GroupBox>
+                <GroupBox Grid.Row="1" Header="Macronutrients ratio (%)" Margin="5">
+                    <Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0" Margin="3">
+                                    <Label>Protein :</Label>
+                                </DockPanel>
+                                <DockPanel Grid.Column="1" Margin="3">
+                                    <TextBox Width="30" HorizontalAlignment="Center"></TextBox>
+                                </DockPanel>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="3">
+                                    <Label HorizontalAlignment="Center">Carbohydrate :</Label>
+                                </StackPanel>
+                                <DockPanel Grid.Column="1" Margin="3">
+                                    <TextBox Width="30"></TextBox>
+                                </DockPanel>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0" Margin="3">
+                                    <Label HorizontalAlignment="Center">Fat :</Label>
+                                </DockPanel>
+                                <DockPanel Grid.Column="1" Margin="3">
+                                    <TextBox Width="30" HorizontalAlignment="Left"></TextBox>
+                                </DockPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Grid.Row="2" Header="Calorie" Margin="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <Label Margin="0,0,0,3" HorizontalAlignment="Center" VerticalAlignment="Center">Maintenance :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBox Margin="3" VerticalContentAlignment="Center" Width="50"></TextBox>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <Label Margin="0,0,0,3" HorizontalAlignment="Center" VerticalAlignment="Center">Daily :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBox Margin="3" VerticalContentAlignment="Center" Width="50"></TextBox>
+                            </StackPanel>
+                        </Grid>
+
+
+                    </Grid>
+                </GroupBox>
+
+                <Grid Grid.Row="3" HorizontalAlignment="Center" Margin="5" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Cancel" Grid.Column="0" Margin="5,35,5,5" Height="35" Width="100" HorizontalAlignment="Right"></Button>
+                    <Button Content="Confirm" Grid.Column="1"  Margin="5,35,5,5" Height="35" Width="100" HorizontalAlignment="Left"></Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

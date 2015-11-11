@@ -4,5 +4,7 @@
     {
         public static readonly ActivityLevelDescriptionConverter ActivityDescriptionConverter =
             new ActivityLevelDescriptionConverter();
+
+        public static readonly BooleanOrConverter BooleanOrConverter = new BooleanOrConverter();
     }
 }

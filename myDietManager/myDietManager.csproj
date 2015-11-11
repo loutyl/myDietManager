@@ -139,9 +139,11 @@
       <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
+    <Compile Include="ViewModel\Converters\BooleanOrConverter.cs" />
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
     <Compile Include="ViewModel\DietProfileManagement\DietProfileManagerViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreationViewModels\ManualProfileCreationViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationChoiceViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\UserActionWindowViewModel.cs" />
@@ -149,6 +151,9 @@
     <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationRecapViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\ProfileCreationViews\ManualProfileCreationView.xaml.cs">
+      <DependentUpon>ManualProfileCreationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProfileCreationViews\ProfileCreationChoiceView.xaml.cs">
       <DependentUpon>ProfileCreationChoiceView.xaml</DependentUpon>
     </Compile>
@@ -157,6 +162,9 @@
     </Compile>
     <Compile Include="View\ProfileCreationViews\ProfileCreationView.xaml.cs">
       <DependentUpon>ProfileCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Templates\ErrorTemplateToolTip.xaml.cs">
+      <DependentUpon>ErrorTemplateToolTip.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +217,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ProfileCreationViews\ManualProfileCreationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ProfileCreationViews\ProfileCreationChoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ProfileCreationViews\ProfileCreationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Templates\ErrorTemplateToolTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

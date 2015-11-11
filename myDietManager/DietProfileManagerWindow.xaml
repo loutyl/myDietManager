@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:myDietManager"
         mc:Ignorable="d"
-        Title="DietProfileManagerWindow" Height="300" Width="300">
+        Title="DietProfileManagerWindow" Height="700" Width="1200" WindowStartupLocation="CenterScreen">
     <Grid>
         
     </Grid>

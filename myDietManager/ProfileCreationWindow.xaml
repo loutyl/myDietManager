@@ -15,8 +15,13 @@
         <DataTemplate DataType="{x:Type profileCreation:ProfileCreationRecapViewModel}">
             <profileCreationViews:ProfileCreationRecapView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type profileCreation:ManualProfileCreationViewModel}">
+            <profileCreationViews:ManualProfileCreationView />
+        </DataTemplate>
     </Window.Resources>
+
     
+
     <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
 
 </Window>
