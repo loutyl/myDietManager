@@ -63,12 +63,17 @@ namespace myDietManager.Class.Database
 
         public bool UserHasDietProfile(User user)
         {
-            return this._unitOfWork.DietProfileRepository.Exists(user.UserID);
+            return this._unitOfWork.DietProfileRepository.UserHasDietProfile(user.UserID);
         }
 
         public IEnumerable<string> GetUserDietProfileNames(User user)
         {
             return this._unitOfWork.DietProfileRepository.GetDietProfileName(user);
+        }
+
+        public UsersDietProfile GetDietProfile(int userID, string profileName)
+        {
+            return this._unitOfWork.DietProfileRepository.GetDietProfile(userID, profileName);
         }
     }
 }

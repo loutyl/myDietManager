@@ -81,6 +81,9 @@
     <Compile Include="Class\DietCalculator.cs" />
     <Compile Include="Class\Security\AuthentificationHandler.cs" />
     <Compile Include="Class\Serialization\Serializer.cs" />
+    <Compile Include="DietProfileManagerWindow.xaml.cs">
+      <DependentUpon>DietProfileManagerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\IUnitOfWork.cs" />
     <Compile Include="Entities\Repositories\BaseRepository.cs" />
     <Compile Include="Entities\Repositories\IBaseRepository.cs" />
@@ -137,6 +140,7 @@
     </Compile>
     <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
+    <Compile Include="ViewModel\DietProfileManagement\DietProfileManagerViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationChoiceViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -189,6 +193,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="DietProfileManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

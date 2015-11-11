@@ -43,7 +43,7 @@ namespace myDietManager.ViewModel
 
             if (user == null){ return; }
 
-            var actionWindow = new UserActionWindow {DataContext = new UserActionWindowViewModel(user)};
+            var actionWindow = new UserActionWindow {DataContext = new UserActionWindowViewModel(user, new DatabaseObject())};
             Application.Current.MainWindow.Close();
             actionWindow.Show();            
         }

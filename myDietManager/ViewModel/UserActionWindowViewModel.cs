@@ -1,34 +1,42 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using myDietManager.Class.Database;
 using myDietManager.Model;
+using myDietManager.ViewModel.DietProfileManagement;
 
 namespace myDietManager.ViewModel
 {
     class UserActionWindowViewModel : ViewModelBase
     {
         private readonly User _user;
-        public ObservableCollection<string> DietProfileNames;
+        private readonly DatabaseObject _dbOjbect;
+        private readonly Window _windowInstance;
+        private ObservableCollection<string> _dietProfileNames;
         private string _selectedProfileName;
         private ICommand _addDietProfileCommand;
         private ICommand _loadDietProfileCommand;
 
-        public UserActionWindowViewModel(User user)
+
+        public UserActionWindowViewModel(User user, DatabaseObject dbObject)
         {
             this._user = user;
-            this.DietProfileNames = this.PopulateDietProfileNames();
+            this._dbOjbect = dbObject;
+            this._dietProfileNames = this.PopulateDietProfileNames();
         }
 
         private ObservableCollection<string> PopulateDietProfileNames()
         {
             var profileNames = new ObservableCollection<string>();
-            var dbObject = new DatabaseObject();
 
-            if (dbObject.UserHasDietProfile(this._user)){ return profileNames; }
-            var test = dbObject.GetUserDietProfileNames(this._user);
-            foreach ( var profileName in dbObject.GetUserDietProfileNames(this._user))
+            if ( !this._dbOjbect.UserHasDietProfile(this._user) )
+            {
+                return profileNames;
+            }
+
+            foreach ( var profileName in this._dbOjbect.GetUserDietProfileNames(this._user) )
             {
                 profileNames.Add(profileName);
             }
@@ -37,6 +45,15 @@ namespace myDietManager.ViewModel
             return profileNames;
         }
 
+        public ObservableCollection<string> DietProfileNames
+        {
+            get { return this._dietProfileNames; }
+            set
+            {
+                this._dietProfileNames = value;
+                OnPropertyChanged("DietProfileNames");
+            }
+        }
 
         public string SelectedProfileName
         {
@@ -68,6 +85,7 @@ namespace myDietManager.ViewModel
         {
             var profileCreationWindow = new ProfileCreationWindow(this._user);
             profileCreationWindow.Show();
+            Application.Current.Windows[0]?.Close();
         }
 
         public ICommand LoadDietProfileCommand
@@ -85,12 +103,17 @@ namespace myDietManager.ViewModel
 
         private void LoadDietProfile()
         {
-            
+            var dietProfileManagerWindow = new DietProfileManagerWindow()
+            {
+                DataContext = new DietProfileManagerViewModel(this._dbOjbect.GetDietProfile(this._user.UserID, this.SelectedProfileName))
+            };
+            dietProfileManagerWindow.Show();
+            Application.Current.Windows[0]?.Close();
         }
 
         private bool CanLoadDietProfile()
         {
-            return true;
+            return this._dietProfileNames.Count != 0;
         }
 
     }

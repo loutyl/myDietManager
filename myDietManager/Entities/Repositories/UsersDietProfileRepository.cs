@@ -12,9 +12,19 @@ namespace myDietManager.Entities.Repositories
         {
         }
 
+        public bool UserHasDietProfile(int userID)
+        {
+            return this.DbSet.AsEnumerable().Any(entry => entry.UserID == userID);
+        }
+
         public IEnumerable<string> GetDietProfileName(User user)
         {
             return this.DbSet.AsEnumerable().Where(entry => entry.UserID == user.UserID).Select(entry => entry.ProfileName.Trim());
+        }
+
+        public UsersDietProfile GetDietProfile(int userID, string profileName)
+        {
+            return this.DbSet.AsEnumerable().First(entry => entry.UserID == userID && entry.ProfileName.Trim() == profileName);
         }
     }
 }
