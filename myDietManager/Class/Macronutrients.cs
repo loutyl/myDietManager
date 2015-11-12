@@ -36,18 +36,4 @@ namespace myDietManager.Class
         }
 
     }
-
-    public class Nutrient
-    {
-        public int Weight { get; set; }
-        public int Calorie { get; set; }
-
-        public Nutrient(){}
-
-        public Nutrient(int calorie, int weight)
-        {
-            this.Weight = weight;
-            this.Calorie = calorie;
-        }
-    }
 }

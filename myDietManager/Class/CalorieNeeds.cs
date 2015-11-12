@@ -3,7 +3,6 @@ using myDietManager.Model;
 
 namespace myDietManager.Class
 {
-    [Serializable]
     public class CalorieNeeds
     {
         

@@ -258,7 +258,24 @@
       <LastGenOutput>MyDietManagerDBModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\IoCContainer\IoCContainer.csproj">
+      <Project>{dc9e9f35-bac1-452b-8ed9-dd545409aab5}</Project>
+      <Name>IoCContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDietManager.HLM\MyDietManager.HLM.csproj">
+      <Project>{f1d21226-b275-4c6f-a0a9-7fd71ea267b5}</Project>
+      <Name>MyDietManager.HLM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDietManagerAbstract\MyDietManagerAbstract.csproj">
+      <Project>{12336d1a-1606-4108-be7d-a981f37a73db}</Project>
+      <Name>MyDietManagerAbstract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDietManagerIMP\MyDietManagerIMP.csproj">
+      <Project>{49aa8ea7-24b0-445f-ab06-2bb129f2fbfd}</Project>
+      <Name>MyDietManagerIMP</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
