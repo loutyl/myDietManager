@@ -1,8 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using myDietManager.Class.Serialization;
 using myDietManager.Model;
 using System.Linq;
 using myDietManager.Entities;

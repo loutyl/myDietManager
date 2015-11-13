@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using myDietManager.Class.Database;
-using myDietManager.Model;
 using myDietManager.ViewModel.DietProfileManagement;
 
 namespace myDietManager.ViewModel

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Windows;
 
 namespace myDietManager.ViewModel
 {

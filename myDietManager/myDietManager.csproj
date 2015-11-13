@@ -47,6 +47,14 @@
       <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="StructureMap, Version=3.1.6.186, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.3.1.6.186\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=3.1.6.186, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.3.1.6.186\lib\net40\StructureMap.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -259,10 +267,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IoCContainer\IoCContainer.csproj">
-      <Project>{dc9e9f35-bac1-452b-8ed9-dd545409aab5}</Project>
-      <Name>IoCContainer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyDietManager.HLM\MyDietManager.HLM.csproj">
       <Project>{f1d21226-b275-4c6f-a0a9-7fd71ea267b5}</Project>
       <Name>MyDietManager.HLM</Name>

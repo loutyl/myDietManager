@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MyDietManagerAbstract.Entities;
 
 namespace MyDietManagerAbstract.Repositories
@@ -12,5 +8,6 @@ namespace MyDietManagerAbstract.Repositories
         bool UserHasDietProfile(int id);
         IEnumerable<string> GetProfileName(IDietProfile user);
         IDietProfile GetProfile(int id, string profileName);
+        void CompleteDietProfileCreation(IDietProfile dietProfile);
     }
 }

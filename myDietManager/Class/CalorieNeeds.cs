@@ -1,11 +1,9 @@
-﻿using System;
-using myDietManager.Model;
+﻿using myDietManager.Model;
 
 namespace myDietManager.Class
 {
     public class CalorieNeeds
     {
-        
         public int MaintenanceCalories { get; set; }
         public int DailyCalories { get; set; }
 

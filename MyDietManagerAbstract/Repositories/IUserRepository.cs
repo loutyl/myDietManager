@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using MyDietManagerAbstract.Entities;
+﻿using MyDietManagerAbstract.Entities;
 
 namespace MyDietManagerAbstract.Repositories
 {
     public interface IUserRepository : IBaseRepository<IUser>
     {
+        IUser FindUserByCredentials(string username, string password);
     }
 }

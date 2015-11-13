@@ -1,5 +1,4 @@
 ﻿using myDietManager.Class.Database;
-using myDietManager.Model;
 
 namespace myDietManager.Class.Security
 {

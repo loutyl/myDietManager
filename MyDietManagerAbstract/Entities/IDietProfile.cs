@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDietManagerAbstract.Entities
+﻿namespace MyDietManagerAbstract.Entities
 {
     public interface IDietProfile
     {
@@ -17,5 +11,7 @@ namespace MyDietManagerAbstract.Entities
         int ActivityLevel { get; set; }
         double WeightGoal { get; set; }
         int UserID { get; set; }
+        ICalorieNeeds CalorieNeeds { get; set; }
+        IMacronutrients Macronutrients { get; set; }
     }
 }

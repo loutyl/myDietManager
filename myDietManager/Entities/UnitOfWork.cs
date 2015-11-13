@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using myDietManager.Entities.Repositories;
+﻿using myDietManager.Entities.Repositories;
 
 namespace myDietManager.Entities
 {

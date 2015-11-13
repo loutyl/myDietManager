@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using myDietManager.Class.Database;
-using System.Linq;
 
 namespace myDietManager.ViewModel.ProfileCreationViewModels
 {
