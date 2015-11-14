@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace myDietManager.Abstraction.Repositories
 {
     public interface IBaseRepository<T> : IRepository
     {
+        T Get(Func<T, bool> predicate);
         T Single(object primaryKey);
         int Insert(T entity);
         void InsertWithoutSaving(T entity);

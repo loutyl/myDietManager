@@ -8,14 +8,14 @@ using StructureMap;
 
 namespace myDietManager.ViewModel.ProfileCreation.Views
 {
-    public class AutoProfileCreationRecapViewModel : BaseViewModel, IAutoProfileCreationViewModel
+    public class ProfileCreationRecapViewModel : BaseViewModel, IProfileCreationRecapViewModel
     {
         private readonly ProfileCreationWindowViewModel _profileCreationWindow;
         private readonly AutoProfileCreationViewModel _profileCreationViewModel;
         private ICommand _cancelCreationCommand;
         private ICommand _comfirmCreationCommand;
 
-        public AutoProfileCreationRecapViewModel(IAutoProfileCreationView view, IContainer container) : base(view, container)
+        public ProfileCreationRecapViewModel(IProfileCreationRecapView view, IContainer container) : base(view, container)
         {
             
         }

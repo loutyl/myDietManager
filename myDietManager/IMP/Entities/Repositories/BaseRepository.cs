@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using myDietManager.Abstraction.Repositories;
@@ -15,6 +16,12 @@ namespace myDietManager.IMP.Entities.Repositories
         {
             this._dbContext = dbContext;
             this.DbSet = dbContext.Set<T>();
+        }
+
+
+        public override T Get(Func<T, bool> predicate)
+        {
+            return this.DbSet.First(predicate);
         }
 
         public override T Single(object primaryKey)

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using myDietManager.Abstraction.Entities;
+using myDietManager.Abstraction.Repositories;
+using myDietManager.IMP.Entities.Repositories;
 using myDietManager.ViewModel.Login;
 using myDietManager.ViewModel.UserActionWindow;
 using Microsoft.Win32;
@@ -17,7 +19,12 @@ namespace myDietManager.Registration
     {
         public StartingRegistry()
         {
+            For<ILoginWindow>().Singleton().Use<LoginWindow>();
             For<ILoginWindowViewModel>().Use<LoginWindowViewModel>();
+
+
+            For<IBaseRepository<UsersDietProfile>>().Use<DietProfileRepository>();
+
         }
         
     }

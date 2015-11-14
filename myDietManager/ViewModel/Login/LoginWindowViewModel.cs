@@ -51,8 +51,8 @@ namespace myDietManager.ViewModel.Login
 
             var converter = this.Container.GetInstance<IConverter<User, IUser>>();
             var pocoUser = converter.Convert(user);
-            var newContainer = new Container(x => { x 
-                .For<IUserActionWindowViewModel>()
+            var newContainer = new Container(x => {
+                x.For<IUserActionWindowViewModel>()
                 .Use<UserActionWindowViewModel>()
                 .Ctor<IUser>().Is(pocoUser);
             });

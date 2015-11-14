@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using myDietManager.Abstraction.Repositories;
 using myDietManager.Registration;
 using myDietManager.ViewModel;
 using myDietManager.ViewModel.Login;

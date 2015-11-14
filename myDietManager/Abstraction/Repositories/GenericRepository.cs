@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using myDietManager.Abstraction.UnitOfWork;
 
 namespace myDietManager.Abstraction.Repositories
@@ -10,6 +11,7 @@ namespace myDietManager.Abstraction.Repositories
             unitOfWork.Register(this);
         }
 
+        public abstract T Get(Func<T, bool> predicate);
         public abstract T Single(object primaryKey);
         public abstract int Insert(T entity);
         public abstract void InsertWithoutSaving(T entity);

@@ -4,10 +4,10 @@ using StructureMap;
 
 namespace myDietManager.ViewModel.ProfileCreation.Window
 {
-    public class ProfileCreationWindowViewModel : BaseWindowViewModel, IProfileCreationViewModel
+    public class ProfileCreationWindowViewModel : BaseWindowViewModel, IProfileCreationWindowViewModel
     {
         private IViewModel _currentViewModel;
-        public IDietProfile DietProfile { get; set; }
+        public IUser User { get; set; }
 
         public IViewModel CurrentViewModel
         {
@@ -21,10 +21,9 @@ namespace myDietManager.ViewModel.ProfileCreation.Window
             }
         }
 
-        public ProfileCreationWindowViewModel(IProfileCreationWindow profileCreationWindow, IContainer container, IDietProfile dietProfile)
+        public ProfileCreationWindowViewModel(IProfileCreationWindow profileCreationWindow, IContainer container)
             : base(profileCreationWindow, container)
         {
-            this.DietProfile = dietProfile;
         }
     }
 }

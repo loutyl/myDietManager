@@ -16,8 +16,7 @@ namespace myDietManager.IMP.Authentification
         public User Authenticate(string username, string password)
         {
             var userRepository = this._container.GetInstance<UserRepository>();
-
-            return userRepository.FindUserByCredentials(username, password);
+            return userRepository.Get(user => user.UserName == username && user.Password == password);
         }
     }
 }

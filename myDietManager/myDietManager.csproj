@@ -98,8 +98,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class\Database\DatabaseObject.cs" />
-    <Compile Include="DietProfileManagerWindow.xaml.cs">
-      <DependentUpon>DietProfileManagerWindow.xaml</DependentUpon>
+    <Compile Include="DietManagerWindow.xaml.cs">
+      <DependentUpon>DietManagerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="IMP\Authentification\AuthentificationManager.cs" />
     <Compile Include="IMP\DietManagement\DietCalculator.cs" />
@@ -133,6 +133,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Registration\DietProfileCreationRegistry.cs" />
     <Compile Include="Registration\StartingRegistry.cs" />
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
@@ -164,14 +165,16 @@
     <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
     <Compile Include="ViewModel\Converters\BooleanOrConverter.cs" />
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
-    <Compile Include="ViewModel\DietProfileManagement\DietProfileManagerViewModel.cs" />
+    <Compile Include="ViewModel\DietProfileManagement\DietManagerWindowViewModel.cs" />
+    <Compile Include="ViewModel\DietProfileManagement\IDietManagerWindow.cs" />
+    <Compile Include="ViewModel\DietProfileManagement\IDietManagerWindowViewModel.cs" />
     <Compile Include="ViewModel\Login\ILoginWindow.cs" />
     <Compile Include="ViewModel\Login\ILoginWindowViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreation\Views\IAutoProfileCreationViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreation\Views\IManualProfileCreationViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreation\Views\IProfileCreationChoiceViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreation\Views\IProfileCreationRecap.cs" />
-    <Compile Include="ViewModel\ProfileCreation\Window\IProfileCreationViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\IProfileCreationRecapViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Window\IProfileCreationWindowViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreation\Window\IProfileCreationWindow.cs" />
     <Compile Include="ViewModel\UserActionWindow\IUserActionWindow.cs" />
     <Compile Include="ViewModel\UserActionWindow\IUserActionWindowViewModel.cs" />
@@ -242,7 +245,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="DietProfileManagerWindow.xaml">
+    <Page Include="DietManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
