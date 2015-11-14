@@ -2,22 +2,24 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using myDietManager.Abstraction.Security;
 using myDietManager.Class.Database;
-using myDietManager.Class.Security;
+using StructureMap;
 
 namespace myDietManager.ViewModel
 {
-    public class LoginWindowViewModel : ViewModelBase
+    public class LoginWindowViewModel : BaseWindowViewModel, ILoginWindowViewModel
     {
-        private readonly AuthentificationHandler _authentificationHandler;
+        private readonly IAuthentifactionManager<User> _authManager;
         private ICommand _connectCommand;
         private ICommand _cancelComand;
 
         public string Username { get; set; }
 
-        public LoginWindowViewModel(AuthentificationHandler authHandler)
+
+        public LoginWindowViewModel(ILoginWindow loginWindow, IContainer container) : base(loginWindow, container)
         {
-            this._authentificationHandler = authHandler;
+            this._authManager = container.GetInstance<IAuthentifactionManager<User>>();
         }
 
         public ICommand ConnectCommand
@@ -38,7 +40,7 @@ namespace myDietManager.ViewModel
             var pwdBox = parameter as PasswordBox;
             var pwd = pwdBox?.Password;
 
-            var user = this._authentificationHandler.Authenticate(this.Username, pwd);
+            var user = this._authManager.Authenticate(this.Username, pwd);
 
             if (user == null){ return; }
 

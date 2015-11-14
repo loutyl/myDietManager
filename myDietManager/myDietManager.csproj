@@ -81,32 +81,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Abstraction\DietManagement\IDietCalculator.cs" />
+    <Compile Include="Abstraction\DietManagement\IDietManager.cs" />
+    <Compile Include="Abstraction\Entities\ICalorieNeeds.cs" />
+    <Compile Include="Abstraction\Entities\IDietProfile.cs" />
+    <Compile Include="Abstraction\Entities\IMacronutrients.cs" />
+    <Compile Include="Abstraction\Entities\IUser.cs" />
+    <Compile Include="Abstraction\Repositories\Converter\IConverter.cs" />
+    <Compile Include="Abstraction\Repositories\GenericRepository.cs" />
+    <Compile Include="Abstraction\Repositories\IBaseRepository.cs" />
+    <Compile Include="Abstraction\Repositories\IRepository.cs" />
+    <Compile Include="Abstraction\Security\IAuthentifactionManager.cs" />
+    <Compile Include="Abstraction\Serialization\ISerializer.cs" />
+    <Compile Include="Abstraction\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="cfg\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Class\Database\DatabaseObject.cs" />
-    <Compile Include="Class\DietCalculator.cs" />
-    <Compile Include="Class\Security\AuthentificationHandler.cs" />
-    <Compile Include="Class\Serialization\Serializer.cs" />
     <Compile Include="DietProfileManagerWindow.xaml.cs">
       <DependentUpon>DietProfileManagerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entities\IUnitOfWork.cs" />
-    <Compile Include="Entities\Repositories\BaseRepository.cs" />
-    <Compile Include="Entities\Repositories\IBaseRepository.cs" />
-    <Compile Include="Entities\Repositories\UserCalorieNeedsRepository.cs" />
-    <Compile Include="Entities\Repositories\UserMacronutrientsRepository.cs" />
-    <Compile Include="Entities\Repositories\UserRepository.cs" />
-    <Compile Include="Entities\Repositories\UsersDietProfileRepository.cs" />
-    <Compile Include="Entities\UnitOfWork.cs" />
+    <Compile Include="IMP\Authentification\AuthentificationManager.cs" />
+    <Compile Include="IMP\DietManagement\DietCalculator.cs" />
+    <Compile Include="IMP\DietManagement\DietManager.cs" />
+    <Compile Include="IMP\Entities\Repositories\BaseRepository.cs" />
+    <Compile Include="IMP\Entities\Repositories\CalorieNeedsRepository.cs" />
+    <Compile Include="IMP\Entities\Repositories\DietProfileRepository.cs" />
+    <Compile Include="IMP\Entities\Repositories\MacronutrientsRepository.cs" />
+    <Compile Include="IMP\Entities\Repositories\UnitOfWork.cs" />
+    <Compile Include="IMP\Entities\Repositories\UserRepository.cs" />
+    <Compile Include="IMP\POCO\POCODietProfile.cs" />
+    <Compile Include="IMP\POCO\POCOUser.cs" />
+    <Compile Include="IMP\Serialization\Serializer.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Class\CalorieNeeds.cs" />
-    <Compile Include="Model\DietProfile.cs" />
-    <Compile Include="Class\Macronutrients.cs" />
-    <Compile Include="Model\UserModel.cs" />
     <Compile Include="MyDietManagerDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,10 +156,17 @@
     <Compile Include="UsersDietProfile.cs">
       <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BaseNotification.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BaseWindowViewModel.cs" />
     <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
     <Compile Include="ViewModel\Converters\BooleanOrConverter.cs" />
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
     <Compile Include="ViewModel\DietProfileManagement\DietProfileManagerViewModel.cs" />
+    <Compile Include="ViewModel\ILoginWindow.cs" />
+    <Compile Include="ViewModel\ILoginWindowViewModel.cs" />
+    <Compile Include="ViewModel\IViewModel.cs" />
+    <Compile Include="ViewModel\IWindowViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreationViewModels\ManualProfileCreationViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationChoiceViewModel.cs" />
@@ -159,6 +176,8 @@
     <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationRecapViewModel.cs" />
     <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\IView.cs" />
+    <Compile Include="View\IWindow.cs" />
     <Compile Include="View\ProfileCreationViews\ManualProfileCreationView.xaml.cs">
       <DependentUpon>ManualProfileCreationView.xaml</DependentUpon>
     </Compile>
@@ -267,18 +286,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyDietManager.HLM\MyDietManager.HLM.csproj">
-      <Project>{f1d21226-b275-4c6f-a0a9-7fd71ea267b5}</Project>
-      <Name>MyDietManager.HLM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyDietManagerAbstract\MyDietManagerAbstract.csproj">
-      <Project>{12336d1a-1606-4108-be7d-a981f37a73db}</Project>
-      <Name>MyDietManagerAbstract</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyDietManagerIMP\MyDietManagerIMP.csproj">
-      <Project>{49aa8ea7-24b0-445f-ab06-2bb129f2fbfd}</Project>
-      <Name>MyDietManagerIMP</Name>
-    </ProjectReference>
+    <Folder Include="IMP\Entities\Repositories\Converter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
