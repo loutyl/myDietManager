@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 
-namespace myDietManager.ViewModel
+namespace myDietManager.ViewModel.Base
 {
     /// <summary>
     /// Base class for all ViewModel classes in the application. Provides support for 

@@ -6,11 +6,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.Class;
+using myDietManager.IMP.DietManagement;
+using myDietManager.View.ProfileCreationViews;
+using myDietManager.View.ProfileCreationViews.Interfaces;
+using myDietManager.ViewModel.Base;
+using myDietManager.ViewModel.ProfileCreation.Window;
 
-namespace myDietManager.ViewModel.ProfileCreationViewModels
+namespace myDietManager.ViewModel.ProfileCreation.Views
 {
-    public class ProfileCreationViewModel : ViewModelBase, IDataErrorInfo
+    public class AutoProfileCreationViewModel : BaseViewModel, IAutoProfileCreationViewModel, IDataErrorInfo
     {
         private readonly ProfileCreationWindowViewModel _profileCreationWindow;
         public Dictionary<string, bool> ValidAttributes { get; set; }
@@ -19,7 +23,13 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
         public double ViewHeight { get; set; } = 340;
         private ICommand _finishProfileCreationCommand;
 
-        public ProfileCreationViewModel(ProfileCreationWindowViewModel profileCreationWindow)
+        public AutoProfileCreationViewModel(IAutoProfileCreationView view, StructureMap.IContainer container) : base(view, container)
+        {
+            
+        }
+
+
+        public AutoProfileCreationViewModel(ProfileCreationWindowViewModel profileCreationWindow)
         {
             this._profileCreationWindow = profileCreationWindow;
             this.Goals = PopulateGoalList();

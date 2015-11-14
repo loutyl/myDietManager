@@ -1,17 +1,26 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using myDietManager.Class.Database;
+using myDietManager.View.ProfileCreationViews.Interfaces;
+using myDietManager.ViewModel.Base;
+using myDietManager.ViewModel.ProfileCreation.Window;
+using StructureMap;
 
-namespace myDietManager.ViewModel.ProfileCreationViewModels
+namespace myDietManager.ViewModel.ProfileCreation.Views
 {
-    public class ProfileCreationRecapViewModel : ViewModelBase
+    public class AutoProfileCreationRecapViewModel : BaseViewModel, IAutoProfileCreationViewModel
     {
         private readonly ProfileCreationWindowViewModel _profileCreationWindow;
-        private readonly ProfileCreationViewModel _profileCreationViewModel;
+        private readonly AutoProfileCreationViewModel _profileCreationViewModel;
         private ICommand _cancelCreationCommand;
         private ICommand _comfirmCreationCommand;
 
-        public ProfileCreationRecapViewModel(ProfileCreationWindowViewModel windowViewModel, ProfileCreationViewModel profileCreationviewModel)
+        public AutoProfileCreationRecapViewModel(IAutoProfileCreationView view, IContainer container) : base(view, container)
+        {
+            
+        }
+
+        public AutoProfileCreationRecapViewModel(ProfileCreationWindowViewModel windowViewModel, AutoProfileCreationViewModel profileCreationviewModel)
         {
             this._profileCreationViewModel = profileCreationviewModel;
             this._profileCreationWindow = windowViewModel;

@@ -1,7 +1,12 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using myDietManager.View.ProfileCreationViews;
+using myDietManager.View.ProfileCreationViews.Interfaces;
+using myDietManager.ViewModel.Base;
+using myDietManager.ViewModel.ProfileCreation.Window;
+using StructureMap;
 
-namespace myDietManager.ViewModel.ProfileCreationViewModels
+namespace myDietManager.ViewModel.ProfileCreation.Views
 {
     public enum CreationChoice
     {
@@ -9,11 +14,17 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
         Manual
     };
     
-    public class ProfileCreationChoiceViewModel : ViewModelBase
+    public class ProfileCreationChoiceViewModel : BaseViewModel, IProfileCreationChoiceViewModel
     {
-        public ProfileCreationWindowViewModel ProfileCreationWindow { get; set; }
+        public IProfileCreationWindow ProfileCreationWindow { get; set; }
         private CreationChoice _choice;
         private ICommand _confirmProfileCreationChoice;
+
+        public ProfileCreationChoiceViewModel(IProfileCreationChoiceView view, IContainer container, IProfileCreationWindow mainWindow)
+            : base(view, container)
+        {
+            this.ProfileCreationWindow = mainWindow;
+        }
 
         public ProfileCreationChoiceViewModel(ProfileCreationWindowViewModel profileCreationWindow)
         {
@@ -60,7 +71,7 @@ namespace myDietManager.ViewModel.ProfileCreationViewModels
         public void NaviguateToProfileCreation()
         {
             this.ProfileCreationWindow.CurrentViewModel = this._choice == CreationChoice.Auto 
-                ? (ViewModelBase) new ProfileCreationViewModel(this.ProfileCreationWindow) 
+                ? (ViewModelBase) new AutoProfileCreationViewModel(this.ProfileCreationWindow) 
                 : new ManualProfileCreationViewModel(this.ProfileCreationWindow);
         }
 

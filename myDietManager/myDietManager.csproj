@@ -87,7 +87,6 @@
     <Compile Include="Abstraction\Entities\IDietProfile.cs" />
     <Compile Include="Abstraction\Entities\IMacronutrients.cs" />
     <Compile Include="Abstraction\Entities\IUser.cs" />
-    <Compile Include="Abstraction\Repositories\Converter\IConverter.cs" />
     <Compile Include="Abstraction\Repositories\GenericRepository.cs" />
     <Compile Include="Abstraction\Repositories\IBaseRepository.cs" />
     <Compile Include="Abstraction\Repositories\IRepository.cs" />
@@ -105,6 +104,8 @@
     <Compile Include="IMP\Authentification\AuthentificationManager.cs" />
     <Compile Include="IMP\DietManagement\DietCalculator.cs" />
     <Compile Include="IMP\DietManagement\DietManager.cs" />
+    <Compile Include="IMP\Entities\Converter\IConverter.cs" />
+    <Compile Include="IMP\Entities\Converter\UserEntityConverter.cs" />
     <Compile Include="IMP\Entities\Repositories\BaseRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\CalorieNeedsRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\DietProfileRepository.cs" />
@@ -132,6 +133,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Registration\StartingRegistry.cs" />
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
     </Compile>
@@ -156,28 +158,40 @@
     <Compile Include="UsersDietProfile.cs">
       <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BaseNotification.cs" />
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\BaseWindowViewModel.cs" />
+    <Compile Include="ViewModel\Base\BaseNotification.cs" />
+    <Compile Include="ViewModel\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Base\BaseWindowViewModel.cs" />
     <Compile Include="ViewModel\Converters\ActivityLevelDescriptionConverter.cs" />
     <Compile Include="ViewModel\Converters\BooleanOrConverter.cs" />
     <Compile Include="ViewModel\Converters\ConverterHolder.cs" />
     <Compile Include="ViewModel\DietProfileManagement\DietProfileManagerViewModel.cs" />
-    <Compile Include="ViewModel\ILoginWindow.cs" />
-    <Compile Include="ViewModel\ILoginWindowViewModel.cs" />
-    <Compile Include="ViewModel\IViewModel.cs" />
-    <Compile Include="ViewModel\IWindowViewModel.cs" />
-    <Compile Include="ViewModel\LoginWindowViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreationViewModels\ManualProfileCreationViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationChoiceViewModel.cs" />
-    <Compile Include="ViewModel\RelayCommand.cs" />
-    <Compile Include="ViewModel\UserActionWindowViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationWindowViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationRecapViewModel.cs" />
-    <Compile Include="ViewModel\ProfileCreationViewModels\ProfileCreationViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\IView.cs" />
-    <Compile Include="View\IWindow.cs" />
+    <Compile Include="ViewModel\Login\ILoginWindow.cs" />
+    <Compile Include="ViewModel\Login\ILoginWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\IAutoProfileCreationViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\IManualProfileCreationViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\IProfileCreationChoiceViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\IProfileCreationRecap.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Window\IProfileCreationViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Window\IProfileCreationWindow.cs" />
+    <Compile Include="ViewModel\UserActionWindow\IUserActionWindow.cs" />
+    <Compile Include="ViewModel\UserActionWindow\IUserActionWindowViewModel.cs" />
+    <Compile Include="ViewModel\Base\IViewModel.cs" />
+    <Compile Include="ViewModel\Base\IWindowViewModel.cs" />
+    <Compile Include="ViewModel\Login\LoginWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\ManualProfileCreationViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\ProfileCreationChoiceViewModel.cs" />
+    <Compile Include="ViewModel\Base\RelayCommand.cs" />
+    <Compile Include="ViewModel\UserActionWindow\UserActionWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Window\ProfileCreationWindowViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\ProfileCreationRecapViewModel.cs" />
+    <Compile Include="ViewModel\ProfileCreation\Views\AutoProfileCreationViewModel.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Compile Include="View\Base\IView.cs" />
+    <Compile Include="View\Base\IWindow.cs" />
+    <Compile Include="View\ProfileCreationViews\Interfaces\IAutoProfileCreationView.cs" />
+    <Compile Include="View\ProfileCreationViews\Interfaces\IManualProfileCreationView.cs" />
+    <Compile Include="View\ProfileCreationViews\Interfaces\IProfileCreationChoiceView.cs" />
+    <Compile Include="View\ProfileCreationViews\Interfaces\IProfileCreationRecapView.cs" />
     <Compile Include="View\ProfileCreationViews\ManualProfileCreationView.xaml.cs">
       <DependentUpon>ManualProfileCreationView.xaml</DependentUpon>
     </Compile>
@@ -187,8 +201,8 @@
     <Compile Include="View\ProfileCreationViews\ProfileCreationRecapView.xaml.cs">
       <DependentUpon>ProfileCreationRecapView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProfileCreationViews\ProfileCreationView.xaml.cs">
-      <DependentUpon>ProfileCreationView.xaml</DependentUpon>
+    <Compile Include="View\ProfileCreationViews\AutoProfileCreationView.xaml.cs">
+      <DependentUpon>AutoProfileCreationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Templates\ErrorTemplateToolTip.xaml.cs">
       <DependentUpon>ErrorTemplateToolTip.xaml</DependentUpon>
@@ -256,7 +270,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProfileCreationViews\ProfileCreationView.xaml">
+    <Page Include="View\ProfileCreationViews\AutoProfileCreationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -285,9 +299,7 @@
       <LastGenOutput>MyDietManagerDBModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IMP\Entities\Repositories\Converter\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

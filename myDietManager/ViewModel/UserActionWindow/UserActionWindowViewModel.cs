@@ -2,26 +2,24 @@
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.Class.Database;
+using myDietManager.Abstraction.Entities;
+using myDietManager.ViewModel.Base;
 using myDietManager.ViewModel.DietProfileManagement;
+using StructureMap;
 
-namespace myDietManager.ViewModel
+namespace myDietManager.ViewModel.UserActionWindow
 {
-    class UserActionWindowViewModel : ViewModelBase
+    class UserActionWindowViewModel : BaseWindowViewModel, IUserActionWindowViewModel
     {
-        private readonly User _user;
-        private readonly DatabaseObject _dbOjbect;
+        private readonly IUser _user;
         private ObservableCollection<string> _dietProfileNames;
         private string _selectedProfileName;
         private ICommand _addDietProfileCommand;
         private ICommand _loadDietProfileCommand;
 
-
-        public UserActionWindowViewModel(User user, DatabaseObject dbObject)
+        public UserActionWindowViewModel(IUserActionWindow userActionWindow, IContainer container, IUser user) : base(userActionWindow, container)
         {
             this._user = user;
-            this._dbOjbect = dbObject;
-            this._dietProfileNames = this.PopulateDietProfileNames();
         }
 
         private ObservableCollection<string> PopulateDietProfileNames()

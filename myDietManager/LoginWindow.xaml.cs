@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using myDietManager.Class.Security;
 using myDietManager.ViewModel;
+using myDietManager.ViewModel.Login;
 
 namespace myDietManager
 {

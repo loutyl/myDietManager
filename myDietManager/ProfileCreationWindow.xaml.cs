@@ -1,19 +1,16 @@
 ﻿using System.Windows;
-using myDietManager.Model;
-using myDietManager.ViewModel.ProfileCreationViewModels;
+using myDietManager.ViewModel.ProfileCreation.Window;
 
 namespace myDietManager
 {
     /// <summary>
     /// Logique d'interaction pour UserCreationWindow.xaml
     /// </summary>
-    public partial class ProfileCreationWindow : Window
+    public partial class ProfileCreationWindow : Window, IProfileCreationWindow
     {
-        public ProfileCreationWindow(User user)
+        public ProfileCreationWindow()
         {
             InitializeComponent();
-            var dietProfile = new DietProfile { UserID = user.UserID };
-            this.DataContext = new ProfileCreationWindowViewModel(this, dietProfile);
         }
     }
 }
