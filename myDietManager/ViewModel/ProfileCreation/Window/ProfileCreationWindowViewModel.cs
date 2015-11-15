@@ -1,5 +1,6 @@
 ﻿using myDietManager.Abstraction.Entities;
 using myDietManager.ViewModel.Base;
+using myDietManager.ViewModel.ProfileCreation.Views;
 using StructureMap;
 
 namespace myDietManager.ViewModel.ProfileCreation.Window
@@ -12,6 +13,7 @@ namespace myDietManager.ViewModel.ProfileCreation.Window
         public ProfileCreationWindowViewModel(IProfileCreationWindow profileCreationWindow, IContainer container)
             : base(profileCreationWindow, container)
         {
+            this.ShowView<IProfileCreationChoiceViewModel>();
         }
 
         public IWindowViewModel CurrentViewModel

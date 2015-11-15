@@ -10,6 +10,7 @@ using myDietManager.Abstraction.DietManagement;
 using myDietManager.Abstraction.Entities;
 using myDietManager.View.ProfileCreationViews.Interfaces;
 using myDietManager.ViewModel.Base;
+using StructureMap;
 
 namespace myDietManager.ViewModel.ProfileCreation.Views
 {

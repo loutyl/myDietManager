@@ -104,7 +104,10 @@
     <Compile Include="IMP\Authentification\AuthentificationManager.cs" />
     <Compile Include="IMP\DietManagement\DietCalculator.cs" />
     <Compile Include="IMP\DietManagement\DietManager.cs" />
+    <Compile Include="IMP\Entities\Converter\CalorieNeedsEntityConverter.cs" />
+    <Compile Include="IMP\Entities\Converter\DietProfileEntityConverter.cs" />
     <Compile Include="IMP\Entities\Converter\IConverter.cs" />
+    <Compile Include="IMP\Entities\Converter\MacronutrientsEntityConverter.cs" />
     <Compile Include="IMP\Entities\Converter\UserEntityConverter.cs" />
     <Compile Include="IMP\Entities\Repositories\BaseRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\CalorieNeedsRepository.cs" />
@@ -113,7 +116,9 @@
     <Compile Include="IMP\Entities\Repositories\MacronutrientsRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\UnitOfWork.cs" />
     <Compile Include="IMP\Entities\Repositories\UserRepository.cs" />
+    <Compile Include="IMP\POCO\POCOCalorieNeeds.cs" />
     <Compile Include="IMP\POCO\POCODietProfile.cs" />
+    <Compile Include="IMP\POCO\POCOMacronutrients.cs" />
     <Compile Include="IMP\POCO\POCOUser.cs" />
     <Compile Include="IMP\Serialization\Serializer.cs" />
     <Compile Include="LoginWindow.xaml.cs">

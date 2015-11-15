@@ -22,6 +22,6 @@
 
     
 
-    <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
+    <ContentControl Content="{Binding View}"></ContentControl>
 
 </Window>

@@ -49,12 +49,14 @@ namespace myDietManager.ViewModel.Login
 
             var converter = this.Container.GetInstance<IConverter<User, IUser>>();
             var pocoUser = converter.Convert(user);
-            var newContainer = new Container(x => {
-                x.For<IUserActionWindowViewModel>()
-                .Use<UserActionWindowViewModel>()
-                .Ctor<IUser>().Is(pocoUser);
+            var childContainer = this.Container.CreateChildContainer();
+            childContainer.Configure(_ =>
+            {
+                _.For<IUserActionWindowViewModel>()
+                    .Use<UserActionWindowViewModel>().Ctor<IUser>().Is(pocoUser);
             });
-            var window = newContainer.GetInstance<IUserActionWindowViewModel>();
+
+            var window = childContainer.GetInstance<IUserActionWindowViewModel>();
             var userActionWindow = (myDietManager.UserActionWindow)window.Window;
             userActionWindow.ShowDialog();            
         }

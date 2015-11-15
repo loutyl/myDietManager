@@ -12,7 +12,12 @@ namespace myDietManager.cfg
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var container = Container.For<StartingRegistry>();
+            var container = new Container();
+            container.Configure(c =>
+            {
+                c.AddRegistry<StartingRegistry>();
+                c.AddRegistry<DietProfileCreationRegistry>();
+            });
             var window = container.GetInstance<ILoginWindowViewModel>();
             var loginWindow = (LoginWindow) window.Window;
             loginWindow.ShowDialog();

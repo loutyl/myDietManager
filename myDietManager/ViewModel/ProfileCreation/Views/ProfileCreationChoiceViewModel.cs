@@ -22,7 +22,6 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         public ProfileCreationChoiceViewModel(IProfileCreationChoiceView view, IContainer container)
             : base(view, container)
         {
-            this._profileCreationWindow = this.Container.GetInstance<IProfileCreationWindowViewModel>();
         }
 
         public bool IsManual
@@ -64,12 +63,14 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         {
             if (this._choice == CreationMethod.Auto)
             {
-                this._profileCreationWindow.ShowView<IAutoProfileCreationViewModel>();
+                var test = this.Container.GetInstance<IProfileCreationWindowViewModel>();
+                test.ShowView<IAutoProfileCreationViewModel>();
             }
             else
             {
                 this._profileCreationWindow.ShowView<IManualProfileCreationViewModel>();
             }
+            
         }
 
         public bool CanNaviguateToProfileCreation()

@@ -7,13 +7,12 @@ namespace myDietManager.IMP.Authentification
     public class AuthentificationManager : IAuthentifactionManager<User>
     {
         private readonly IContainer _container;
-        private readonly IBaseRepository<User> _userRepository;
+        private readonly IRepository<User> _userRepository;
 
         public AuthentificationManager(IContainer container)
         {
             this._container = container;
-            this._userRepository = this._container.GetInstance<IBaseRepository<User>>();
-            
+            this._userRepository = this._container.GetInstance<IRepository<User>>();
         }
 
         public User Authenticate(string username, string password)

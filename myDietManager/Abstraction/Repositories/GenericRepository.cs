@@ -4,7 +4,7 @@ using myDietManager.Abstraction.UnitOfWork;
 
 namespace myDietManager.Abstraction.Repositories
 {
-    public abstract class GenericRepository<T> : IBaseRepository<T>
+    public abstract class GenericRepository<T> : IRepository<T>
     {
         protected GenericRepository(IUnitOfWork unitOfWork)
         {

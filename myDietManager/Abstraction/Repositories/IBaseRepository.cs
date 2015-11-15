@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace myDietManager.Abstraction.Repositories
 {
-    public interface IBaseRepository<T> : IRepository
+    public interface IRepository<T> : IRepository
     {
         T Get(Func<T, bool> predicate);
         T Single(object primaryKey);
