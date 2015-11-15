@@ -3,11 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using myDietManager.Abstraction.Security;
-using myDietManager.Class.Database;
 using myDietManager.ViewModel.Base;
 using myDietManager.ViewModel.UserActionWindow;
 using StructureMap;
-using myDietManager;
 using myDietManager.Abstraction.Entities;
 using myDietManager.IMP.Entities.Converter;
 

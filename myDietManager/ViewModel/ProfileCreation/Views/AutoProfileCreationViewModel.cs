@@ -6,38 +6,29 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.IMP.DietManagement;
-using myDietManager.View.ProfileCreationViews;
+using myDietManager.Abstraction.DietManagement;
+using myDietManager.Abstraction.Entities;
 using myDietManager.View.ProfileCreationViews.Interfaces;
 using myDietManager.ViewModel.Base;
-using myDietManager.ViewModel.ProfileCreation.Window;
 
 namespace myDietManager.ViewModel.ProfileCreation.Views
 {
     public class AutoProfileCreationViewModel : BaseViewModel, IAutoProfileCreationViewModel, IDataErrorInfo
     {
-        private readonly ProfileCreationWindowViewModel _profileCreationWindow;
-        public Dictionary<string, bool> ValidAttributes { get; set; }
+        public IDietProfile DietProfile { get; set; }
+        private readonly IDietManager _dietManager;
+        public IDictionary<string, bool> ValidAttributes { get; set; }
         public ObservableCollection<string> Goals { get; set; }
-        public double ViewWidth { get; set; } = 600;
-        public double ViewHeight { get; set; } = 340;
         private ICommand _finishProfileCreationCommand;
 
         public AutoProfileCreationViewModel(IAutoProfileCreationView view, StructureMap.IContainer container) : base(view, container)
         {
-            
+            this.DietProfile = this.Container.GetInstance<IDietProfile>();
+            this._dietManager = this.Container.GetInstance<IDietManager>();
+            this.Goals = this.PopulateGoalList();
         }
 
-
-        public AutoProfileCreationViewModel(ProfileCreationWindowViewModel profileCreationWindow)
-        {
-            this._profileCreationWindow = profileCreationWindow;
-            this.Goals = PopulateGoalList();
-            this._profileCreationWindow.Window.Width = ViewWidth;
-            this._profileCreationWindow.Window.Height = ViewHeight;
-        }
-
-        private static ObservableCollection<string> PopulateGoalList() => new ObservableCollection<string>
+        private ObservableCollection<string> PopulateGoalList() => new ObservableCollection<string>
         {
             "Gain",
             "Lose"
@@ -48,15 +39,15 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         [Required(ErrorMessage = @"A profile name must be entered")]
         public string ProfileName
         {
-            get { return this._profileCreationWindow.DietProfile.ProfileName; }
+            get { return this.DietProfile.ProfileName; }
             set
             {
-                if (this._profileCreationWindow.DietProfile.ProfileName == value)
+                if (this.DietProfile.ProfileName == value)
                 {
                     return;
                 }
 
-                this._profileCreationWindow.DietProfile.ProfileName = value;
+                this.DietProfile.ProfileName = value;
                 OnPropertyChanged("ProfileName");
             }
         }
@@ -65,11 +56,11 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         [Range(35 * 2.2f, 250 * 2.2f)]
         public double Weight
         {
-            get { return this._profileCreationWindow.DietProfile.Weight; }
+            get { return this.DietProfile.Weight; }
             set
             {
 
-                this._profileCreationWindow.DietProfile.Weight = value;
+                this.DietProfile.Weight = value;
                 OnPropertyChanged("Weight");
             }
         }
@@ -78,14 +69,14 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         [Range(100, 300)]
         public double Height
         {
-            get { return this._profileCreationWindow.DietProfile.Height; }
+            get { return this.DietProfile.Height; }
             set
             {
-                if ( Math.Abs(this._profileCreationWindow.DietProfile.Height - value) <= 0 )
+                if ( Math.Abs(this.DietProfile.Height - value) <= 0 )
                 {
                     return;
                 }
-                this._profileCreationWindow.DietProfile.Height = value;
+                this.DietProfile.Height = value;
                 OnPropertyChanged("Height");
             }
         }
@@ -93,15 +84,15 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         [Required]
         public string SelectedGoal
         {
-            get { return this._profileCreationWindow.DietProfile.Goal; }
+            get { return this.DietProfile.Goal; }
             set
             {
-                if (this._profileCreationWindow.DietProfile.Goal == value)
+                if (this.DietProfile.Goal == value)
                 {
                     return;
                 }
                 
-                this._profileCreationWindow.DietProfile.Goal = value;
+                this.DietProfile.Goal = value;
                 OnPropertyChanged("SelectedGoal");
             }
         }
@@ -110,14 +101,14 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         [Range(6, 35)]
         public int DietDuration
         {
-            get { return this._profileCreationWindow.DietProfile.DietDuration; }
+            get { return this.DietProfile.DietDuration; }
             set
             {
-                if ( this._profileCreationWindow.DietProfile.DietDuration == value )
+                if ( this.DietProfile.DietDuration == value )
                 {
                     return;
                 }
-                this._profileCreationWindow.DietProfile.DietDuration = value;
+                this.DietProfile.DietDuration = value;
                 OnPropertyChanged("DietDuration");
             }
         }
@@ -126,15 +117,15 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         [Range(100, 400)]
         public double WeightGoal
         {
-            get { return this._profileCreationWindow.DietProfile.WeightGoal; }
+            get { return this.DietProfile.WeightGoal; }
             set
             {
-                if ( Math.Abs(this._profileCreationWindow.DietProfile.WeightGoal - value) <= 0 )
+                if ( Math.Abs(this.DietProfile.WeightGoal - value) <= 0 )
                 {
                     return;
                 }
 
-                this._profileCreationWindow.DietProfile.WeightGoal = value;
+                this.DietProfile.WeightGoal = value;
                 OnPropertyChanged("WeightGoal");
             }
         }
@@ -142,15 +133,15 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
         [Required]
         public int ActivityLevel
         {
-            get { return this._profileCreationWindow.DietProfile.ActivityLevel; }
+            get { return this.DietProfile.ActivityLevel; }
             set
             {
-                if ( this._profileCreationWindow.DietProfile.ActivityLevel == value )
+                if ( this.DietProfile.ActivityLevel == value )
                 {
                     return;
                 }
 
-                this._profileCreationWindow.DietProfile.ActivityLevel = value;
+                this.DietProfile.ActivityLevel = value;
                 OnPropertyChanged("ActivityLevel");
             }
         }
@@ -174,9 +165,9 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
 
         public void FinishProfileCreation()
         {
-            DietCalculator.FinalizeDietProfileCreation(this._profileCreationWindow.DietProfile);
+            this._dietManager.FinalizeDietProfileCreation(this.DietProfile);
 
-            this._profileCreationWindow.CurrentViewModel = new ProfileCreationRecapViewModel(this._profileCreationWindow, this);
+
         }
 
         public bool CanFinishProfileCreation()

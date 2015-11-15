@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using myDietManager.Abstraction.Entities;
+﻿using System.Data.Entity;
 using myDietManager.Abstraction.Repositories;
+using myDietManager.Abstraction.Security;
+using myDietManager.Abstraction.UnitOfWork;
+using myDietManager.IMP.Authentification;
 using myDietManager.IMP.Entities.Repositories;
 using myDietManager.ViewModel.Login;
-using myDietManager.ViewModel.UserActionWindow;
-using Microsoft.Win32;
-using StructureMap;
-using StructureMap.Configuration.DSL;
 using Registry = StructureMap.Configuration.DSL.Registry;
 
 namespace myDietManager.Registration
@@ -22,10 +16,11 @@ namespace myDietManager.Registration
             For<ILoginWindow>().Singleton().Use<LoginWindow>();
             For<ILoginWindowViewModel>().Use<LoginWindowViewModel>();
 
+            For<IAuthentifactionManager<User>>().Use<AuthentificationManager>();
+            For<IBaseRepository<User>>().Use<UserRepository>();
 
-            For<IBaseRepository<UsersDietProfile>>().Use<DietProfileRepository>();
-
+            For<IUnitOfWork>().Use<UnitOfWork>();
+            For<DbContext>().Use<MyDietManagerDBEntities>();
         }
-        
     }
 }

@@ -109,6 +109,7 @@
     <Compile Include="IMP\Entities\Repositories\BaseRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\CalorieNeedsRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\DietProfileRepository.cs" />
+    <Compile Include="IMP\Entities\Repositories\IUserRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\MacronutrientsRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\UnitOfWork.cs" />
     <Compile Include="IMP\Entities\Repositories\UserRepository.cs" />

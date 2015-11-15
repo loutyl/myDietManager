@@ -6,7 +6,7 @@ using StructureMap;
 
 namespace myDietManager.IMP.DietManagement
 {
-    public class DietCalculator
+    public class DietCalculator : IDietCalculator
     {
         private readonly IContainer _container;
 
@@ -28,8 +28,8 @@ namespace myDietManager.IMP.DietManagement
 
         public IMacronutrients CalculateMacroRepartition(IDietProfile dietProfile)
         {
-            var dietManager = this._container.GetInstance<IDietManager>();
-            var macrosRatios = dietManager.GetMacronutrientsRatios(dietProfile.Goal);
+            var macronutrients = this._container.GetInstance<IMacronutrients>();
+            var macrosRatios = macronutrients.GetMacronutrientsRatios(dietProfile.Goal);
 
             var nutrients = (from ratio in macrosRatios 
                                 let calorie = Math.Abs(dietProfile.CalorieNeeds.DailyCalories*ratio) 
@@ -37,8 +37,7 @@ namespace myDietManager.IMP.DietManagement
                                 select Math.Abs((calorie/divider)) 
                                 into weight 
                                 select (int) weight).ToList();
-
-            var macronutrients = this._container.GetInstance<IMacronutrients>();
+            
             macronutrients.Carbohydrate = nutrients[0];
             macronutrients.Protein = nutrients[1];
             macronutrients.Fat = nutrients[2];

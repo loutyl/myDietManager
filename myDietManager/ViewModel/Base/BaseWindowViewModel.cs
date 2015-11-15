@@ -1,5 +1,4 @@
-﻿using myDietManager.View;
-using myDietManager.View.Base;
+﻿using myDietManager.View.Base;
 using StructureMap;
 
 namespace myDietManager.ViewModel.Base
@@ -20,7 +19,7 @@ namespace myDietManager.ViewModel.Base
 
         public IWindow Window { get; set; }
 
-        protected void ShowView<T>() where T : IViewModel
+        public void ShowView<T>() where T : IViewModel
         {
             View = Container.GetInstance<T>().View;
         }

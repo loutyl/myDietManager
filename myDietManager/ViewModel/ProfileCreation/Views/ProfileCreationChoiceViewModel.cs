@@ -1,6 +1,5 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.View.ProfileCreationViews;
 using myDietManager.View.ProfileCreationViews.Interfaces;
 using myDietManager.ViewModel.Base;
 using myDietManager.ViewModel.ProfileCreation.Window;
@@ -8,7 +7,7 @@ using StructureMap;
 
 namespace myDietManager.ViewModel.ProfileCreation.Views
 {
-    public enum CreationChoice
+    public enum CreationMethod
     {
         Auto,
         Manual
@@ -16,29 +15,22 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
     
     public class ProfileCreationChoiceViewModel : BaseViewModel, IProfileCreationChoiceViewModel
     {
-        public IProfileCreationWindow ProfileCreationWindow { get; set; }
-        private CreationChoice _choice;
+        private readonly IProfileCreationWindowViewModel _profileCreationWindow;
+        private CreationMethod _choice;
         private ICommand _confirmProfileCreationChoice;
 
-        public ProfileCreationChoiceViewModel(IProfileCreationChoiceView view, IContainer container, IProfileCreationWindow mainWindow)
+        public ProfileCreationChoiceViewModel(IProfileCreationChoiceView view, IContainer container)
             : base(view, container)
         {
-            this.ProfileCreationWindow = mainWindow;
-        }
-
-        public ProfileCreationChoiceViewModel(ProfileCreationWindowViewModel profileCreationWindow)
-        {
-            this.ProfileCreationWindow = profileCreationWindow;
-            this.ProfileCreationWindow.Window.Width = 300;
-            this.ProfileCreationWindow.Window.Height = 225;
+            this._profileCreationWindow = this.Container.GetInstance<IProfileCreationWindowViewModel>();
         }
 
         public bool IsManual
         {
-            get { return this._choice == CreationChoice.Manual; }
+            get { return this._choice == CreationMethod.Manual; }
             set
             {
-                this._choice = value ? CreationChoice.Manual : CreationChoice.Auto;
+                this._choice = value ? CreationMethod.Manual : CreationMethod.Auto;
                 OnPropertyChanged("IsManual");
                 OnPropertyChanged("IsAuto");
             }
@@ -46,10 +38,10 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
 
         public bool IsAuto 
         {
-            get { return this._choice == CreationChoice.Auto; }
+            get { return this._choice == CreationMethod.Auto; }
             set
             {
-                this._choice = value ? CreationChoice.Auto : CreationChoice.Manual;
+                this._choice = value ? CreationMethod.Auto : CreationMethod.Manual;
                 OnPropertyChanged("IsManual");
                 OnPropertyChanged("IsAuto");
             }
@@ -70,9 +62,14 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
 
         public void NaviguateToProfileCreation()
         {
-            this.ProfileCreationWindow.CurrentViewModel = this._choice == CreationChoice.Auto 
-                ? (ViewModelBase) new AutoProfileCreationViewModel(this.ProfileCreationWindow) 
-                : new ManualProfileCreationViewModel(this.ProfileCreationWindow);
+            if (this._choice == CreationMethod.Auto)
+            {
+                this._profileCreationWindow.ShowView<IAutoProfileCreationViewModel>();
+            }
+            else
+            {
+                this._profileCreationWindow.ShowView<IManualProfileCreationViewModel>();
+            }
         }
 
         public bool CanNaviguateToProfileCreation()

@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using myDietManager.ViewModel;
 using myDietManager.ViewModel.Login;
 
 namespace myDietManager

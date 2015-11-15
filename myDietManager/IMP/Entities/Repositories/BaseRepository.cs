@@ -18,7 +18,6 @@ namespace myDietManager.IMP.Entities.Repositories
             this.DbSet = dbContext.Set<T>();
         }
 
-
         public override T Get(Func<T, bool> predicate)
         {
             return this.DbSet.First(predicate);

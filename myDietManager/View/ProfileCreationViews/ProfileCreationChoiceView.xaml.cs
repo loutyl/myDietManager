@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using myDietManager.View.Base;
 using myDietManager.View.ProfileCreationViews.Interfaces;
 
 namespace myDietManager.View.ProfileCreationViews

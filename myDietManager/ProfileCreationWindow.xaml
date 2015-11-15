@@ -2,7 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:profileCreationViews="clr-namespace:myDietManager.View.ProfileCreationViews"
-        xmlns:profileCreation="clr-namespace:myDietManager.ViewModel.ProfileCreation"
         xmlns:views="clr-namespace:myDietManager.ViewModel.ProfileCreation.Views"
         Title="User Creation" Height="300" Width="603" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
@@ -11,7 +10,7 @@
             <profileCreationViews:ProfileCreationChoiceView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type views:AutoProfileCreationViewModel}">
-            <profileCreationViews:ProfileCreationView />
+            <profileCreationViews:AutoProfileCreationView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type views:ProfileCreationRecapViewModel}">
             <profileCreationViews:ProfileCreationRecapView />

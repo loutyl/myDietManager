@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using myDietManager.Abstraction.Entities;
 
 namespace myDietManager.Abstraction.DietManagement
 {
     public interface IDietManager
     {
-        IEnumerable<float> GetMacronutrientsRatios(string goal);
+        void FinalizeDietProfileCreation(IDietProfile dietProfile);
     }
 }

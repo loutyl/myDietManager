@@ -1,5 +1,4 @@
-﻿using myDietManager.View;
-using myDietManager.View.Base;
+﻿using myDietManager.View.Base;
 
 namespace myDietManager.ViewModel.Login
 {

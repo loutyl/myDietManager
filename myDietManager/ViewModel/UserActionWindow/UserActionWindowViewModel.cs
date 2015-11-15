@@ -1,10 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using myDietManager.Abstraction.Entities;
 using myDietManager.Abstraction.Repositories;
-using myDietManager.Abstraction.UnitOfWork;
 using myDietManager.IMP.Entities.Repositories;
 using myDietManager.Registration;
 using myDietManager.ViewModel.Base;
@@ -31,23 +29,23 @@ namespace myDietManager.ViewModel.UserActionWindow
             this._user = user;
         }
 
-        private ObservableCollection<string> PopulateDietProfileNames()
-        {
-            var profileNames = new ObservableCollection<string>();
+        //private ObservableCollection<string> PopulateDietProfileNames()
+        //{
+        //    var profileNames = new ObservableCollection<string>();
 
-            if ( !this._dbOjbect.UserHasDietProfile(this._user) )
-            {
-                return profileNames;
-            }
+        //    if ( !this._dbOjbect.UserHasDietProfile(this._user) )
+        //    {
+        //        return profileNames;
+        //    }
 
-            foreach ( var profileName in this._dbOjbect.GetUserDietProfileNames(this._user) )
-            {
-                profileNames.Add(profileName);
-            }
+        //    foreach ( var profileName in this._dbOjbect.GetUserDietProfileNames(this._user) )
+        //    {
+        //        profileNames.Add(profileName);
+        //    }
 
-            this.SelectedProfileName = profileNames[0];
-            return profileNames;
-        }
+        //    this.SelectedProfileName = profileNames[0];
+        //    return profileNames;
+        //}
 
         public ObservableCollection<string> DietProfileNames
         {

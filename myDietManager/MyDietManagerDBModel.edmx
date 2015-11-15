@@ -10,13 +10,13 @@
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="Gender" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Role" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="UserCalorieNeeds">
           <Key>
@@ -42,10 +42,10 @@
             <PropertyRef Name="UserDietProfileID" />
           </Key>
           <Property Name="UserDietProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProfileName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProfileName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Weight" Type="float" Nullable="false" />
           <Property Name="Height" Type="float" Nullable="false" />
-          <Property Name="Goal" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="Goal" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DietDuration" Type="int" Nullable="false" />
           <Property Name="ActivityLevel" Type="int" Nullable="false" />
           <Property Name="WeightGoal" Type="float" Nullable="false" />
@@ -150,13 +150,13 @@
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Role" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="UsersDietProfile" Relationship="Self.FK_UsersDietProfile_User" FromRole="User" ToRole="UsersDietProfile" />
         </EntityType>
         <EntityType Name="UserCalorieNeeds">
@@ -185,10 +185,10 @@
             <PropertyRef Name="UserDietProfileID" />
           </Key>
           <Property Name="UserDietProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProfileName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ProfileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Weight" Type="Double" Nullable="false" />
           <Property Name="Height" Type="Double" Nullable="false" />
-          <Property Name="Goal" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Goal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DietDuration" Type="Int32" Nullable="false" />
           <Property Name="ActivityLevel" Type="Int32" Nullable="false" />
           <Property Name="WeightGoal" Type="Double" Nullable="false" />

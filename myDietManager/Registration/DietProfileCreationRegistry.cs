@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using myDietManager.View.ProfileCreationViews;
+﻿using myDietManager.View.ProfileCreationViews;
 using myDietManager.View.ProfileCreationViews.Interfaces;
 using myDietManager.ViewModel.ProfileCreation.Views;
 using myDietManager.ViewModel.ProfileCreation.Window;

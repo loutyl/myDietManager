@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using myDietManager.Abstraction.Entities;
 using myDietManager.ViewModel.Base;
 
 namespace myDietManager.ViewModel.ProfileCreation.Views
 {
-    interface IAutoProfileCreationViewModel : IViewModel
+    public interface IAutoProfileCreationViewModel : IViewModel
     {
+        IDietProfile DietProfile { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using myDietManager.Abstraction.Entities;
 using myDietManager.Class.Database;
 using myDietManager.View.ProfileCreationViews.Interfaces;
 using myDietManager.ViewModel.Base;
@@ -10,29 +11,20 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
 {
     public class ProfileCreationRecapViewModel : BaseViewModel, IProfileCreationRecapViewModel
     {
-        private readonly ProfileCreationWindowViewModel _profileCreationWindow;
-        private readonly AutoProfileCreationViewModel _profileCreationViewModel;
+        private readonly IAutoProfileCreationViewModel _profileCreationViewModel;
         private ICommand _cancelCreationCommand;
         private ICommand _comfirmCreationCommand;
 
-        public ProfileCreationRecapViewModel(IProfileCreationRecapView view, IContainer container) : base(view, container)
+        public ProfileCreationRecapViewModel(IProfileCreationRecapView view, IContainer container, IAutoProfileCreationViewModel profileCreationViewModel) : base(view, container)
         {
-            
+            this._profileCreationViewModel = profileCreationViewModel;
         }
 
-        public AutoProfileCreationRecapViewModel(ProfileCreationWindowViewModel windowViewModel, AutoProfileCreationViewModel profileCreationviewModel)
-        {
-            this._profileCreationViewModel = profileCreationviewModel;
-            this._profileCreationWindow = windowViewModel;
-            this._profileCreationWindow.Window.Width = 385;
-            this._profileCreationWindow.Window.Height = 245;
-        }
-
-        public int MaintenanceCalories => this._profileCreationWindow.DietProfile.CalorieNeeds.MaintenanceCalories;
-        public int DailyCalories => this._profileCreationWindow.DietProfile.CalorieNeeds.DailyCalories;
-        public int Protein => this._profileCreationWindow.DietProfile.Macros.Protein;
-        public int Carbohydrates => this._profileCreationWindow.DietProfile.Macros.Carbohydrate;
-        public int Fat => this._profileCreationWindow.DietProfile.Macros.Fat;
+        public int MaintenanceCalories => this._profileCreationViewModel.DietProfile.CalorieNeeds.MaintenanceCalories;
+        public int DailyCalories => this._profileCreationViewModel.DietProfile.CalorieNeeds.DailyCalories;
+        public int Protein => this._profileCreationViewModel.DietProfile.Macronutrients.Protein;
+        public int Carbohydrates => this._profileCreationViewModel.DietProfile.Macronutrients.Carbohydrate;
+        public int Fat => this._profileCreationViewModel.DietProfile.Macronutrients.Fat;
 
         public ICommand CancelCreationCommand
         {
@@ -62,17 +54,12 @@ namespace myDietManager.ViewModel.ProfileCreation.Views
 
         private void FinishUserCreation()
         {
-            var dbObject = new DatabaseObject();
-            dbObject.CompleteDietProfileCreation(this._profileCreationWindow.DietProfile);
 
-            this._profileCreationWindow.Window.Close();
         }
 
         private void GoBackToUserInformations()
         {
-            this._profileCreationWindow.Window.Width = this._profileCreationViewModel.ViewWidth;
-            this._profileCreationWindow.Window.Height = this._profileCreationViewModel.ViewHeight;
-            this._profileCreationWindow.CurrentViewModel = this._profileCreationViewModel;
+
         }
     }
 }
