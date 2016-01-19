@@ -15,7 +15,9 @@ namespace myDietManager.cfg
             var container = new Container();
             container.Configure(c =>
             {
-                c.AddRegistry<StartingRegistry>();
+                c.AddRegistry<BaseRegistry>();
+                c.AddRegistry<DataEntityRegistry>();
+                c.AddRegistry<POCOModelRegistry>();
                 c.AddRegistry<DietProfileCreationRegistry>();
             });
             var window = container.GetInstance<ILoginWindowViewModel>();

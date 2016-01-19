@@ -5,6 +5,14 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myDietManager", "myDietManager\myDietManager.csproj", "{B4525C64-EA9E-4713-841C-F60949987FCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDietManagerEntities", "MyDietManagerEntities\MyDietManagerEntities.csproj", "{A3ADD8CC-4B0D-46F0-90AB-2C14957EEB2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDietManagerAbstract", "MyDietManagerAbstract\MyDietManagerAbstract.csproj", "{490E2584-63A5-4EC1-936C-63B1CB91A926}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDietManagerWeb", "..\MyDietManagerWeb\MyDietManagerWeb\MyDietManagerWeb.csproj", "{2AD7724E-9196-4D5A-8C0C-E4E7B7E9544D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDietManagerWeb.Tests", "MyDietManagerWeb.Tests\MyDietManagerWeb.Tests.csproj", "{DCED7BF7-FA07-4957-845D-6CB9AF8A4915}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{B4525C64-EA9E-4713-841C-F60949987FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4525C64-EA9E-4713-841C-F60949987FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4525C64-EA9E-4713-841C-F60949987FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3ADD8CC-4B0D-46F0-90AB-2C14957EEB2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3ADD8CC-4B0D-46F0-90AB-2C14957EEB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3ADD8CC-4B0D-46F0-90AB-2C14957EEB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3ADD8CC-4B0D-46F0-90AB-2C14957EEB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{490E2584-63A5-4EC1-936C-63B1CB91A926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{490E2584-63A5-4EC1-936C-63B1CB91A926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{490E2584-63A5-4EC1-936C-63B1CB91A926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{490E2584-63A5-4EC1-936C-63B1CB91A926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AD7724E-9196-4D5A-8C0C-E4E7B7E9544D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AD7724E-9196-4D5A-8C0C-E4E7B7E9544D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AD7724E-9196-4D5A-8C0C-E4E7B7E9544D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AD7724E-9196-4D5A-8C0C-E4E7B7E9544D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCED7BF7-FA07-4957-845D-6CB9AF8A4915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCED7BF7-FA07-4957-845D-6CB9AF8A4915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCED7BF7-FA07-4957-845D-6CB9AF8A4915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCED7BF7-FA07-4957-845D-6CB9AF8A4915}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

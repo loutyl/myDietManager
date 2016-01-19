@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>myDietManager</RootNamespace>
     <AssemblyName>myDietManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,6 +60,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -81,18 +84,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Abstraction\DietManagement\IDietCalculator.cs" />
-    <Compile Include="Abstraction\DietManagement\IDietManager.cs" />
-    <Compile Include="Abstraction\Entities\ICalorieNeeds.cs" />
-    <Compile Include="Abstraction\Entities\IDietProfile.cs" />
-    <Compile Include="Abstraction\Entities\IMacronutrients.cs" />
-    <Compile Include="Abstraction\Entities\IUser.cs" />
-    <Compile Include="Abstraction\Repositories\GenericRepository.cs" />
-    <Compile Include="Abstraction\Repositories\IBaseRepository.cs" />
-    <Compile Include="Abstraction\Repositories\IRepository.cs" />
-    <Compile Include="Abstraction\Security\IAuthentifactionManager.cs" />
-    <Compile Include="Abstraction\Serialization\ISerializer.cs" />
-    <Compile Include="Abstraction\UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="cfg\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -105,14 +96,13 @@
     <Compile Include="IMP\DietManagement\DietCalculator.cs" />
     <Compile Include="IMP\DietManagement\DietManager.cs" />
     <Compile Include="IMP\Entities\Converter\CalorieNeedsEntityConverter.cs" />
+    <Compile Include="IMP\Entities\Converter\Converter.cs" />
     <Compile Include="IMP\Entities\Converter\DietProfileEntityConverter.cs" />
-    <Compile Include="IMP\Entities\Converter\IConverter.cs" />
     <Compile Include="IMP\Entities\Converter\MacronutrientsEntityConverter.cs" />
     <Compile Include="IMP\Entities\Converter\UserEntityConverter.cs" />
     <Compile Include="IMP\Entities\Repositories\BaseRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\CalorieNeedsRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\DietProfileRepository.cs" />
-    <Compile Include="IMP\Entities\Repositories\IUserRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\MacronutrientsRepository.cs" />
     <Compile Include="IMP\Entities\Repositories\UnitOfWork.cs" />
     <Compile Include="IMP\Entities\Repositories\UserRepository.cs" />
@@ -124,46 +114,15 @@
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyDietManagerDBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyDietManagerDBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MyDietManagerDBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MyDietManagerDBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Registration\DataEntityRegistry.cs" />
     <Compile Include="Registration\DietProfileCreationRegistry.cs" />
-    <Compile Include="Registration\StartingRegistry.cs" />
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Registration\POCOModelRegistry.cs" />
+    <Compile Include="Registration\BaseRegistry.cs" />
     <Compile Include="UserActionWindow.xaml.cs">
       <DependentUpon>UserActionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProfileCreationWindow.xaml.cs">
       <DependentUpon>ProfileCreationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserCalorieNeeds.cs">
-      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserMacronutrients.cs">
-      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UsersDietProfile.cs">
-      <DependentUpon>MyDietManagerDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Base\BaseNotification.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
@@ -236,13 +195,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.Config" />
-    <EntityDeploy Include="MyDietManagerDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MyDietManagerDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="MyDietManagerDBModel.edmx.diagram">
-      <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -297,18 +249,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MyDietManagerDBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
-      <LastGenOutput>MyDietManagerDBModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="MyDietManagerDBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyDietManagerDBModel.edmx</DependentUpon>
-      <LastGenOutput>MyDietManagerDBModel.cs</LastGenOutput>
-    </Content>
+    <ProjectReference Include="..\MyDietManagerAbstract\MyDietManagerAbstract.csproj">
+      <Project>{490e2584-63a5-4ec1-936c-63b1cb91a926}</Project>
+      <Name>MyDietManagerAbstract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDietManagerEntities\MyDietManagerEntities.csproj">
+      <Project>{A3ADD8CC-4B0D-46F0-90AB-2C14957EEB2E}</Project>
+      <Name>MyDietManagerEntities</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

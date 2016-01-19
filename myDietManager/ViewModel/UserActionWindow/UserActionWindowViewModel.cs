@@ -1,18 +1,19 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.Abstraction.Entities;
-using myDietManager.Abstraction.Repositories;
 using myDietManager.IMP.Entities.Repositories;
 using myDietManager.ViewModel.Base;
 using myDietManager.ViewModel.DietProfileManagement;
 using myDietManager.ViewModel.ProfileCreation.Window;
+using MyDietManagerAbstract.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.Repositories;
+using MyDietManagerEntities;
 using StructureMap;
-using System.Linq;
 
 namespace myDietManager.ViewModel.UserActionWindow
 {
-    class UserActionWindowViewModel : BaseWindowViewModel, IUserActionWindowViewModel
+    internal class UserActionWindowViewModel : BaseWindowViewModel, IUserActionWindowViewModel
     {
         private readonly IUser _user;
         private readonly IRepository<UsersDietProfile> _dietProfileRepository;
@@ -60,12 +61,11 @@ namespace myDietManager.ViewModel.UserActionWindow
             get { return this._selectedProfileName; }
             set
             {
-                if (this._selectedProfileName == value ){ return; }
+                if ( this._selectedProfileName == value ) { return; }
 
                 this._selectedProfileName = value;
                 OnPropertyChanged("SelectedProfileName");
             }
-            
         }
 
         public ICommand AddDietProfileCommand
@@ -84,7 +84,7 @@ namespace myDietManager.ViewModel.UserActionWindow
         private void OpenDietProfileCreationWindow()
         {
             var window = this.Container.GetInstance<IProfileCreationWindowViewModel>();
-            var profileCreationWindow = (ProfileCreationWindow) window.Window;
+            var profileCreationWindow = (ProfileCreationWindow)window.Window;
             profileCreationWindow.ShowDialog();
         }
 
@@ -103,22 +103,13 @@ namespace myDietManager.ViewModel.UserActionWindow
 
         private void LoadDietProfile()
         {
-           var selectedDietProfile =  this._dietProfileRepository.Get(profile => 
-                    profile.UserID == this._user.UserID && 
+            var selectedDietProfile = this._dietProfileRepository.Get(profile =>
+                    profile.UserID == this._user.UserID &&
                     profile.ProfileName == this.SelectedProfileName);
 
-            var childContainer = this.Container.CreateChildContainer();
-            
-            childContainer.Configure(x => {
-               x.For<IDietManagerWindowViewModel>()
-               .Use<DietManagerWindowViewModel>()
-               .Ctor<UsersDietProfile>().Is(selectedDietProfile);
-            });
-
-            var window = childContainer.GetInstance<IDietManagerWindowViewModel>();
+            var window = this.Container.With("dietProfile").EqualTo(selectedDietProfile).GetInstance<IDietManagerWindowViewModel>();
             var userActionWindow = (DietManagerWindow)window.Window;
             userActionWindow.ShowDialog();
-
         }
 
         private bool CanLoadDietProfile()
@@ -126,6 +117,5 @@ namespace myDietManager.ViewModel.UserActionWindow
             return true;
             //return this._dietProfileNames.Count != 0;
         }
-
     }
 }

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyDietManagerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserCalorieNeeds">
+          <Key>
+            <PropertyRef Name="UserCalorieNeedsID" />
+          </Key>
+          <Property Name="UserCalorieNeedsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaintenanceCalories" Type="int" Nullable="false" />
+          <Property Name="DailyCalories" Type="int" Nullable="false" />
+          <Property Name="UserDietProfileID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserMacronutrients">
+          <Key>
+            <PropertyRef Name="UserMacronutrientsID" />
+          </Key>
+          <Property Name="UserMacronutrientsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Protein" Type="int" Nullable="false" />
+          <Property Name="Carbohydrate" Type="int" Nullable="false" />
+          <Property Name="Fat" Type="int" Nullable="false" />
+          <Property Name="UserDietProfileID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersDietProfile">
+          <Key>
+            <PropertyRef Name="UserDietProfileID" />
+          </Key>
+          <Property Name="UserDietProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Height" Type="float" Nullable="false" />
+          <Property Name="Goal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DietDuration" Type="int" Nullable="false" />
+          <Property Name="ActivityLevel" Type="int" Nullable="false" />
+          <Property Name="WeightGoal" Type="float" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_UserCalorieNeeds_UsersDietProfile">
+          <End Role="UsersDietProfile" Type="Self.UsersDietProfile" Multiplicity="1" />
+          <End Role="UserCalorieNeeds" Type="Self.UserCalorieNeeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersDietProfile">
+              <PropertyRef Name="UserDietProfileID" />
+            </Principal>
+            <Dependent Role="UserCalorieNeeds">
+              <PropertyRef Name="UserDietProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMacronutrients_UsersDietProfile">
+          <End Role="UsersDietProfile" Type="Self.UsersDietProfile" Multiplicity="1" />
+          <End Role="UserMacronutrients" Type="Self.UserMacronutrients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersDietProfile">
+              <PropertyRef Name="UserDietProfileID" />
+            </Principal>
+            <Dependent Role="UserMacronutrients">
+              <PropertyRef Name="UserDietProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersDietProfile_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersDietProfile" Type="Self.UsersDietProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UsersDietProfile">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyDietManagerDBModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCalorieNeeds" EntityType="Self.UserCalorieNeeds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMacronutrients" EntityType="Self.UserMacronutrients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersDietProfile" EntityType="Self.UsersDietProfile" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserCalorieNeeds_UsersDietProfile" Association="Self.FK_UserCalorieNeeds_UsersDietProfile">
+            <End Role="UsersDietProfile" EntitySet="UsersDietProfile" />
+            <End Role="UserCalorieNeeds" EntitySet="UserCalorieNeeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMacronutrients_UsersDietProfile" Association="Self.FK_UserMacronutrients_UsersDietProfile">
+            <End Role="UsersDietProfile" EntitySet="UsersDietProfile" />
+            <End Role="UserMacronutrients" EntitySet="UserMacronutrients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersDietProfile_User" Association="Self.FK_UsersDietProfile_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UsersDietProfile" EntitySet="UsersDietProfile" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyDietManagerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UsersDietProfiles" Relationship="Self.FK_UsersDietProfile_User" FromRole="User" ToRole="UsersDietProfile" />
+        </EntityType>
+        <EntityType Name="UserCalorieNeed">
+          <Key>
+            <PropertyRef Name="UserCalorieNeedsID" />
+          </Key>
+          <Property Name="UserCalorieNeedsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaintenanceCalories" Type="Int32" Nullable="false" />
+          <Property Name="DailyCalories" Type="Int32" Nullable="false" />
+          <Property Name="UserDietProfileID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UsersDietProfile" Relationship="Self.FK_UserCalorieNeeds_UsersDietProfile" FromRole="UserCalorieNeeds" ToRole="UsersDietProfile" />
+        </EntityType>
+        <EntityType Name="UserMacronutrient">
+          <Key>
+            <PropertyRef Name="UserMacronutrientsID" />
+          </Key>
+          <Property Name="UserMacronutrientsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Protein" Type="Int32" Nullable="false" />
+          <Property Name="Carbohydrate" Type="Int32" Nullable="false" />
+          <Property Name="Fat" Type="Int32" Nullable="false" />
+          <Property Name="UserDietProfileID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UsersDietProfile" Relationship="Self.FK_UserMacronutrients_UsersDietProfile" FromRole="UserMacronutrients" ToRole="UsersDietProfile" />
+        </EntityType>
+        <EntityType Name="UsersDietProfile">
+          <Key>
+            <PropertyRef Name="UserDietProfileID" />
+          </Key>
+          <Property Name="UserDietProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Height" Type="Double" Nullable="false" />
+          <Property Name="Goal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DietDuration" Type="Int32" Nullable="false" />
+          <Property Name="ActivityLevel" Type="Int32" Nullable="false" />
+          <Property Name="WeightGoal" Type="Double" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UsersDietProfile_User" FromRole="UsersDietProfile" ToRole="User" />
+          <NavigationProperty Name="UserCalorieNeeds" Relationship="Self.FK_UserCalorieNeeds_UsersDietProfile" FromRole="UsersDietProfile" ToRole="UserCalorieNeeds" />
+          <NavigationProperty Name="UserMacronutrients" Relationship="Self.FK_UserMacronutrients_UsersDietProfile" FromRole="UsersDietProfile" ToRole="UserMacronutrients" />
+        </EntityType>
+        <Association Name="FK_UsersDietProfile_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersDietProfile" Type="Self.UsersDietProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UsersDietProfile">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCalorieNeeds_UsersDietProfile">
+          <End Role="UsersDietProfile" Type="Self.UsersDietProfile" Multiplicity="1" />
+          <End Role="UserCalorieNeeds" Type="Self.UserCalorieNeed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersDietProfile">
+              <PropertyRef Name="UserDietProfileID" />
+            </Principal>
+            <Dependent Role="UserCalorieNeeds">
+              <PropertyRef Name="UserDietProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMacronutrients_UsersDietProfile">
+          <End Role="UsersDietProfile" Type="Self.UsersDietProfile" Multiplicity="1" />
+          <End Role="UserMacronutrients" Type="Self.UserMacronutrient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersDietProfile">
+              <PropertyRef Name="UserDietProfileID" />
+            </Principal>
+            <Dependent Role="UserMacronutrients">
+              <PropertyRef Name="UserDietProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyDietManagerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserCalorieNeeds" EntityType="Self.UserCalorieNeed" />
+          <EntitySet Name="UserMacronutrients" EntityType="Self.UserMacronutrient" />
+          <EntitySet Name="UsersDietProfiles" EntityType="Self.UsersDietProfile" />
+          <AssociationSet Name="FK_UsersDietProfile_User" Association="Self.FK_UsersDietProfile_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UsersDietProfile" EntitySet="UsersDietProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCalorieNeeds_UsersDietProfile" Association="Self.FK_UserCalorieNeeds_UsersDietProfile">
+            <End Role="UsersDietProfile" EntitySet="UsersDietProfiles" />
+            <End Role="UserCalorieNeeds" EntitySet="UserCalorieNeeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMacronutrients_UsersDietProfile" Association="Self.FK_UserMacronutrients_UsersDietProfile">
+            <End Role="UsersDietProfile" EntitySet="UsersDietProfiles" />
+            <End Role="UserMacronutrients" EntitySet="UserMacronutrients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyDietManagerDBModelStoreContainer" CdmEntityContainer="MyDietManagerDBEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MyDietManagerDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MyDietManagerDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCalorieNeeds">
+            <EntityTypeMapping TypeName="MyDietManagerDBModel.UserCalorieNeed">
+              <MappingFragment StoreEntitySet="UserCalorieNeeds">
+                <ScalarProperty Name="UserCalorieNeedsID" ColumnName="UserCalorieNeedsID" />
+                <ScalarProperty Name="MaintenanceCalories" ColumnName="MaintenanceCalories" />
+                <ScalarProperty Name="DailyCalories" ColumnName="DailyCalories" />
+                <ScalarProperty Name="UserDietProfileID" ColumnName="UserDietProfileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMacronutrients">
+            <EntityTypeMapping TypeName="MyDietManagerDBModel.UserMacronutrient">
+              <MappingFragment StoreEntitySet="UserMacronutrients">
+                <ScalarProperty Name="UserMacronutrientsID" ColumnName="UserMacronutrientsID" />
+                <ScalarProperty Name="Protein" ColumnName="Protein" />
+                <ScalarProperty Name="Carbohydrate" ColumnName="Carbohydrate" />
+                <ScalarProperty Name="Fat" ColumnName="Fat" />
+                <ScalarProperty Name="UserDietProfileID" ColumnName="UserDietProfileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersDietProfiles">
+            <EntityTypeMapping TypeName="MyDietManagerDBModel.UsersDietProfile">
+              <MappingFragment StoreEntitySet="UsersDietProfile">
+                <ScalarProperty Name="UserDietProfileID" ColumnName="UserDietProfileID" />
+                <ScalarProperty Name="ProfileName" ColumnName="ProfileName" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Goal" ColumnName="Goal" />
+                <ScalarProperty Name="DietDuration" ColumnName="DietDuration" />
+                <ScalarProperty Name="ActivityLevel" ColumnName="ActivityLevel" />
+                <ScalarProperty Name="WeightGoal" ColumnName="WeightGoal" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

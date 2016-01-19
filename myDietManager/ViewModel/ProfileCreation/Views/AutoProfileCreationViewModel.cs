@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.Abstraction.DietManagement;
-using myDietManager.Abstraction.Entities;
 using myDietManager.View.ProfileCreationViews.Interfaces;
 using myDietManager.ViewModel.Base;
+using MyDietManagerAbstract.Abstraction.DietManagement;
+using MyDietManagerAbstract.Abstraction.Entities;
 using StructureMap;
 
 namespace myDietManager.ViewModel.ProfileCreation.Views

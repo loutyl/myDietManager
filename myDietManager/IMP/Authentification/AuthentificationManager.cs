@@ -1,5 +1,6 @@
-﻿using myDietManager.Abstraction.Repositories;
-using myDietManager.Abstraction.Security;
+﻿using MyDietManagerAbstract.Abstraction.Repositories;
+using MyDietManagerAbstract.Abstraction.Security;
+using MyDietManagerEntities;
 using StructureMap;
 
 namespace myDietManager.IMP.Authentification

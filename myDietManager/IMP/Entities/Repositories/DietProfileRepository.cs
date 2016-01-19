@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using myDietManager.Abstraction.Entities;
-using myDietManager.Abstraction.UnitOfWork;
+using MyDietManagerAbstract.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.UnitOfWork;
+using MyDietManagerEntities;
 
 namespace myDietManager.IMP.Entities.Repositories
 {

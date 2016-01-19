@@ -2,12 +2,14 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.Abstraction.Security;
+using myDietManager.IMP.Entities.Converter;
 using myDietManager.ViewModel.Base;
 using myDietManager.ViewModel.UserActionWindow;
+using MyDietManagerAbstract.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.Entities.Converter;
+using MyDietManagerAbstract.Abstraction.Security;
+using MyDietManagerEntities;
 using StructureMap;
-using myDietManager.Abstraction.Entities;
-using myDietManager.IMP.Entities.Converter;
 
 namespace myDietManager.ViewModel.Login
 {
@@ -16,9 +18,8 @@ namespace myDietManager.ViewModel.Login
         private readonly IAuthentifactionManager<User> _authManager;
         private ICommand _connectCommand;
         private ICommand _cancelComand;
-        
-        public string Username { get; set; }
 
+        public string Username { get; set; }
 
         public LoginWindowViewModel(ILoginWindow loginWindow, IContainer container) : base(loginWindow, container)
         {
@@ -45,20 +46,14 @@ namespace myDietManager.ViewModel.Login
 
             var user = this._authManager.Authenticate(this.Username, pwd);
 
-            if (user == null){ return; }
+            if ( user == null ) { return; }
 
             var converter = this.Container.GetInstance<IConverter<User, IUser>>();
             var pocoUser = converter.Convert(user);
-            var childContainer = this.Container.CreateChildContainer();
-            childContainer.Configure(_ =>
-            {
-                _.For<IUserActionWindowViewModel>()
-                    .Use<UserActionWindowViewModel>().Ctor<IUser>().Is(pocoUser);
-            });
 
-            var window = childContainer.GetInstance<IUserActionWindowViewModel>();
+            var window = this.Container.With("user").EqualTo(pocoUser).GetInstance<IUserActionWindowViewModel>();
             var userActionWindow = (myDietManager.UserActionWindow)window.Window;
-            userActionWindow.ShowDialog();            
+            userActionWindow.ShowDialog();
         }
 
         private bool CanLogin()

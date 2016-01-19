@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
-using myDietManager.Abstraction.UnitOfWork;
+using MyDietManagerAbstract.Abstraction.UnitOfWork;
+using MyDietManagerEntities;
 
 namespace myDietManager.IMP.Entities.Repositories
 {

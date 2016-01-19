@@ -1,5 +1,5 @@
-﻿using myDietManager.Abstraction.Entities;
-using myDietManager.ViewModel.Base;
+﻿using myDietManager.ViewModel.Base;
+using MyDietManagerAbstract.Abstraction.Entities;
 
 namespace myDietManager.ViewModel.ProfileCreation.Views
 {

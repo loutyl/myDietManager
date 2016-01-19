@@ -1,4 +1,5 @@
 ﻿using myDietManager.ViewModel.Base;
+using MyDietManagerEntities;
 using StructureMap;
 
 namespace myDietManager.ViewModel.DietProfileManagement

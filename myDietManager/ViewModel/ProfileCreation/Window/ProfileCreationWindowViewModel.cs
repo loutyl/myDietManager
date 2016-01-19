@@ -1,6 +1,6 @@
-﻿using myDietManager.Abstraction.Entities;
-using myDietManager.ViewModel.Base;
+﻿using myDietManager.ViewModel.Base;
 using myDietManager.ViewModel.ProfileCreation.Views;
+using MyDietManagerAbstract.Abstraction.Entities;
 using StructureMap;
 
 namespace myDietManager.ViewModel.ProfileCreation.Window

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using myDietManager.Abstraction.DietManagement;
-using myDietManager.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.DietManagement;
+using MyDietManagerAbstract.Abstraction.Entities;
 using StructureMap;
 
 namespace myDietManager.IMP.DietManagement

@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using myDietManager.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.Entities.Converter;
+using MyDietManagerEntities;
 
 namespace myDietManager.IMP.Entities.Converter
 {
-    public class MacronutrientsEntityConverter : IConverter<UserMacronutrients, IMacronutrients>
+    public class MacronutrientsEntityConverter : IConverter<UserMacronutrient, IMacronutrients>
     {
-        public IMacronutrients Convert(UserMacronutrients entity)
+        public IMacronutrients Convert(UserMacronutrient entity)
         {
             throw new NotImplementedException();
         }
 
-        public UserMacronutrients ConvertBack(IMacronutrients pocoObjectToConvert)
+        public UserMacronutrient ConvertBack(IMacronutrients pocoObjectToConvert)
         {
             throw new NotImplementedException();
         }

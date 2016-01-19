@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using myDietManager.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.Entities;
 
 namespace myDietManager.IMP.POCO
 {

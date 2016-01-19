@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using myDietManager.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.Entities;
+using MyDietManagerAbstract.Abstraction.Entities.Converter;
+using MyDietManagerEntities;
 
 namespace myDietManager.IMP.Entities.Converter
 {
-    public class CalorieNeedsEntityConverter : IConverter<UserCalorieNeeds, ICalorieNeeds>
+    public class CalorieNeedsEntityConverter : IConverter<UserCalorieNeed, ICalorieNeeds>
     {
-        public ICalorieNeeds Convert(UserCalorieNeeds entity)
+        public ICalorieNeeds Convert(UserCalorieNeed entity)
         {
             throw new NotImplementedException();
         }
 
-        public UserCalorieNeeds ConvertBack(ICalorieNeeds pocoObjectToConvert)
+        public UserCalorieNeed ConvertBack(ICalorieNeeds pocoObjectToConvert)
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,5 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using myDietManager.Abstraction.Entities;
 using myDietManager.Class.Database;
 using myDietManager.View.ProfileCreationViews.Interfaces;
 using myDietManager.ViewModel.Base;
